@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://d21nmp141vkff"]
+
+[ext_resource type="Script" uid="uid://de5du81tlu8be" path="res://Scrpits/Entities/player.gd" id="1_8gbba"]
+[ext_resource type="Script" uid="uid://cclus8hmi5uqf" path="res://Scrpits/Components/Movement/linear_velocity_component.gd" id="1_bo1nx"]
+[ext_resource type="Script" uid="uid://1hqnbj8lkbnb" path="res://Scrpits/Components/Controller/player_input_component.gd" id="1_jjgbg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pv2mu"]
+size = Vector2(53, 52.5)
+
+[node name="Main" type="Node2D" unique_id=989795356]
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=330966268 node_paths=PackedStringArray("linearVelocityComponent", "playerInputComponent")]
+position = Vector2(255, 133)
+script = ExtResource("1_8gbba")
+linearVelocityComponent = NodePath("Movement/LinearVelocityComponent")
+playerInputComponent = NodePath("Controller/PlayerInputComponent")
+
+[node name="Movement" type="Node2D" parent="Player" unique_id=827228945]
+
+[node name="LinearVelocityComponent" type="Node2D" parent="Player/Movement" unique_id=2051705830 node_paths=PackedStringArray("characterBody2D")]
+script = ExtResource("1_bo1nx")
+characterBody2D = NodePath("../..")
+
+[node name="Controller" type="Node2D" parent="Player" unique_id=1094903807]
+
+[node name="PlayerInputComponent" type="Node2D" parent="Player/Controller" unique_id=950283965]
+script = ExtResource("1_jjgbg")
+
+[node name="ColorRect" type="ColorRect" parent="Player" unique_id=1111578301]
+offset_left = -25.0
+offset_top = -27.0
+offset_right = 27.0
+offset_bottom = 26.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=289201895]
+shape = SubResource("RectangleShape2D_pv2mu")
