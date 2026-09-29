@@ -1,50 +1,234 @@
 [gd_scene format=3 uid="uid://d21nmp141vkff"]
 
-[ext_resource type="Script" uid="uid://de5du81tlu8be" path="res://Scripts/Entities/player.gd" id="1_8gbba"]
-[ext_resource type="Script" uid="uid://cclus8hmi5uqf" path="res://Scripts/Components/Movement/linear_velocity_component.gd" id="1_bo1nx"]
-[ext_resource type="Script" uid="uid://1hqnbj8lkbnb" path="res://Scripts/Components/Controller/player_input_component.gd" id="1_jjgbg"]
-[ext_resource type="AudioStream" uid="uid://dg66njtonummh" path="res://Audio/click_50bpm.mp3" id="4_jjvhh"]
-[ext_resource type="Script" uid="uid://bk0gfv0crmamf" path="res://Scripts/Components/Controller/bpm_controller_component.gd" id="4_kry3j"]
-[ext_resource type="Script" uid="uid://ccdx0ejnkaqqs" path="res://Scripts/Components/Controller/movement_controller_component.gd" id="5_21xkr"]
+[ext_resource type="Script" uid="uid://3ajbn7qjec5c" path="res://Scenes/player.gd" id="1_bo1nx"]
+[ext_resource type="Texture2D" uid="uid://by6wa2ghwntw6" path="res://Assets/pinball_image.png" id="2_8gbba"]
+[ext_resource type="Script" uid="uid://dm883n7ys36ej" path="res://Scenes/enemy.gd" id="3_8gbba"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pv2mu"]
-size = Vector2(53, 52.5)
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bo1nx"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rm36b"]
+radius = 29.068884
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8coe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyjxp"]
+size = Vector2(72.50009, 1179.9999)
 
 [node name="Main" type="Node2D" unique_id=989795356]
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=330966268 node_paths=PackedStringArray("linearVelocityComponent", "playerInputComponent", "bpm_controller_component")]
-position = Vector2(255, 133)
-script = ExtResource("1_8gbba")
-linearVelocityComponent = NodePath("Movement/LinearVelocityComponent")
-playerInputComponent = NodePath("Controller/PlayerInputComponent")
-bpm_controller_component = NodePath("Controller/BPMControllerComponent")
-
-[node name="Movement" type="Node2D" parent="Player" unique_id=827228945]
-
-[node name="LinearVelocityComponent" type="Node2D" parent="Player/Movement" unique_id=2051705830 node_paths=PackedStringArray("characterBody2D")]
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=831201580]
+position = Vector2(194, 88)
+rotation = 0.0027932574
+physics_material_override = SubResource("PhysicsMaterial_bo1nx")
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 100
+linear_damp = 0.2
 script = ExtResource("1_bo1nx")
-characterBody2D = NodePath("../..")
 
-[node name="Controller" type="Node2D" parent="Player" unique_id=1094903807]
+[node name="PinballImage" type="Sprite2D" parent="RigidBody2D" unique_id=1071042593]
+scale = Vector2(0.042164218, 0.042164218)
+texture = ExtResource("2_8gbba")
 
-[node name="PlayerInputComponent" type="Node2D" parent="Player/Controller" unique_id=950283965]
-script = ExtResource("1_jjgbg")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1344004035]
+scale = Vector2(0.34141818, 0.33940208)
+shape = SubResource("CircleShape2D_rm36b")
 
-[node name="MovementControllerComponent" type="Node2D" parent="Player/Controller" unique_id=1475315636]
-script = ExtResource("5_21xkr")
+[node name="InputTimer" type="Timer" parent="RigidBody2D" unique_id=448370172]
+wait_time = 0.001
+autostart = true
 
-[node name="BPMControllerComponent" type="Node2D" parent="Player/Controller" unique_id=1440500232]
-script = ExtResource("4_kry3j")
+[node name="Enemy" type="StaticBody2D" parent="." unique_id=775370783 groups=["Enemy"]]
+position = Vector2(397, 114)
+scale = Vector2(3.793561, 3.8509002)
+script = ExtResource("3_8gbba")
 
-[node name="ColorRect" type="ColorRect" parent="Player" unique_id=1111578301]
-offset_left = -25.0
-offset_top = -27.0
-offset_right = 27.0
-offset_bottom = 26.0
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=954196068]
+shape = SubResource("RectangleShape2D_a8coe")
+debug_color = Color(0.9639986, 2.8878452e-07, 0.49824852, 0.41960785)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=289201895]
-shape = SubResource("RectangleShape2D_pv2mu")
+[node name="Enemy2" type="StaticBody2D" parent="." unique_id=535307374 groups=["Enemy"]]
+position = Vector2(630, 222)
+scale = Vector2(3.793561, 3.8509002)
+script = ExtResource("3_8gbba")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1106765276]
-stream = ExtResource("4_jjvhh")
-autoplay = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2" unique_id=1582846711]
+shape = SubResource("RectangleShape2D_a8coe")
+debug_color = Color(0.9639986, 2.8878452e-07, 0.49824852, 0.41960785)
+
+[node name="Enemy3" type="StaticBody2D" parent="." unique_id=2028317768 groups=["Enemy"]]
+position = Vector2(331, 449)
+scale = Vector2(3.793561, 3.8509002)
+script = ExtResource("3_8gbba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3" unique_id=1724303770]
+shape = SubResource("RectangleShape2D_a8coe")
+debug_color = Color(0.9639986, 2.8878452e-07, 0.49824852, 0.41960785)
+
+[node name="Enemy4" type="StaticBody2D" parent="." unique_id=1608460857 groups=["Enemy"]]
+position = Vector2(731, 389)
+scale = Vector2(3.793561, 3.8509002)
+script = ExtResource("3_8gbba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy4" unique_id=399298475]
+shape = SubResource("RectangleShape2D_a8coe")
+debug_color = Color(0.9639986, 2.8878452e-07, 0.49824852, 0.41960785)
+
+[node name="Enemy5" type="StaticBody2D" parent="." unique_id=111594373 groups=["Enemy"]]
+position = Vector2(744, 90)
+scale = Vector2(3.793561, 3.8509002)
+script = ExtResource("3_8gbba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy5" unique_id=218604424]
+shape = SubResource("RectangleShape2D_a8coe")
+debug_color = Color(0.9639986, 2.8878452e-07, 0.49824852, 0.41960785)
+
+[node name="Enemy6" type="StaticBody2D" parent="." unique_id=2096632550 groups=["Enemy"]]
+position = Vector2(78, 288)
+scale = Vector2(3.793561, 3.8509002)
+script = ExtResource("3_8gbba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy6" unique_id=1040007006]
+shape = SubResource("RectangleShape2D_a8coe")
+debug_color = Color(0.9639986, 2.8878452e-07, 0.49824852, 0.41960785)
+
+[node name="Enemy7" type="StaticBody2D" parent="." unique_id=1547318050 groups=["Enemy"]]
+position = Vector2(194, 544)
+scale = Vector2(3.793561, 3.8509002)
+script = ExtResource("3_8gbba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy7" unique_id=921457347]
+shape = SubResource("RectangleShape2D_a8coe")
+debug_color = Color(0.9639986, 2.8878452e-07, 0.49824852, 0.41960785)
+
+[node name="Enemy8" type="StaticBody2D" parent="." unique_id=2054039004 groups=["Enemy"]]
+position = Vector2(567, 474)
+scale = Vector2(3.793561, 3.8509002)
+script = ExtResource("3_8gbba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy8" unique_id=659318826]
+shape = SubResource("RectangleShape2D_a8coe")
+debug_color = Color(0.9639986, 2.8878452e-07, 0.49824852, 0.41960785)
+
+[node name="Enemy9" type="StaticBody2D" parent="." unique_id=2106617229 groups=["Enemy"]]
+position = Vector2(952, 518)
+scale = Vector2(3.793561, 3.8509002)
+script = ExtResource("3_8gbba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy9" unique_id=519649569]
+shape = SubResource("RectangleShape2D_a8coe")
+debug_color = Color(0.9639986, 2.8878452e-07, 0.49824852, 0.41960785)
+
+[node name="Enemy10" type="StaticBody2D" parent="." unique_id=1041717784 groups=["Enemy"]]
+position = Vector2(970, 206)
+scale = Vector2(3.793561, 3.8509002)
+script = ExtResource("3_8gbba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy10" unique_id=1432971140]
+shape = SubResource("RectangleShape2D_a8coe")
+debug_color = Color(0.9639986, 2.8878452e-07, 0.49824852, 0.41960785)
+
+[node name="Enemy11" type="StaticBody2D" parent="." unique_id=2039490516 groups=["Enemy"]]
+position = Vector2(911, 336)
+scale = Vector2(3.793561, 3.8509002)
+script = ExtResource("3_8gbba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy11" unique_id=514783023]
+shape = SubResource("RectangleShape2D_a8coe")
+debug_color = Color(0.9639986, 2.8878452e-07, 0.49824852, 0.41960785)
+
+[node name="Enemy12" type="StaticBody2D" parent="." unique_id=922054761 groups=["Enemy"]]
+position = Vector2(842, 178)
+scale = Vector2(3.793561, 3.8509002)
+script = ExtResource("3_8gbba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy12" unique_id=1582027723]
+shape = SubResource("RectangleShape2D_a8coe")
+debug_color = Color(0.9639986, 2.8878452e-07, 0.49824852, 0.41960785)
+
+[node name="Enemy13" type="StaticBody2D" parent="." unique_id=1500257508 groups=["Enemy"]]
+position = Vector2(942, 78)
+scale = Vector2(3.793561, 3.8509002)
+script = ExtResource("3_8gbba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy13" unique_id=1268515146]
+shape = SubResource("RectangleShape2D_a8coe")
+debug_color = Color(0.9639986, 2.8878452e-07, 0.49824852, 0.41960785)
+
+[node name="Enemy14" type="StaticBody2D" parent="." unique_id=813768178 groups=["Enemy"]]
+position = Vector2(542, 60)
+scale = Vector2(3.793561, 3.8509002)
+script = ExtResource("3_8gbba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy14" unique_id=858982874]
+shape = SubResource("RectangleShape2D_a8coe")
+debug_color = Color(0.9639986, 2.8878452e-07, 0.49824852, 0.41960785)
+
+[node name="Enemy15" type="StaticBody2D" parent="." unique_id=50500742 groups=["Enemy"]]
+position = Vector2(346, 307)
+scale = Vector2(3.793561, 3.8509002)
+script = ExtResource("3_8gbba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy15" unique_id=1449094589]
+shape = SubResource("RectangleShape2D_a8coe")
+debug_color = Color(0.9639986, 2.8878452e-07, 0.49824852, 0.41960785)
+
+[node name="Enemy16" type="StaticBody2D" parent="." unique_id=88967756 groups=["Enemy"]]
+position = Vector2(185, 213)
+scale = Vector2(3.793561, 3.8509002)
+script = ExtResource("3_8gbba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy16" unique_id=1767883466]
+shape = SubResource("RectangleShape2D_a8coe")
+debug_color = Color(0.9639986, 2.8878452e-07, 0.49824852, 0.41960785)
+
+[node name="Enemy17" type="StaticBody2D" parent="." unique_id=645114375 groups=["Enemy"]]
+position = Vector2(311, 68)
+scale = Vector2(3.793561, 3.8509002)
+script = ExtResource("3_8gbba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy17" unique_id=1931398795]
+shape = SubResource("RectangleShape2D_a8coe")
+debug_color = Color(0.9639986, 2.8878452e-07, 0.49824852, 0.41960785)
+
+[node name="Enemy18" type="StaticBody2D" parent="." unique_id=1017439801 groups=["Enemy"]]
+position = Vector2(94, 67)
+scale = Vector2(3.793561, 3.8509002)
+script = ExtResource("3_8gbba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy18" unique_id=1509608193]
+shape = SubResource("RectangleShape2D_a8coe")
+debug_color = Color(0.9639986, 2.8878452e-07, 0.49824852, 0.41960785)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=718848789]
+position = Vector2(-34, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=460834979]
+position = Vector2(-1.5, 327.5)
+shape = SubResource("RectangleShape2D_jyjxp")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=199532395]
+position = Vector2(1162, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=456967758]
+position = Vector2(28.75, 327.5)
+shape = SubResource("RectangleShape2D_jyjxp")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=2136106524]
+position = Vector2(1017, 684)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=433574175]
+position = Vector2(1.0001831, 440)
+shape = SubResource("RectangleShape2D_jyjxp")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="." unique_id=315015428]
+position = Vector2(1017, -36)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4" unique_id=1303231731]
+position = Vector2(1.0001831, 440)
+shape = SubResource("RectangleShape2D_jyjxp")
+
+[connection signal="body_entered" from="RigidBody2D" to="RigidBody2D" method="get_collision"]
