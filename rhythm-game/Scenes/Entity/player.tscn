@@ -11,7 +11,7 @@
 bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rm36b"]
-radius = 29.068884
+radius = 93.72671
 
 [node name="Player" type="RigidBody2D" unique_id=288184236 node_paths=PackedStringArray("inputControllerComponent", "customImpulsePhysic")]
 rotation = 0.0027932574
@@ -19,7 +19,6 @@ physics_material_override = SubResource("PhysicsMaterial_bo1nx")
 gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 100
-linear_damp = 0.2
 script = ExtResource("1_tydqb")
 inputControllerComponent = NodePath("ControllerComponents/InputControllerComponent")
 customImpulsePhysic = NodePath("MovementComponents/CustomImpulsePhysicComponent")
@@ -49,7 +48,7 @@ inputControllerComponent = NodePath("../ControllerComponents/InputControllerComp
 customImpulsePhysic = NodePath("../MovementComponents/CustomImpulsePhysicComponent")
 
 [node name="PinballImage" type="Sprite2D" parent="." unique_id=1394863058]
-scale = Vector2(0.042164218, 0.042164218)
+scale = Vector2(0.1311729, 0.1311729)
 texture = ExtResource("6_iy3c6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1630081939]

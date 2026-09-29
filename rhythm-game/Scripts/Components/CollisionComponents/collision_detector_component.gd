@@ -11,5 +11,5 @@ func _ready() -> void:
 
 func get_collision(body: Node):
 	print(body)
-	if body.is_in_group("Enemy"):
+	if body.is_in_group(Global.ENEMY_GROUP):
 		body.queue_free()
