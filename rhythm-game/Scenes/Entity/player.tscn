@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://c46x7behm7yyv"]
+
+[ext_resource type="Script" uid="uid://3ajbn7qjec5c" path="res://Scripts/Entity/player.gd" id="1_tydqb"]
+[ext_resource type="Script" uid="uid://c3ubyrkitdk1s" path="res://Scripts/Components/Movement_Component/custom_impulse_physic_component.gd" id="2_7lf8o"]
+[ext_resource type="Script" uid="uid://dtxg0841okwd2" path="res://Scripts/Components/CollisionComponents/collision_detector_component.gd" id="3_ox502"]
+[ext_resource type="Script" uid="uid://cd8m0bngtah5w" path="res://Scripts/Components/ControllerComponents/input_controller_component.gd" id="4_rt8bh"]
+[ext_resource type="Script" uid="uid://b2f6c1qr6tjye" path="res://Scripts/Components/flipper_component.gd" id="5_20bu7"]
+[ext_resource type="Texture2D" uid="uid://by6wa2ghwntw6" path="res://Assets/pinball_image.png" id="6_iy3c6"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bo1nx"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rm36b"]
+radius = 29.068884
+
+[node name="Player" type="RigidBody2D" unique_id=288184236 node_paths=PackedStringArray("inputControllerComponent", "customImpulsePhysic")]
+rotation = 0.0027932574
+physics_material_override = SubResource("PhysicsMaterial_bo1nx")
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 100
+linear_damp = 0.2
+script = ExtResource("1_tydqb")
+inputControllerComponent = NodePath("ControllerComponents/InputControllerComponent")
+customImpulsePhysic = NodePath("MovementComponents/CustomImpulsePhysicComponent")
+
+[node name="MovementComponents" type="Node2D" parent="." unique_id=662177905]
+
+[node name="CustomImpulsePhysicComponent" type="Node2D" parent="MovementComponents" unique_id=552723732 node_paths=PackedStringArray("rigidBody2D")]
+script = ExtResource("2_7lf8o")
+rigidBody2D = NodePath("../..")
+
+[node name="CollisionComponents" type="Node2D" parent="." unique_id=1305891504]
+
+[node name="CollisionDetectorComponent" type="Node2D" parent="CollisionComponents" unique_id=1323055407 node_paths=PackedStringArray("rigidBody2D")]
+script = ExtResource("3_ox502")
+rigidBody2D = NodePath("../..")
+
+[node name="ControllerComponents" type="Node2D" parent="." unique_id=1117724950]
+
+[node name="InputControllerComponent" type="Node2D" parent="ControllerComponents" unique_id=547130087]
+script = ExtResource("4_rt8bh")
+
+[node name="FlipperComponent" type="Node2D" parent="." unique_id=6811151 node_paths=PackedStringArray("inputControllerComponent", "customImpulsePhysic")]
+script = ExtResource("5_20bu7")
+dynamic_force_percent = 100.0
+hit_cooldown = 0.2
+inputControllerComponent = NodePath("../ControllerComponents/InputControllerComponent")
+customImpulsePhysic = NodePath("../MovementComponents/CustomImpulsePhysicComponent")
+
+[node name="PinballImage" type="Sprite2D" parent="." unique_id=1394863058]
+scale = Vector2(0.042164218, 0.042164218)
+texture = ExtResource("6_iy3c6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1630081939]
+scale = Vector2(0.34141818, 0.33940208)
+shape = SubResource("CircleShape2D_rm36b")
