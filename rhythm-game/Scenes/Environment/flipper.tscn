@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://7jt3es052ni"]
+
+[ext_resource type="Script" uid="uid://sjdb0evhe8kt" path="res://Scripts/Environment/flipper.gd" id="1_8x31y"]
+[ext_resource type="Texture2D" uid="uid://cqo2evrrhm3j7" path="res://Assets/FlipperSpritesheet.png" id="2_vjvvj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lf8o"]
+atlas = ExtResource("2_vjvvj")
+region = Rect2(268, 0, 268, 270)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pv2mu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lf8o")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Flipper" type="Node2D" unique_id=380740414]
+script = ExtResource("1_8x31y")
+
+[node name="Pivot" type="Node2D" parent="." unique_id=1881215035]
+position = Vector2(76.111435, 39.787556)
+
+[node name="FlipperSprite" type="AnimatedSprite2D" parent="Pivot" unique_id=2026638733]
+position = Vector2(-31.002674, -0.9134064)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_pv2mu")

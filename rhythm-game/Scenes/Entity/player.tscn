@@ -4,8 +4,10 @@
 [ext_resource type="Script" uid="uid://c3ubyrkitdk1s" path="res://Scripts/Components/Movement_Component/custom_impulse_physic_component.gd" id="2_7lf8o"]
 [ext_resource type="Script" uid="uid://dtxg0841okwd2" path="res://Scripts/Components/CollisionComponents/collision_detector_component.gd" id="3_ox502"]
 [ext_resource type="Script" uid="uid://cd8m0bngtah5w" path="res://Scripts/Components/ControllerComponents/input_controller_component.gd" id="4_rt8bh"]
-[ext_resource type="Script" uid="uid://b2f6c1qr6tjye" path="res://Scripts/Components/flipper_component.gd" id="5_20bu7"]
+[ext_resource type="Script" uid="uid://b2f6c1qr6tjye" path="res://Scripts/Components/flipper_hit_component.gd" id="5_20bu7"]
+[ext_resource type="Script" uid="uid://dqx6kklg130k4" path="res://Scripts/Components/ControllerComponents/flipper_controller_component.gd" id="5_ox502"]
 [ext_resource type="Texture2D" uid="uid://by6wa2ghwntw6" path="res://Assets/pinball_image.png" id="6_iy3c6"]
+[ext_resource type="PackedScene" uid="uid://7jt3es052ni" path="res://Scenes/Environment/flipper.tscn" id="7_7lf8o"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bo1nx"]
 bounce = 1.0
@@ -13,34 +15,42 @@ bounce = 1.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_rm36b"]
 radius = 93.72671
 
-[node name="Player" type="RigidBody2D" unique_id=288184236 node_paths=PackedStringArray("inputControllerComponent", "customImpulsePhysic")]
+[node name="Player" type="Node2D" unique_id=1636152561 node_paths=PackedStringArray("rigidBody2D")]
 rotation = 0.0027932574
+script = ExtResource("1_tydqb")
+rigidBody2D = NodePath("RigidBody2D")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=620001952]
 physics_material_override = SubResource("PhysicsMaterial_bo1nx")
 gravity_scale = 0.0
 contact_monitor = true
-max_contacts_reported = 100
-script = ExtResource("1_tydqb")
-inputControllerComponent = NodePath("ControllerComponents/InputControllerComponent")
-customImpulsePhysic = NodePath("MovementComponents/CustomImpulsePhysicComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1630081939]
+scale = Vector2(0.3414182, 0.3394021)
+shape = SubResource("CircleShape2D_rm36b")
 
 [node name="MovementComponents" type="Node2D" parent="." unique_id=662177905]
 
 [node name="CustomImpulsePhysicComponent" type="Node2D" parent="MovementComponents" unique_id=552723732 node_paths=PackedStringArray("rigidBody2D")]
 script = ExtResource("2_7lf8o")
-rigidBody2D = NodePath("../..")
+rigidBody2D = NodePath("../../RigidBody2D")
 
 [node name="CollisionComponents" type="Node2D" parent="." unique_id=1305891504]
 
 [node name="CollisionDetectorComponent" type="Node2D" parent="CollisionComponents" unique_id=1323055407 node_paths=PackedStringArray("rigidBody2D")]
 script = ExtResource("3_ox502")
-rigidBody2D = NodePath("../..")
+rigidBody2D = NodePath("../../RigidBody2D")
 
 [node name="ControllerComponents" type="Node2D" parent="." unique_id=1117724950]
 
 [node name="InputControllerComponent" type="Node2D" parent="ControllerComponents" unique_id=547130087]
 script = ExtResource("4_rt8bh")
 
-[node name="FlipperComponent" type="Node2D" parent="." unique_id=6811151 node_paths=PackedStringArray("inputControllerComponent", "customImpulsePhysic")]
+[node name="FlipperControllerComponent" type="Node2D" parent="ControllerComponents" unique_id=651942725 node_paths=PackedStringArray("flipperHitComponent")]
+script = ExtResource("5_ox502")
+flipperHitComponent = NodePath("../../FlipperHitComponent")
+
+[node name="FlipperHitComponent" type="Node2D" parent="." unique_id=6811151 node_paths=PackedStringArray("inputControllerComponent", "customImpulsePhysic")]
 script = ExtResource("5_20bu7")
 dynamic_force_percent = 100.0
 hit_cooldown = 0.2
@@ -51,6 +61,4 @@ customImpulsePhysic = NodePath("../MovementComponents/CustomImpulsePhysicCompone
 scale = Vector2(0.1311729, 0.1311729)
 texture = ExtResource("6_iy3c6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1630081939]
-scale = Vector2(0.34141818, 0.33940208)
-shape = SubResource("CircleShape2D_rm36b")
+[node name="Flipper" parent="." unique_id=380740414 instance=ExtResource("7_7lf8o")]

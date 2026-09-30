@@ -1,6 +1,6 @@
-extends RigidBody2D
+extends Node2D
 
-@export_group("Components")
+@export var rigidBody2D: RigidBody2D
 
-@export var inputControllerComponent: InputControllerComponent
-@export var customImpulsePhysic: CustomImpulsePhysicComponent
+func _physics_process(delta: float) -> void:
+	pass

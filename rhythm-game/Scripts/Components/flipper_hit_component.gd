@@ -1,5 +1,5 @@
 extends Node2D
-class_name FlipperComponent
+class_name FlipperHitComponent
 
 @export var hit_max_charge: float = 1200.0
 @export var hit_min_charge: float = 200.0
@@ -15,12 +15,6 @@ var can_use_flipper: bool = true
 var hit_force: float = 0.0
 var hit_direction: Vector2 = Vector2.UP
 
-var _input_history: Array[Vector2] = []
-const BUFFER_SIZE: int = 6
-
-func _physics_process(delta: float) -> void:
-	flipper_charge(delta)
-
 func flipper_charge(delta: float) -> void:
 	if not can_use_flipper or not inputControllerComponent:
 		return
@@ -28,10 +22,6 @@ func flipper_charge(delta: float) -> void:
 	var input_direction = inputControllerComponent.movement_vector
 	
 	if input_direction != Vector2.ZERO:
-		_input_history.append(input_direction)
-		if _input_history.size() > BUFFER_SIZE:
-			_input_history.remove_at(0)
-			
 		hit_direction = input_direction.normalized()
 		
 		if hit_force == 0.0:
@@ -40,24 +30,8 @@ func flipper_charge(delta: float) -> void:
 			hit_force = min(hit_force + (hit_charge_speed * delta), hit_max_charge)
 	else:
 		if hit_force > 0.0:
-			hit_direction = _get_best_direction_from_buffer()
+			hit_direction = inputControllerComponent.get_best_buffered_direction(hit_direction)
 			flipper_hit()
-
-func _get_best_direction_from_buffer() -> Vector2:
-	if _input_history.is_empty():
-		return hit_direction
-		
-	var best_dir: Vector2 = hit_direction
-	var max_diagonal_score: float = -1.0
-	
-	for dir in _input_history:
-		var score: float = abs(dir.x) * abs(dir.y)
-		if score > max_diagonal_score:
-			max_diagonal_score = score
-			best_dir = dir.normalized()
-			
-	_input_history.clear()
-	return best_dir
 
 func flipper_hit() -> void:
 	if customImpulsePhysic:
