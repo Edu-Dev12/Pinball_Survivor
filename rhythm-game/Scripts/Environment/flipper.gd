@@ -1,2 +1,2 @@
-@icon("res://Assets/Icon/flipper_icon.png")
+@icon("uid://bb0vc1otdxvrc")
 extends Node2D

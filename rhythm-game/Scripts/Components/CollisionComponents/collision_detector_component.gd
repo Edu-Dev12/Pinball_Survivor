@@ -10,6 +10,5 @@ func _ready() -> void:
 		rigidBody2D.body_entered.connect(get_collision)
 
 func get_collision(body: Node):
-	print(body)
 	if body.is_in_group(Global.ENEMY_GROUP):
 		body.queue_free()

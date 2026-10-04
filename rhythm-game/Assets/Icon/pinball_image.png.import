@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://by6wa2ghwntw6"
-path="res://.godot/imported/pinball_image.png-693df91e1e2c35afd72afc98269bb2fd.ctex"
+path="res://.godot/imported/pinball_image.png-6f830d9ad5e54d25157465834b238c15.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/pinball_image.png"
-dest_files=["res://.godot/imported/pinball_image.png-693df91e1e2c35afd72afc98269bb2fd.ctex"]
+source_file="res://Assets/Icon/pinball_image.png"
+dest_files=["res://.godot/imported/pinball_image.png-6f830d9ad5e54d25157465834b238c15.ctex"]
 
 [params]
 

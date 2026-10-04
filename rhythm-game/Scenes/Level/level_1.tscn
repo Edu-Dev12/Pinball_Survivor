@@ -12,3 +12,5 @@ level_map = NodePath("Pinball_Machine")
 
 [node name="Player" parent="." unique_id=288184236 instance=ExtResource("2_m5hwo")]
 position = Vector2(582, 284)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=1268715982]

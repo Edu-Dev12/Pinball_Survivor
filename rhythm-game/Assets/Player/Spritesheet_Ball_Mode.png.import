@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dq1ltf8wmj71"
-path="res://.godot/imported/Captura de tela 2023-12-18 000408.png-e614b4237843ca3b4974caec0f0bffc5.ctex"
+uid="uid://buytdoxqhu0wc"
+path="res://.godot/imported/Spritesheet_Ball_Mode.png-7f17790946fcdb42c7d37d375ed25089.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Captura de tela 2023-12-18 000408.png"
-dest_files=["res://.godot/imported/Captura de tela 2023-12-18 000408.png-e614b4237843ca3b4974caec0f0bffc5.ctex"]
+source_file="res://Assets/Player/Spritesheet_Ball_Mode.png"
+dest_files=["res://.godot/imported/Spritesheet_Ball_Mode.png-7f17790946fcdb42c7d37d375ed25089.ctex"]
 
 [params]
 

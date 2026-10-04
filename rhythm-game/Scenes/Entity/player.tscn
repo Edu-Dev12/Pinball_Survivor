@@ -3,17 +3,18 @@
 [ext_resource type="Script" uid="uid://3ajbn7qjec5c" path="res://Scripts/Entity/player.gd" id="1_tydqb"]
 [ext_resource type="Script" uid="uid://c3ubyrkitdk1s" path="res://Scripts/Components/Movement_Component/custom_impulse_physic_component.gd" id="2_7lf8o"]
 [ext_resource type="Script" uid="uid://dtxg0841okwd2" path="res://Scripts/Components/CollisionComponents/collision_detector_component.gd" id="3_ox502"]
+[ext_resource type="Script" uid="uid://corcd5l7j5her" path="res://Scenes/Entity/animation_speed_from_velocity_component.gd" id="4_20bu7"]
 [ext_resource type="Script" uid="uid://cd8m0bngtah5w" path="res://Scripts/Components/ControllerComponents/input_controller_component.gd" id="4_rt8bh"]
-[ext_resource type="Script" uid="uid://b2f6c1qr6tjye" path="res://Scripts/Components/flipper_hit_component.gd" id="5_20bu7"]
+[ext_resource type="Script" uid="uid://b2f6c1qr6tjye" path="res://Scripts/Components/Movement_Component/flipper_hit_component.gd" id="5_20bu7"]
 [ext_resource type="Script" uid="uid://dqx6kklg130k4" path="res://Scripts/Components/ControllerComponents/flipper_controller_component.gd" id="5_ox502"]
-[ext_resource type="Texture2D" uid="uid://by6wa2ghwntw6" path="res://Assets/pinball_image.png" id="6_iy3c6"]
 [ext_resource type="PackedScene" uid="uid://7jt3es052ni" path="res://Scenes/Environment/flipper.tscn" id="7_7lf8o"]
+[ext_resource type="SpriteFrames" uid="uid://00efdki45518" path="res://Assets/Player/SpriteFrames/player_sprite_frames.tres" id="7_ox502"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bo1nx"]
 bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rm36b"]
-radius = 93.72671
+radius = 85.0
 
 [node name="Player" type="Node2D" unique_id=1636152561 node_paths=PackedStringArray("rigidBody2D")]
 rotation = 0.0027932574
@@ -29,11 +30,30 @@ contact_monitor = true
 scale = Vector2(0.3414182, 0.3394021)
 shape = SubResource("CircleShape2D_rm36b")
 
-[node name="MovementComponents" type="Node2D" parent="." unique_id=662177905]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="RigidBody2D" unique_id=1909381886]
+remote_path = NodePath("../../VisualContainer")
+update_rotation = false
 
-[node name="CustomImpulsePhysicComponent" type="Node2D" parent="MovementComponents" unique_id=552723732 node_paths=PackedStringArray("rigidBody2D")]
-script = ExtResource("2_7lf8o")
-rigidBody2D = NodePath("../../RigidBody2D")
+[node name="VisualContainer" type="Node2D" parent="." unique_id=1258022582]
+
+[node name="PinballImage" type="AnimatedSprite2D" parent="VisualContainer" unique_id=2045320341]
+position = Vector2(-1, -1)
+scale = Vector2(0.25, 0.25)
+sprite_frames = ExtResource("7_ox502")
+autoplay = "default"
+frame_progress = 0.21835466
+
+[node name="Flipper" parent="VisualContainer/PinballImage" unique_id=380740414 instance=ExtResource("7_7lf8o")]
+position = Vector2(4, 4)
+scale = Vector2(4, 4)
+
+[node name="AnimationComponents" type="Node2D" parent="." unique_id=1967926830]
+
+[node name="AnimationSpeedFromVelocityComponent" type="Node2D" parent="AnimationComponents" unique_id=155847660 node_paths=PackedStringArray("rigid_body", "animated_sprite")]
+script = ExtResource("4_20bu7")
+rigid_body = NodePath("../../RigidBody2D")
+animated_sprite = NodePath("../../VisualContainer/PinballImage")
+min_anim_speed = 1.0
 
 [node name="CollisionComponents" type="Node2D" parent="." unique_id=1305891504]
 
@@ -48,17 +68,17 @@ script = ExtResource("4_rt8bh")
 
 [node name="FlipperControllerComponent" type="Node2D" parent="ControllerComponents" unique_id=651942725 node_paths=PackedStringArray("flipperHitComponent")]
 script = ExtResource("5_ox502")
-flipperHitComponent = NodePath("../../FlipperHitComponent")
+flipperHitComponent = NodePath("../../MovementComponents/FlipperHitComponent")
 
-[node name="FlipperHitComponent" type="Node2D" parent="." unique_id=6811151 node_paths=PackedStringArray("inputControllerComponent", "customImpulsePhysic")]
+[node name="MovementComponents" type="Node2D" parent="." unique_id=662177905]
+
+[node name="CustomImpulsePhysicComponent" type="Node2D" parent="MovementComponents" unique_id=552723732 node_paths=PackedStringArray("rigidBody2D")]
+script = ExtResource("2_7lf8o")
+rigidBody2D = NodePath("../../RigidBody2D")
+
+[node name="FlipperHitComponent" type="Node2D" parent="MovementComponents" unique_id=6811151 node_paths=PackedStringArray("inputControllerComponent", "customImpulsePhysic")]
 script = ExtResource("5_20bu7")
 dynamic_force_percent = 100.0
 hit_cooldown = 0.2
-inputControllerComponent = NodePath("../ControllerComponents/InputControllerComponent")
-customImpulsePhysic = NodePath("../MovementComponents/CustomImpulsePhysicComponent")
-
-[node name="PinballImage" type="Sprite2D" parent="." unique_id=1394863058]
-scale = Vector2(0.1311729, 0.1311729)
-texture = ExtResource("6_iy3c6")
-
-[node name="Flipper" parent="." unique_id=380740414 instance=ExtResource("7_7lf8o")]
+inputControllerComponent = NodePath("../../ControllerComponents/InputControllerComponent")
+customImpulsePhysic = NodePath("../CustomImpulsePhysicComponent")

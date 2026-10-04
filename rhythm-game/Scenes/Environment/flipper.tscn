@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://7jt3es052ni"]
 
 [ext_resource type="Script" uid="uid://sjdb0evhe8kt" path="res://Scripts/Environment/flipper.gd" id="1_8x31y"]
-[ext_resource type="Texture2D" uid="uid://cqo2evrrhm3j7" path="res://Assets/FlipperSpritesheet.png" id="2_vjvvj"]
+[ext_resource type="Texture2D" uid="uid://cqo2evrrhm3j7" path="res://Assets/Player/FlipperSpritesheet.png" id="2_vjvvj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7lf8o"]
 atlas = ExtResource("2_vjvvj")

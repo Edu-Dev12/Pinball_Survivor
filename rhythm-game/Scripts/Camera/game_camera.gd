@@ -11,20 +11,22 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if current_player_node and can_follow_player:
-		self.position = current_player_node.position
+		global_position = current_player_node.rigidBody2D.global_position
 
 func update_camera_limits(new_tilemap: TileMapLayer) -> void:
 	var map_rect: Rect2 = new_tilemap.get_used_rect()
 	var tile_size: Vector2 = new_tilemap.tile_set.tile_size
+	# Pega a escala real aplicada ao nó (ex: Vector2(2, 2))
+	var tile_scale: Vector2 = new_tilemap.scale
 	var global_pos: Vector2 = new_tilemap.global_position
 
-	# Canto superior esquerdo em pixels
-	limit_left = int(map_rect.position.x * tile_size.x + global_pos.x)
-	limit_top = int(map_rect.position.y * tile_size.y + global_pos.y)
-	
-	# Canto inferior direito em pixels
-	limit_right = int(map_rect.end.x * tile_size.x + global_pos.x)
-	limit_bottom = int(map_rect.end.y * tile_size.y + global_pos.y)
+	# Multiplica o tamanho do tile pela escala real do nó
+	var real_tile_size: Vector2 = tile_size * tile_scale
+
+	limit_left = int(map_rect.position.x * real_tile_size.x + global_pos.x)
+	limit_top = int(map_rect.position.y * real_tile_size.y + global_pos.y)
+	limit_right = int(map_rect.end.x * real_tile_size.x + global_pos.x)
+	limit_bottom = int(map_rect.end.y * real_tile_size.y + global_pos.y)
 	
 
 func update_player_node(new_player):

@@ -1,4 +1,4 @@
-@icon("res://Assets/pinball_image.png")
+@icon("uid://by6wa2ghwntw6")
 extends Node2D
 class_name PlayerBody
 
