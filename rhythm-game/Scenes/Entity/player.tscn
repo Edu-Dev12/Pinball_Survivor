@@ -76,9 +76,10 @@ flipperHitComponent = NodePath("../../MovementComponents/FlipperHitComponent")
 script = ExtResource("2_7lf8o")
 rigidBody2D = NodePath("../../RigidBody2D")
 
-[node name="FlipperHitComponent" type="Node2D" parent="MovementComponents" unique_id=6811151 node_paths=PackedStringArray("inputControllerComponent", "customImpulsePhysic")]
+[node name="FlipperHitComponent" type="Node2D" parent="MovementComponents" unique_id=6811151 node_paths=PackedStringArray("inputControllerComponent", "customImpulsePhysic", "flipper")]
 script = ExtResource("5_20bu7")
 dynamic_force_percent = 100.0
 hit_cooldown = 0.2
 inputControllerComponent = NodePath("../../ControllerComponents/InputControllerComponent")
 customImpulsePhysic = NodePath("../CustomImpulsePhysicComponent")
+flipper = NodePath("../../VisualContainer/PinballImage/Flipper")

@@ -10,6 +10,7 @@ class_name FlipperHitComponent
 @export_group("Components")
 @export var inputControllerComponent: InputControllerComponent
 @export var customImpulsePhysic: CustomImpulsePhysicComponent
+@export var flipper: Flipper
 
 var can_use_flipper: bool = true
 var hit_force: float = 0.0
@@ -24,13 +25,23 @@ func flipper_charge(delta: float) -> void:
 	if input_direction != Vector2.ZERO:
 		hit_direction = input_direction.normalized()
 		
+		if flipper:
+			flipper.start_charging(hit_direction)
+		
 		if hit_force == 0.0:
 			hit_force = hit_min_charge
 		else:
 			hit_force = min(hit_force + (hit_charge_speed * delta), hit_max_charge)
 	else:
 		if hit_force > 0.0:
+			# Validar depois
+			can_use_flipper = false
 			hit_direction = inputControllerComponent.get_best_buffered_direction(hit_direction)
+			
+			if flipper:
+				var sprite = flipper.play_release_fx(hit_direction)
+				if sprite and sprite.sprite_frames.has_animation("release"):
+					await sprite.animation_finished
 			flipper_hit()
 
 func flipper_hit() -> void:

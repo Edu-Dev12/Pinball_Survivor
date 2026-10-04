@@ -3,28 +3,76 @@
 [ext_resource type="Script" uid="uid://sjdb0evhe8kt" path="res://Scripts/Environment/flipper.gd" id="1_8x31y"]
 [ext_resource type="Texture2D" uid="uid://cqo2evrrhm3j7" path="res://Assets/Player/FlipperSpritesheet.png" id="2_vjvvj"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7lf8o"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8x31y"]
 atlas = ExtResource("2_vjvvj")
-region = Rect2(268, 0, 268, 270)
+region = Rect2(13, 20, 250, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjvvj"]
+atlas = ExtResource("2_vjvvj")
+region = Rect2(278, 20, 250, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgric"]
+atlas = ExtResource("2_vjvvj")
+region = Rect2(13, 20, 250, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4m2j"]
+atlas = ExtResource("2_vjvvj")
+region = Rect2(278, 20, 250, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbqwb"]
+atlas = ExtResource("2_vjvvj")
+region = Rect2(808, 20, 250, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qweb3"]
+atlas = ExtResource("2_vjvvj")
+region = Rect2(278, 20, 250, 250)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pv2mu"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7lf8o")
+"texture": SubResource("AtlasTexture_8x31y")
 }],
-"loop": 0,
+"loop": 1,
+"name": &"charging",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjvvj")
+}],
+"loop": 1,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgric")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4m2j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbqwb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qweb3")
+}],
+"loop": 0,
+"name": &"release",
+"speed": 15.0
 }]
 
-[node name="Flipper" type="Node2D" unique_id=380740414]
+[node name="Flipper" type="Node2D" unique_id=380740414 node_paths=PackedStringArray("animated_sprite")]
 script = ExtResource("1_8x31y")
+animated_sprite = NodePath("Pivot/FlipperSprite")
+shake_intensity = 10.0
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1881215035]
 position = Vector2(76.111435, 39.787556)
 
 [node name="FlipperSprite" type="AnimatedSprite2D" parent="Pivot" unique_id=2026638733]
-position = Vector2(-31.002674, -0.9134064)
+position = Vector2(-33, 5)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_pv2mu")
+animation = &"release"
