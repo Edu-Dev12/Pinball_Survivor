@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://c46x7behm7yyv"]
 
-[ext_resource type="Script" uid="uid://3ajbn7qjec5c" path="res://Scripts/Entity/player.gd" id="1_tydqb"]
+[ext_resource type="Script" uid="uid://3ajbn7qjec5c" path="res://Scripts/Entity/Player/player.gd" id="1_tydqb"]
 [ext_resource type="Script" uid="uid://c3ubyrkitdk1s" path="res://Scripts/Components/Movement_Component/custom_impulse_physic_component.gd" id="2_7lf8o"]
 [ext_resource type="Script" uid="uid://dtxg0841okwd2" path="res://Scripts/Components/CollisionComponents/collision_detector_component.gd" id="3_ox502"]
-[ext_resource type="Script" uid="uid://corcd5l7j5her" path="res://Scenes/Entity/animation_speed_from_velocity_component.gd" id="4_20bu7"]
+[ext_resource type="Script" uid="uid://corcd5l7j5her" path="res://Scripts/Components/AnimationComponents/animation_speed_from_velocity_component.gd" id="4_20bu7"]
 [ext_resource type="Script" uid="uid://cd8m0bngtah5w" path="res://Scripts/Components/ControllerComponents/input_controller_component.gd" id="4_rt8bh"]
 [ext_resource type="Script" uid="uid://b2f6c1qr6tjye" path="res://Scripts/Components/Movement_Component/flipper_hit_component.gd" id="5_20bu7"]
 [ext_resource type="Script" uid="uid://dqx6kklg130k4" path="res://Scripts/Components/ControllerComponents/flipper_controller_component.gd" id="5_ox502"]
 [ext_resource type="PackedScene" uid="uid://7jt3es052ni" path="res://Scenes/Environment/flipper.tscn" id="7_7lf8o"]
-[ext_resource type="SpriteFrames" uid="uid://00efdki45518" path="res://Assets/Player/SpriteFrames/player_sprite_frames.tres" id="7_ox502"]
+[ext_resource type="SpriteFrames" uid="uid://00efdki45518" path="res://Assets/Entity/Player/SpriteFrames/player_sprite_frames.tres" id="7_ox502"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bo1nx"]
 bounce = 1.0

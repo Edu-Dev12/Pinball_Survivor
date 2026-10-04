@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buytdoxqhu0wc"
-path="res://.godot/imported/Spritesheet_Ball_Mode.png-7f17790946fcdb42c7d37d375ed25089.ctex"
+uid="uid://cqo2evrrhm3j7"
+path="res://.godot/imported/FlipperSpritesheet.png-04149235b479007d7257ee60a7446d5d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player/Spritesheet_Ball_Mode.png"
-dest_files=["res://.godot/imported/Spritesheet_Ball_Mode.png-7f17790946fcdb42c7d37d375ed25089.ctex"]
+source_file="res://Assets/Entity/Player/FlipperSpritesheet.png"
+dest_files=["res://.godot/imported/FlipperSpritesheet.png-04149235b479007d7257ee60a7446d5d.ctex"]
 
 [params]
 

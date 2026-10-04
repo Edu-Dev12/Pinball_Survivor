@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dko0vq4ku86vb" path="res://Scenes/Environment/pinball_machine.tscn" id="1_k541i"]
 [ext_resource type="Script" uid="uid://dlunrxo48npk2" path="res://Scripts/Level/level_1.gd" id="1_m5hwo"]
-[ext_resource type="PackedScene" uid="uid://c46x7behm7yyv" path="res://Scenes/Entity/player.tscn" id="2_m5hwo"]
+[ext_resource type="PackedScene" uid="uid://c46x7behm7yyv" path="res://Scenes/Entity/Player/player.tscn" id="2_m5hwo"]
 
 [node name="Level_1" type="Node2D" unique_id=989795356 node_paths=PackedStringArray("level_map")]
 script = ExtResource("1_m5hwo")
