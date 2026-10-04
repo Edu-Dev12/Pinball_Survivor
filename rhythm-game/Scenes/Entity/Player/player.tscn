@@ -21,7 +21,9 @@ rotation = 0.0027932574
 script = ExtResource("1_tydqb")
 rigidBody2D = NodePath("RigidBody2D")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=620001952]
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=620001952 groups=["player"]]
+collision_layer = 2
+collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_bo1nx")
 gravity_scale = 0.0
 contact_monitor = true

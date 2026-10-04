@@ -11,7 +11,7 @@ func _ready() -> void:
 	if animated_sprite:
 		animated_sprite.animation_finished.connect(_on_animation_finished)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_charging and animated_sprite:
 		animated_sprite.offset = Vector2(
 			randf_range(-shake_intensity, shake_intensity),
