@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dko0vq4ku86vb" path="res://Scenes/Environment/pinball_machine.tscn" id="1_k541i"]
 [ext_resource type="Script" uid="uid://dlunrxo48npk2" path="res://Scripts/Level/level_1.gd" id="1_m5hwo"]
 [ext_resource type="PackedScene" uid="uid://c46x7behm7yyv" path="res://Scenes/Entity/Player/player.tscn" id="2_m5hwo"]
+[ext_resource type="PackedScene" uid="uid://cs5005lieyom7" path="res://Scenes/Environment/Spawner/base_wave_spawner.tscn" id="4_knogg"]
 [ext_resource type="PackedScene" uid="uid://da270g7fgddom" path="res://Scenes/Entity/Enemy/enemy_test.tscn" id="4_wtlyx"]
 
 [node name="Level_1" type="Node2D" unique_id=989795356 node_paths=PackedStringArray("level_map")]
@@ -16,14 +17,15 @@ position = Vector2(582, 284)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1268715982]
 
-[node name="EnemyTest" parent="Enemies" unique_id=131443137 instance=ExtResource("4_wtlyx")]
-position = Vector2(-53, 277)
+[node name="BaseWaveSpawner" parent="Enemies" unique_id=568859415 instance=ExtResource("4_knogg")]
+position = Vector2(-30, 765)
+enemy_to_spawn = ExtResource("4_wtlyx")
+zone_size = Vector2(50, 1500)
 
-[node name="EnemyTest2" parent="Enemies" unique_id=1363745399 instance=ExtResource("4_wtlyx")]
-position = Vector2(-45, 406)
+[node name="BaseWaveSpawner2" parent="Enemies" unique_id=1235780487 instance=ExtResource("4_knogg")]
+position = Vector2(1185, 765)
+enemy_to_spawn = ExtResource("4_wtlyx")
+zone_size = Vector2(50, 1500)
 
-[node name="EnemyTest3" parent="Enemies" unique_id=125612709 instance=ExtResource("4_wtlyx")]
-position = Vector2(1239, 277)
-
-[node name="EnemyTest4" parent="Enemies" unique_id=1508799657 instance=ExtResource("4_wtlyx")]
+[node name="EnemyTest" parent="Enemies" unique_id=1508799657 instance=ExtResource("4_wtlyx")]
 position = Vector2(222, 192)

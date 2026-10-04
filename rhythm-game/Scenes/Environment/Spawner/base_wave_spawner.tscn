@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cs5005lieyom7"]
+
+[ext_resource type="Script" uid="uid://pcdiomwxhlmf" path="res://Scripts/Environment/Spawner/base_wave_spawner.gd" id="1_owog0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o1g8r"]
+
+[node name="BaseWaveSpawner" type="Area2D" unique_id=568859415 node_paths=PackedStringArray("collision_shape")]
+script = ExtResource("1_owog0")
+collision_shape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=687358155]
+shape = SubResource("RectangleShape2D_o1g8r")
