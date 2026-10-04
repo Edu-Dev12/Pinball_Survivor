@@ -1,7 +1,7 @@
 extends Node
 class_name GameManager
 
-@export_enum("menu","game_over","level_1") var starting_level_name: String = "level_1"
+@export_enum("menu","game_over","level_1") var starting_level_name: String = "menu"
 @export_enum("menu","game_over","level_1") var try_again_scene_name: String = "game_over"
 @onready var camera: Camera2D = $GameCamera
 

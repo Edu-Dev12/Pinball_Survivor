@@ -1,3 +1,9 @@
 [gd_scene format=3 uid="uid://dko0vq4ku86vb"]
 
-[node name="PinballMachine" type="Node2D" unique_id=1384302898]
+[ext_resource type="Script" uid="uid://djn5n7ut0aowu" path="res://Scripts/Environment/level_map.gd" id="1_y7jvf"]
+
+[node name="PinballMachine" type="Node2D" unique_id=1384302898 node_paths=PackedStringArray("tile_map")]
+script = ExtResource("1_y7jvf")
+tile_map = NodePath("TileMapLayer")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1401063389]
