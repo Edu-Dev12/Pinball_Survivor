@@ -11,13 +11,19 @@ config_version=5
 [application]
 
 config/name="Rhythm_Game"
-run/main_scene="uid://d21nmp141vkff"
+run/main_scene="uid://dedyay5otb6h"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="uid://by6wa2ghwntw6"
+
+[audio]
+
+buses/default_bus_layout="uid://cocegwu712p6g"
 
 [autoload]
 
 Global="*uid://1jqdj4y776tq"
+AudioManager="*uid://biimlykjoq3x0"
+SignalManager="*uid://dw3fukwpg6503"
 
 [display]
 

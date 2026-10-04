@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dedyay5otb6h"]
+
+[ext_resource type="Script" uid="uid://bwv8wceiayo3k" path="res://Scripts/Level/game_manager.gd" id="1_10sge"]
+[ext_resource type="PackedScene" uid="uid://c2f02pdv27swa" path="res://Scenes/Camera/game_camera.tscn" id="2_piw3h"]
+
+[node name="GameManager" type="Node" unique_id=126509562]
+script = ExtResource("1_10sge")
+
+[node name="GameCamera" parent="." unique_id=1832176273 instance=ExtResource("2_piw3h")]

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dw3fukwpg6503"]
+
+[ext_resource type="Script" uid="uid://cef0gnbyq5yyn" path="res://Scripts/Utils/signal_manager.gd" id="1_7dm1c"]
+
+[node name="SignalManager" type="Node" unique_id=427799901]
+script = ExtResource("1_7dm1c")
