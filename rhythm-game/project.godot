@@ -24,6 +24,7 @@ buses/default_bus_layout="uid://cocegwu712p6g"
 AudioManager="*uid://biimlykjoq3x0"
 Global="*uid://1jqdj4y776tq"
 SignalManager="*uid://dw3fukwpg6503"
+Ui="uid://chgd83msiecgj"
 
 [display]
 
