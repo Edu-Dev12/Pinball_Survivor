@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://chgd83msiecgj"]
 
 [ext_resource type="FontFile" uid="uid://mfxvgdgfyh7a" path="res://Assets/Fonts/gilgongo.regular.ttf" id="1_ahcct"]
+[ext_resource type="Script" uid="uid://px8wotcg7kxl" path="res://Scripts/UI/ui_controller.gd" id="1_de23q"]
+[ext_resource type="Script" uid="uid://8mgcqvgul0w3" path="res://Scripts/UI/ui.gd" id="2_c7mb3"]
 
 [node name="UI" type="CanvasLayer" unique_id=726586338]
+script = ExtResource("1_de23q")
 
 [node name="UI Controller" type="Control" parent="." unique_id=1155357725]
 layout_mode = 3
@@ -19,6 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_c7mb3")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI Controller/UI" unique_id=425369471]
 layout_mode = 1
@@ -48,6 +52,8 @@ grow_horizontal = 2
 
 [node name="PlayerLabel" type="Label" parent="UI Controller/UI/MarginContainer/HBoxContainer/Player/VBoxContainer" unique_id=1803110803]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.047058824, 0.13725491, 0.3764706, 1)
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("1_ahcct")
 theme_override_font_sizes/font_size = 30
 text = "Player"
@@ -76,6 +82,8 @@ grow_horizontal = 2
 
 [node name="ScoreLabel" type="Label" parent="UI Controller/UI/MarginContainer/HBoxContainer/Score/VBoxContainer" unique_id=784647452]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.047058824, 0.13725491, 0.3764706, 1)
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("1_ahcct")
 theme_override_font_sizes/font_size = 30
 text = "Score"
@@ -104,6 +112,8 @@ grow_horizontal = 2
 
 [node name="TimerLabel" type="Label" parent="UI Controller/UI/MarginContainer/HBoxContainer/Timer/VBoxContainer" unique_id=2096805837]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.045932345, 0.13592553, 0.37594855, 1)
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("1_ahcct")
 theme_override_font_sizes/font_size = 30
 text = "Timer"
