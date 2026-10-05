@@ -46,7 +46,7 @@ sprite_frames = ExtResource("7_ox502")
 autoplay = "default"
 
 [node name="Flipper" parent="VisualContainer" unique_id=380740414 instance=ExtResource("7_7lf8o")]
-position = Vector2(1, 1)
+position = Vector2(-8.037577, -14.010235)
 
 [node name="AnimationComponents" type="Node2D" parent="." unique_id=1967926830]
 

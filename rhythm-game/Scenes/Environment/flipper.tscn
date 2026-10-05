@@ -5,23 +5,15 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8x31y"]
 atlas = ExtResource("2_vjvvj")
-region = Rect2(13, 20, 250, 250)
+region = Rect2(0, 0, 360, 270)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vjvvj"]
 atlas = ExtResource("2_vjvvj")
-region = Rect2(278, 20, 250, 250)
+region = Rect2(360, 0, 360, 270)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pgric"]
 atlas = ExtResource("2_vjvvj")
-region = Rect2(13, 20, 250, 250)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i4m2j"]
-atlas = ExtResource("2_vjvvj")
-region = Rect2(278, 20, 250, 250)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xbqwb"]
-atlas = ExtResource("2_vjvvj")
-region = Rect2(808, 20, 250, 250)
+region = Rect2(1080, 0, 360, 270)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pv2mu"]
 animations = [{
@@ -36,6 +28,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vjvvj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjvvj")
 }],
 "loop": 1,
 "name": &"default",
@@ -44,12 +39,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pgric")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i4m2j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xbqwb")
 }],
 "loop": 0,
 "name": &"release",
@@ -66,7 +55,6 @@ position = Vector2(76.111435, 39.787556)
 rotation = -0.00064755254
 
 [node name="FlipperSprite" type="AnimatedSprite2D" parent="Pivot" unique_id=2026638733]
-position = Vector2(-33.127754, 25.190996)
+position = Vector2(-17.12387, 19.201366)
 scale = Vector2(0.6477542, 0.6477542)
 sprite_frames = SubResource("SpriteFrames_pv2mu")
-animation = &"release"
