@@ -38,6 +38,12 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_8x31y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjvvj")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_pgric")
 }],
 "loop": 0,
@@ -55,6 +61,6 @@ position = Vector2(76.111435, 39.787556)
 rotation = -0.00064755254
 
 [node name="FlipperSprite" type="AnimatedSprite2D" parent="Pivot" unique_id=2026638733]
-position = Vector2(-17.12387, 19.201366)
+position = Vector2(-50, 25)
 scale = Vector2(0.6477542, 0.6477542)
 sprite_frames = SubResource("SpriteFrames_pv2mu")
