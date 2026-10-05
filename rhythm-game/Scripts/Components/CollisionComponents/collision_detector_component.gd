@@ -18,4 +18,4 @@ func get_collision(body: Node):
 		var final_speed: float = current_speed + bonus_speed
 		
 		rigidBody2D.linear_velocity = escape_direction * final_speed
-		body.queue_free()
+		body.die_by_player()

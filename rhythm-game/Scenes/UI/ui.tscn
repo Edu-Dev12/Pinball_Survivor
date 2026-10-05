@@ -7,7 +7,7 @@
 [node name="UI" type="CanvasLayer" unique_id=726586338]
 script = ExtResource("1_de23q")
 
-[node name="UI Controller" type="Control" parent="." unique_id=1155357725]
+[node name="UIController" type="Control" parent="." unique_id=1155357725]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,7 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="UI" type="Control" parent="UI Controller" unique_id=324717189]
+[node name="UI" type="Control" parent="UIController" unique_id=324717189]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,7 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_c7mb3")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI Controller/UI" unique_id=425369471]
+[node name="MarginContainer" type="MarginContainer" parent="UIController/UI" unique_id=425369471]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -33,14 +33,14 @@ offset_bottom = -0.088005066
 grow_horizontal = 2
 theme_override_constants/margin_top = 15
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI Controller/UI/MarginContainer" unique_id=1130467898]
+[node name="HBoxContainer" type="HBoxContainer" parent="UIController/UI/MarginContainer" unique_id=1130467898]
 layout_mode = 2
 
-[node name="Player" type="Control" parent="UI Controller/UI/MarginContainer/HBoxContainer" unique_id=294082661]
+[node name="Player" type="Control" parent="UIController/UI/MarginContainer/HBoxContainer" unique_id=294082661]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI Controller/UI/MarginContainer/HBoxContainer/Player" unique_id=862588738]
+[node name="VBoxContainer" type="VBoxContainer" parent="UIController/UI/MarginContainer/HBoxContainer/Player" unique_id=862588738]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -50,15 +50,18 @@ offset_right = 33.0
 offset_bottom = 86.0
 grow_horizontal = 2
 
-[node name="PlayerLabel" type="Label" parent="UI Controller/UI/MarginContainer/HBoxContainer/Player/VBoxContainer" unique_id=1803110803]
+[node name="PlayerHPLabel" type="Label" parent="UIController/UI/MarginContainer/HBoxContainer/Player/VBoxContainer" unique_id=1803110803]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.047058824, 0.13725491, 0.3764706, 1)
 theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("1_ahcct")
 theme_override_font_sizes/font_size = 30
-text = "Player"
+text = "HP"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HP" type="Label" parent="UI Controller/UI/MarginContainer/HBoxContainer/Player/VBoxContainer" unique_id=597830291]
+[node name="PlayerHP" type="Label" parent="UIController/UI/MarginContainer/HBoxContainer/Player/VBoxContainer" unique_id=597830291]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ahcct")
 theme_override_font_sizes/font_size = 25
@@ -66,11 +69,11 @@ text = "0000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Score" type="Control" parent="UI Controller/UI/MarginContainer/HBoxContainer" unique_id=984627844]
+[node name="Score" type="Control" parent="UIController/UI/MarginContainer/HBoxContainer" unique_id=984627844]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI Controller/UI/MarginContainer/HBoxContainer/Score" unique_id=1534280887]
+[node name="VBoxContainer" type="VBoxContainer" parent="UIController/UI/MarginContainer/HBoxContainer/Score" unique_id=1534280887]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -80,15 +83,18 @@ offset_right = 33.0
 offset_bottom = 86.0
 grow_horizontal = 2
 
-[node name="ScoreLabel" type="Label" parent="UI Controller/UI/MarginContainer/HBoxContainer/Score/VBoxContainer" unique_id=784647452]
+[node name="ScoreLabel" type="Label" parent="UIController/UI/MarginContainer/HBoxContainer/Score/VBoxContainer" unique_id=784647452]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.047058824, 0.13725491, 0.3764706, 1)
 theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("1_ahcct")
 theme_override_font_sizes/font_size = 30
 text = "Score"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ScorePoints" type="Label" parent="UI Controller/UI/MarginContainer/HBoxContainer/Score/VBoxContainer" unique_id=447686646]
+[node name="ScorePoints" type="Label" parent="UIController/UI/MarginContainer/HBoxContainer/Score/VBoxContainer" unique_id=447686646]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ahcct")
 theme_override_font_sizes/font_size = 25
@@ -96,11 +102,11 @@ text = "0000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Timer" type="Control" parent="UI Controller/UI/MarginContainer/HBoxContainer" unique_id=846181602]
+[node name="Timer" type="Control" parent="UIController/UI/MarginContainer/HBoxContainer" unique_id=846181602]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI Controller/UI/MarginContainer/HBoxContainer/Timer" unique_id=698485526]
+[node name="VBoxContainer" type="VBoxContainer" parent="UIController/UI/MarginContainer/HBoxContainer/Timer" unique_id=698485526]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -110,15 +116,18 @@ offset_right = 33.0
 offset_bottom = 86.0
 grow_horizontal = 2
 
-[node name="TimerLabel" type="Label" parent="UI Controller/UI/MarginContainer/HBoxContainer/Timer/VBoxContainer" unique_id=2096805837]
+[node name="TimerLabel" type="Label" parent="UIController/UI/MarginContainer/HBoxContainer/Timer/VBoxContainer" unique_id=2096805837]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.045932345, 0.13592553, 0.37594855, 1)
 theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("1_ahcct")
 theme_override_font_sizes/font_size = 30
 text = "Timer"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="TimerCountdown" type="Label" parent="UI Controller/UI/MarginContainer/HBoxContainer/Timer/VBoxContainer" unique_id=1338252964]
+[node name="TimerCountdown" type="Label" parent="UIController/UI/MarginContainer/HBoxContainer/Timer/VBoxContainer" unique_id=1338252964]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ahcct")
 theme_override_font_sizes/font_size = 25

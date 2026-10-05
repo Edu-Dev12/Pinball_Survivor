@@ -29,6 +29,7 @@ func explode() -> void:
 	if is_dead:
 		return
 	is_dead = true
+	Ui.remove_player_health(1)
 	queue_free()
 
 func die_by_player() -> void:
@@ -37,4 +38,5 @@ func die_by_player() -> void:
 	is_dead = true
 	if tween and tween.is_valid():
 		tween.kill()
+	Ui.add_score(100)
 	queue_free()
