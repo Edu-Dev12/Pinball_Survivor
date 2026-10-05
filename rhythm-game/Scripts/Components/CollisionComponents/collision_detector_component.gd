@@ -10,10 +10,12 @@ func _ready() -> void:
 		rigidBody2D.body_entered.connect(get_collision)
 
 func get_collision(body: Node):
-	if body is CharacterBody2D:
-		var bounce_force: float = rigidBody2D.linear_velocity.length()
-		var impact_normal: Vector2 = (global_position - body.global_position).normalized()
-		rigidBody2D.linear_velocity = impact_normal * bounce_force
-	
 	if body.is_in_group(Global.ENEMY_GROUP):
+		var current_speed: float = rigidBody2D.linear_velocity.length()
+		var escape_direction: Vector2 = (rigidBody2D.global_position - body.global_position).normalized()
+		
+		var bonus_speed: float = 200.0
+		var final_speed: float = current_speed + bonus_speed
+		
+		rigidBody2D.linear_velocity = escape_direction * final_speed
 		body.queue_free()

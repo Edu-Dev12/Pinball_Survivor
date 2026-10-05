@@ -3,12 +3,14 @@
 [ext_resource type="Script" uid="uid://dm883n7ys36ej" path="res://Scripts/Entity/Enemy/enemy.gd" id="1_cqgqi"]
 [ext_resource type="Texture2D" uid="uid://cwiko4k1ganpd" path="res://Assets/Entity/Enemy/EnemyPlaceholder.png" id="2_2crsy"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o1g8r"]
-size = Vector2(59, 43)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j8k3e"]
+radius = 20.5
+height = 43.0
 
 [node name="EnemyTest" type="CharacterBody2D" unique_id=131443137]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 6
+motion_mode = 1
 script = ExtResource("1_cqgqi")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=694149303]
@@ -17,4 +19,4 @@ texture = ExtResource("2_2crsy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1865638181]
 position = Vector2(2.5, 2.5)
-shape = SubResource("RectangleShape2D_o1g8r")
+shape = SubResource("CapsuleShape2D_j8k3e")
