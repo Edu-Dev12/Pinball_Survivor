@@ -76,6 +76,12 @@ Dash={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="WALL"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Enemy"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

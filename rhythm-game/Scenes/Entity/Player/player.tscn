@@ -14,16 +14,17 @@
 bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rm36b"]
-radius = 85.0
+radius = 58.65333
 
 [node name="Player" type="Node2D" unique_id=1636152561 node_paths=PackedStringArray("rigidBody2D")]
 rotation = 0.0027932574
 script = ExtResource("1_tydqb")
 rigidBody2D = NodePath("RigidBody2D")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=620001952 groups=["player"]]
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=620001952 groups=["Player"]]
+scale = Vector2(1.0001864, 0.9976705)
 collision_layer = 2
-collision_mask = 3
+collision_mask = 7
 physics_material_override = SubResource("PhysicsMaterial_bo1nx")
 gravity_scale = 0.0
 contact_monitor = true
@@ -37,17 +38,15 @@ remote_path = NodePath("../../VisualContainer")
 update_rotation = false
 
 [node name="VisualContainer" type="Node2D" parent="." unique_id=1258022582]
+scale = Vector2(1.0001863, 0.99767053)
 
 [node name="PinballImage" type="AnimatedSprite2D" parent="VisualContainer" unique_id=2045320341]
-position = Vector2(-1, -1)
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.16749126, 0.16749126)
 sprite_frames = ExtResource("7_ox502")
 autoplay = "default"
-frame_progress = 0.21835466
 
-[node name="Flipper" parent="VisualContainer/PinballImage" unique_id=380740414 instance=ExtResource("7_7lf8o")]
-position = Vector2(4, 4)
-scale = Vector2(4, 4)
+[node name="Flipper" parent="VisualContainer" unique_id=380740414 instance=ExtResource("7_7lf8o")]
+position = Vector2(1, 1)
 
 [node name="AnimationComponents" type="Node2D" parent="." unique_id=1967926830]
 
@@ -84,4 +83,4 @@ dynamic_force_percent = 100.0
 hit_cooldown = 0.2
 inputControllerComponent = NodePath("../../ControllerComponents/InputControllerComponent")
 customImpulsePhysic = NodePath("../CustomImpulsePhysicComponent")
-flipper = NodePath("../../VisualContainer/PinballImage/Flipper")
+flipper = NodePath("../../VisualContainer/Flipper")
