@@ -51,16 +51,17 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="Flipper" type="Node2D" unique_id=380740414 node_paths=PackedStringArray("animated_sprite")]
+[node name="Flipper" type="Node2D" unique_id=380740414 node_paths=PackedStringArray("animated_sprite", "pivot")]
 script = ExtResource("1_8x31y")
 animated_sprite = NodePath("Pivot/FlipperSprite")
-shake_intensity = 10.0
+shake_intensity = 5.0
+pivot = NodePath("Pivot")
+fade_duration = 0.1
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1881215035]
-position = Vector2(76.111435, 39.787556)
-rotation = -0.00064755254
+position = Vector2(100, 37)
 
 [node name="FlipperSprite" type="AnimatedSprite2D" parent="Pivot" unique_id=2026638733]
-position = Vector2(-50, 25)
+position = Vector2(-46.110268, -1.8174171)
 scale = Vector2(0.6477542, 0.6477542)
 sprite_frames = SubResource("SpriteFrames_pv2mu")

@@ -52,9 +52,9 @@ position = Vector2(-8.037577, -14.010235)
 
 [node name="AnimationSpeedFromVelocityComponent" type="Node2D" parent="AnimationComponents" unique_id=155847660 node_paths=PackedStringArray("rigid_body", "animated_sprite")]
 script = ExtResource("4_20bu7")
+min_anim_speed = 1.0
 rigid_body = NodePath("../../RigidBody2D")
 animated_sprite = NodePath("../../VisualContainer/PinballImage")
-min_anim_speed = 1.0
 
 [node name="CollisionComponents" type="Node2D" parent="." unique_id=1305891504]
 
@@ -67,9 +67,12 @@ rigidBody2D = NodePath("../../RigidBody2D")
 [node name="InputControllerComponent" type="Node2D" parent="ControllerComponents" unique_id=547130087]
 script = ExtResource("4_rt8bh")
 
-[node name="FlipperControllerComponent" type="Node2D" parent="ControllerComponents" unique_id=651942725 node_paths=PackedStringArray("flipperHitComponent")]
+[node name="FlipperControllerComponent" type="Node2D" parent="ControllerComponents" unique_id=651942725 node_paths=PackedStringArray("inputControllerComponent", "flipperHitComponent", "flipper")]
 script = ExtResource("5_ox502")
+hit_cooldown = 0.2
+inputControllerComponent = NodePath("../InputControllerComponent")
 flipperHitComponent = NodePath("../../MovementComponents/FlipperHitComponent")
+flipper = NodePath("../../VisualContainer/Flipper")
 
 [node name="MovementComponents" type="Node2D" parent="." unique_id=662177905]
 
@@ -77,10 +80,8 @@ flipperHitComponent = NodePath("../../MovementComponents/FlipperHitComponent")
 script = ExtResource("2_7lf8o")
 rigidBody2D = NodePath("../../RigidBody2D")
 
-[node name="FlipperHitComponent" type="Node2D" parent="MovementComponents" unique_id=6811151 node_paths=PackedStringArray("inputControllerComponent", "customImpulsePhysic", "flipper")]
+[node name="FlipperHitComponent" type="Node2D" parent="MovementComponents" unique_id=6811151 node_paths=PackedStringArray("customImpulsePhysic")]
 script = ExtResource("5_20bu7")
+hit_charge_speed = 1600.0
 dynamic_force_percent = 100.0
-hit_cooldown = 0.2
-inputControllerComponent = NodePath("../../ControllerComponents/InputControllerComponent")
 customImpulsePhysic = NodePath("../CustomImpulsePhysicComponent")
-flipper = NodePath("../../VisualContainer/Flipper")

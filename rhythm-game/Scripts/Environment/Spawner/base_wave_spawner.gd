@@ -2,6 +2,7 @@
 extends Area2D
 class_name BaseWaveSpawner
 
+@export var enabled = true
 @export_group("Configurações de Inimigo")
 @export var enemy_to_spawn: PackedScene
 @export var max_qty_to_spawn: int = 10
@@ -24,7 +25,7 @@ var is_spawning: bool = false
 var spawn_timer: Timer
 
 func _ready() -> void:
-	if Engine.is_editor_hint():
+	if Engine.is_editor_hint() or !enabled:
 		return
 		
 	spawn_timer = Timer.new()

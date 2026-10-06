@@ -9,4 +9,3 @@ starting_level_name = "level_1"
 
 [node name="GameCamera" parent="." unique_id=1832176273 instance=ExtResource("2_piw3h")]
 position_smoothing_enabled = true
-position_smoothing_speed = 3.0

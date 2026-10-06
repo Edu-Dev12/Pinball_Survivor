@@ -6,6 +6,7 @@
 
 [node name="BaseWaveSpawner" type="Area2D" unique_id=568859415 node_paths=PackedStringArray("collision_shape")]
 script = ExtResource("1_owog0")
+enabled = null
 collision_shape = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=687358155]

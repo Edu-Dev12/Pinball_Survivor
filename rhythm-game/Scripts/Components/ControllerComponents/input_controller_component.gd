@@ -1,3 +1,4 @@
+@icon("res://Assets/Icon/2d/office/icon-gamepad-2d.svg")
 extends Node2D
 class_name InputControllerComponent
 
@@ -7,7 +8,7 @@ var _input_history: Array[Vector2] = []
 const BUFFER_SIZE: int = 6
 
 func _unhandled_input(_event: InputEvent) -> void:
-	movement_vector = Input.get_vector("Left", "Right", "Up", "Down")
+	movement_vector = Input.get_vector("Right", "Left", "Down", "Up")
 	
 	if movement_vector != Vector2.ZERO:
 		_input_history.append(movement_vector)

@@ -1,3 +1,4 @@
+@icon("res://Assets/Icon/2d/blocks/icon-block-container-2d.svg")
 extends Node2D
 class_name CollisionDetectorComponent
 
@@ -14,7 +15,7 @@ func get_collision(body: Node):
 		var current_speed: float = rigidBody2D.linear_velocity.length()
 		var escape_direction: Vector2 = (rigidBody2D.global_position - body.global_position).normalized()
 		
-		var bonus_speed: float = 200.0
+		var bonus_speed: float = 120.0
 		var final_speed: float = current_speed + bonus_speed
 		
 		rigidBody2D.linear_velocity = escape_direction * final_speed
