@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed: float = 100.0
 @export var lifetime: float = 15.0
 
+@onready var rebounce_behavior_component: RebounceBehaviorComponent = $RebounceBehaviorComponent
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 var player: Node2D
@@ -39,4 +40,15 @@ func die_by_player() -> void:
 	if tween and tween.is_valid():
 		tween.kill()
 	Ui.add_score(100)
+	queue_free()
+
+
+## REMOVER ESSA FUNCAO
+func collision(body: Node2D):
+	
+	if body.linear_velocity.length() < 1200.0:
+		rebounce_behavior_component.apply_rebounce()
+	else:
+		body.linear_velocity = body.linear_velocity / 1.2
+	print("colisi")
 	queue_free()

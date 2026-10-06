@@ -10,8 +10,19 @@ class_name AnimationSpeedFromVelocityComponent
 
 func _physics_process(_delta: float) -> void:
 	change_speed_animation()
+	change_color_animation()
 		
 func change_speed_animation() -> void:
 	if rigid_body and animated_sprite:
 		var current_speed: float = rigid_body.linear_velocity.length()
 		animated_sprite.speed_scale = max(min_anim_speed, current_speed / base_speed)
+		
+func change_color_animation() -> void:
+	if rigid_body and animated_sprite:
+		var current_speed: float = rigid_body.linear_velocity.length()
+		
+		## REMOVER ESSA VALOR ARBITRARIO
+		if current_speed >= 1200.0:
+			animated_sprite.modulate.b = 0
+		else:
+			animated_sprite.modulate.b = 1

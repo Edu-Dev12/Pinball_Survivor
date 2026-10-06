@@ -2,10 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dm883n7ys36ej" path="res://Scripts/Entity/Enemy/enemy.gd" id="1_cqgqi"]
 [ext_resource type="Texture2D" uid="uid://cwiko4k1ganpd" path="res://Assets/Entity/Enemy/EnemyPlaceholder.png" id="2_2crsy"]
+[ext_resource type="Script" uid="uid://dirog1u42u7vt" path="res://Scripts/Components/BehaviorComponents/rebounce_behavior_component.gd" id="3_j30pi"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j8k3e"]
-radius = 26.5
-height = 53.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_knogg"]
+radius = 14.508618
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pv2mu"]
+radius = 29.017237
 
 [node name="EnemyTest" type="CharacterBody2D" unique_id=131443137]
 collision_layer = 4
@@ -19,4 +22,21 @@ texture = ExtResource("2_2crsy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1865638181]
 position = Vector2(1.5, 2.5)
-shape = SubResource("CapsuleShape2D_j8k3e")
+shape = SubResource("CircleShape2D_knogg")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1854524060]
+position = Vector2(1, 3)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=744303152]
+shape = SubResource("CircleShape2D_pv2mu")
+debug_color = Color(0.9953175, 0, 0.21522194, 0.41960785)
+
+[node name="RebounceBehaviorComponent" type="Node" parent="." unique_id=1288834642 node_paths=PackedStringArray("source")]
+script = ExtResource("3_j30pi")
+rebounce_force = 10.0
+source = NodePath("../Area2D")
+metadata/_custom_type_script = "uid://dirog1u42u7vt"
+
+[connection signal="body_entered" from="Area2D" to="." method="collision"]

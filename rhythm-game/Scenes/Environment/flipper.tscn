@@ -59,9 +59,10 @@ pivot = NodePath("Pivot")
 fade_duration = 0.1
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1881215035]
-position = Vector2(100, 37)
+position = Vector2(84, 24)
 
 [node name="FlipperSprite" type="AnimatedSprite2D" parent="Pivot" unique_id=2026638733]
 position = Vector2(-46.110268, -1.8174171)
 scale = Vector2(0.6477542, 0.6477542)
 sprite_frames = SubResource("SpriteFrames_pv2mu")
+frame_progress = 0.17548491

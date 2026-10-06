@@ -2,11 +2,14 @@
 extends Node2D
 class_name Flipper
 
+signal rotation_completed
+
 @export var animated_sprite: AnimatedSprite2D
 @export var shake_intensity: float = 2.0
 @export var pivot: Node2D
 @export var max_rotation_degrees: float = -45.0
 @export var fade_duration: float = 0.2
+@export var release_duration: float = 0.05
 
 var _is_fully_charged: bool = false
 var _base_target_rotation: float = 0.0
@@ -25,7 +28,7 @@ func animate_charge(current_charge: float, min_charge: float, max_charge: float)
 		return
 		
 	if current_charge == min_charge and (_tween == null or not _tween.is_running()):
-		_fade(1.0)
+		_fade_in()
 		
 	var t = (current_charge - min_charge) / (max_charge - min_charge)
 	t = clamp(t, 0.0, 1.0)
@@ -36,16 +39,26 @@ func animate_charge(current_charge: float, min_charge: float, max_charge: float)
 		_is_fully_charged = true
 	else:
 		_is_fully_charged = false
-		pivot.rotation = _base_target_rotation
+		if _tween == null or not _tween.is_running():
+			pivot.rotation = _base_target_rotation
 
 func animate_release() -> void:
 	_is_fully_charged = false
+	if _tween:
+		_tween.kill()
+		
+	_tween = create_tween()
+	
 	if pivot:
-		pivot.rotation = 0.0
-	_fade(0.0)
+		_tween.tween_property(pivot, "rotation", 0.0, release_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		
+	_tween.tween_callback(func(): rotation_completed.emit())
+	_tween.tween_property(self, "modulate:a", 0.0, fade_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	
+	await rotation_completed
 
-func _fade(target_alpha: float) -> void:
+func _fade_in() -> void:
 	if _tween:
 		_tween.kill()
 	_tween = create_tween()
-	_tween.tween_property(self, "modulate:a", target_alpha, fade_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	_tween.tween_property(self, "modulate:a", 1.0, fade_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)

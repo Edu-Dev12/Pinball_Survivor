@@ -21,9 +21,10 @@ buses/default_bus_layout="uid://cocegwu712p6g"
 
 [autoload]
 
-AudioManager="*uid://biimlykjoq3x0"
-Global="*uid://bf106vd7obxei"
 SignalManager="*uid://dw3fukwpg6503"
+AudioManager="*uid://biimlykjoq3x0"
+TimeManager="*uid://b22aop0wmhcsq"
+Global="*uid://bf106vd7obxei"
 Ui="*uid://chgd83msiecgj"
 
 [display]
@@ -85,6 +86,7 @@ Dash={
 
 [physics]
 
+common/physics_ticks_per_second=120
 3d/physics_engine="Jolt Physics"
 
 [rendering]

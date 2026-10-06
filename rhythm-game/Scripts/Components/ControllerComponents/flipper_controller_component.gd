@@ -27,11 +27,14 @@ func _physics_process(delta: float) -> void:
 			
 	elif flipper_charging and can_use_flipper:
 		flipper_charging = false
-		flipperHitComponent.flipper_hit(inputControllerComponent.get_best_buffered_direction(input_direction))
+		can_use_flipper = false
+		
+		var buffered_dir = inputControllerComponent.get_best_buffered_direction(input_direction)
 		
 		if flipper:
-			flipper.animate_release()
+			await flipper.animate_release()
 			
+		flipperHitComponent.flipper_hit(buffered_dir)
 		start_cooldown()
 
 func start_cooldown() -> void:
