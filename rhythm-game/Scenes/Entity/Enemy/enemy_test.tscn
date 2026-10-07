@@ -5,14 +5,14 @@
 [ext_resource type="Script" uid="uid://dirog1u42u7vt" path="res://Scripts/Components/BehaviorComponents/rebounce_behavior_component.gd" id="3_j30pi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_knogg"]
-radius = 14.508618
+radius = 22.549944
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pv2mu"]
 radius = 29.017237
 
 [node name="EnemyTest" type="CharacterBody2D" unique_id=131443137]
 collision_layer = 4
-collision_mask = 6
+collision_mask = 4
 motion_mode = 1
 script = ExtResource("1_cqgqi")
 

@@ -2,10 +2,17 @@
 
 [ext_resource type="Script" uid="uid://bwv8wceiayo3k" path="res://Scripts/Level/Manager/game_manager.gd" id="1_10sge"]
 [ext_resource type="PackedScene" uid="uid://c2f02pdv27swa" path="res://Scenes/Camera/game_camera.tscn" id="2_piw3h"]
+[ext_resource type="Script" uid="uid://ciquumf6sd0y2" path="res://Scripts/Components/Utils/camera_shake_component.gd" id="3_10sge"]
 
 [node name="GameManager" type="Node" unique_id=126509562]
 script = ExtResource("1_10sge")
 starting_level_name = "level_1"
 
-[node name="GameCamera" parent="." unique_id=1832176273 instance=ExtResource("2_piw3h")]
+[node name="GameCamera" parent="." unique_id=1832176273 node_paths=PackedStringArray("cameraShakeComponent") groups=["Camera"] instance=ExtResource("2_piw3h")]
 position_smoothing_enabled = true
+cameraShakeComponent = NodePath("CameraShakeComponent")
+
+[node name="CameraShakeComponent" type="Node2D" parent="GameCamera" unique_id=992493821 node_paths=PackedStringArray("camera")]
+script = ExtResource("3_10sge")
+max_shake = 3.0
+camera = NodePath("..")

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+const DEAD_BODY_EFFECT = preload("uid://u116yfkbse07")
+
 @export var speed: float = 100.0
 @export var lifetime: float = 15.0
 
@@ -44,11 +46,22 @@ func die_by_player() -> void:
 
 
 ## REMOVER ESSA FUNCAO
+
 func collision(body: Node2D):
-	
-	if body.linear_velocity.length() < 1200.0:
+	if body.linear_velocity.length() < 1000.0:
 		rebounce_behavior_component.apply_rebounce()
 	else:
-		body.linear_velocity = body.linear_velocity / 1.2
-	print("colisi")
+		body.linear_velocity = body.linear_velocity / 1.3
+		var camera: Camera = get_tree().get_first_node_in_group(Global.CAMERA_GROUP)
+		camera.cameraShakeComponent.trigger_shake()
+	create_body_effect(body)
 	queue_free()
+
+func create_body_effect(body: Node2D):
+	var effect = DEAD_BODY_EFFECT.instantiate()
+	effect.global_position = global_position
+	
+	var direction = (global_position - body.global_position).normalized()
+	effect.emmit_direction = direction
+	
+	get_parent().add_child(effect)

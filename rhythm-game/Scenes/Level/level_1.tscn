@@ -21,12 +21,14 @@ position = Vector2(582, 284)
 position = Vector2(-30, 765)
 enabled = true
 enemy_to_spawn = ExtResource("4_wtlyx")
+max_qty_to_spawn = 30
 zone_size = Vector2(50, 1500)
 
 [node name="BaseWaveSpawner2" parent="Enemies" unique_id=1235780487 instance=ExtResource("4_knogg")]
 position = Vector2(1185, 765)
 enabled = true
 enemy_to_spawn = ExtResource("4_wtlyx")
+max_qty_to_spawn = 30
 zone_size = Vector2(50, 1500)
 
 [node name="EnemyTest" parent="Enemies" unique_id=1508799657 instance=ExtResource("4_wtlyx")]

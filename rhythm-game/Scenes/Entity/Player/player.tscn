@@ -24,7 +24,6 @@ rigidBody2D = NodePath("RigidBody2D")
 [node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=620001952 groups=["Player"]]
 scale = Vector2(1.0001864, 0.9976705)
 collision_layer = 2
-collision_mask = 7
 physics_material_override = SubResource("PhysicsMaterial_bo1nx")
 gravity_scale = 0.0
 contact_monitor = true

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://u116yfkbse07"]
+
+[ext_resource type="Script" uid="uid://cc87iwelxl5ii" path="res://Scripts/Effects/dead_body_effect.gd" id="1_tdwn3"]
+[ext_resource type="Texture2D" uid="uid://cwiko4k1ganpd" path="res://Assets/Entity/Enemy/EnemyPlaceholder.png" id="1_thilk"]
+
+[sub_resource type="Gradient" id="Gradient_wq2qy"]
+offsets = PackedFloat32Array(0.11949685, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="DeadBodyEffect" type="Node2D" unique_id=1797366084]
+script = ExtResource("1_tdwn3")
+
+[node name="BodyTexture" type="CPUParticles2D" parent="." unique_id=2132050755]
+emitting = false
+amount = 1
+texture = ExtResource("1_thilk")
+one_shot = true
+direction = Vector2(1, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 312.85
+initial_velocity_max = 312.85
+angular_velocity_min = 647.6
+angular_velocity_max = 647.6
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+color_ramp = SubResource("Gradient_wq2qy")

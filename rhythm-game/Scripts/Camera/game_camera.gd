@@ -1,4 +1,7 @@
 extends Camera2D
+class_name Camera
+
+@export var cameraShakeComponent: CameraShakeComponent
 
 var can_follow_player: bool = false
 var current_player_node: PlayerBody

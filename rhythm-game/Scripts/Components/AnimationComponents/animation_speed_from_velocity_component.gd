@@ -22,7 +22,7 @@ func change_color_animation() -> void:
 		var current_speed: float = rigid_body.linear_velocity.length()
 		
 		## REMOVER ESSA VALOR ARBITRARIO
-		if current_speed >= 1200.0:
+		if current_speed >= 1000.0:
 			animated_sprite.modulate.b = 0
 		else:
 			animated_sprite.modulate.b = 1
