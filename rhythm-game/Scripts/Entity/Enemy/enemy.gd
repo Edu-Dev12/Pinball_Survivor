@@ -51,6 +51,7 @@ func collision(body: Node2D):
 	if body.linear_velocity.length() < 1000.0:
 		rebounce_behavior_component.apply_rebounce()
 	else:
+		TimeManager.slow_motion(0.3,0.3)
 		body.linear_velocity = body.linear_velocity / 1.3
 		var camera: Camera = get_tree().get_first_node_in_group(Global.CAMERA_GROUP)
 		camera.cameraShakeComponent.trigger_shake()
