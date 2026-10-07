@@ -15,6 +15,6 @@ func set_score(score: int) -> void:
 
 # --- TIMER (Formato MM:SS) ---
 func set_time(total_seconds: int) -> void:
-	var minutes := total_seconds / 60
+	var minutes := floori(total_seconds / 60.0)
 	var seconds := total_seconds % 60
 	timer_countdown.text = "%02d:%02d" % [minutes, seconds]

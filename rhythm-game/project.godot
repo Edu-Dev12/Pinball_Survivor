@@ -23,8 +23,8 @@ buses/default_bus_layout="uid://cocegwu712p6g"
 
 SignalManager="*uid://dw3fukwpg6503"
 AudioManager="*uid://biimlykjoq3x0"
+Global="*uid://1jqdj4y776tq"
 TimeManager="*uid://b22aop0wmhcsq"
-Global="*uid://bf106vd7obxei"
 Ui="*uid://chgd83msiecgj"
 
 [display]
