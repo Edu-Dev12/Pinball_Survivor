@@ -14,23 +14,23 @@ level_map = NodePath("Pinball_Machine")
 position = Vector2(6, 0)
 
 [node name="Player" parent="." unique_id=288184236 instance=ExtResource("2_m5hwo")]
-position = Vector2(319, 290)
+position = Vector2(577, 105)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1268715982]
 
 [node name="BaseWaveSpawner" parent="Enemies" unique_id=568859415 instance=ExtResource("4_knogg")]
-position = Vector2(-30, 765)
+position = Vector2(300, 340)
 enabled = true
 enemy_to_spawn = ExtResource("4_wtlyx")
 max_qty_to_spawn = 30
-zone_size = Vector2(50, 1500)
+zone_size = Vector2(50, 750)
 
 [node name="BaseWaveSpawner2" parent="Enemies" unique_id=1235780487 instance=ExtResource("4_knogg")]
-position = Vector2(1185, 765)
+position = Vector2(850, 340)
 enabled = true
 enemy_to_spawn = ExtResource("4_wtlyx")
 max_qty_to_spawn = 30
-zone_size = Vector2(50, 1500)
+zone_size = Vector2(50, 750)
 
 [node name="EnemyTest" parent="Enemies" unique_id=1508799657 instance=ExtResource("4_wtlyx")]
-position = Vector2(222, 192)
+position = Vector2(499, 100)

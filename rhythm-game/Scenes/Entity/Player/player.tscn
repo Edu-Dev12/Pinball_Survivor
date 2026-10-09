@@ -14,7 +14,7 @@
 bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rm36b"]
-radius = 38.069374
+radius = 35.14096
 
 [node name="Player" type="Node2D" unique_id=1636152561 node_paths=PackedStringArray("rigidBody2D")]
 rotation = 0.0027932574
@@ -41,7 +41,7 @@ update_rotation = false
 scale = Vector2(1.0001863, 0.99767053)
 
 [node name="PinballImage" type="AnimatedSprite2D" parent="VisualContainer" unique_id=2045320341]
-scale = Vector2(0.108, 0.108)
+scale = Vector2(0.104, 0.104)
 sprite_frames = ExtResource("7_ox502")
 autoplay = "default"
 
