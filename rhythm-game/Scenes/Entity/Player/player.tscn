@@ -14,12 +14,13 @@
 bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rm36b"]
-radius = 58.65333
+radius = 38.069374
 
 [node name="Player" type="Node2D" unique_id=1636152561 node_paths=PackedStringArray("rigidBody2D")]
 rotation = 0.0027932574
 script = ExtResource("1_tydqb")
 rigidBody2D = NodePath("RigidBody2D")
+metadata/is_importer_node = true
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=620001952 groups=["Player"]]
 scale = Vector2(1.0001864, 0.9976705)
@@ -40,7 +41,7 @@ update_rotation = false
 scale = Vector2(1.0001863, 0.99767053)
 
 [node name="PinballImage" type="AnimatedSprite2D" parent="VisualContainer" unique_id=2045320341]
-scale = Vector2(0.16749126, 0.16749126)
+scale = Vector2(0.108, 0.108)
 sprite_frames = ExtResource("7_ox502")
 autoplay = "default"
 

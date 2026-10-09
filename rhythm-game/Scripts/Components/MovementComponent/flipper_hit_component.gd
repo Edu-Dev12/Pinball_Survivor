@@ -1,10 +1,10 @@
 extends Node2D
 class_name FlipperHitComponent
 
-@export var hit_max_charge: float = 1200.0
-@export var hit_min_charge: float = 200.0
-@export var hit_charge_speed: float = 800.0
-@export_range(0, 100, 1, "slider") var dynamic_force_percent: float = 0
+@export_custom(ETP.NONE, ETP.PROPERTY) var hit_max_charge: float = 1200.0
+@export_custom(ETP.NONE, ETP.PROPERTY) var hit_min_charge: float = 200.0
+@export_custom(ETP.NONE, ETP.PROPERTY) var hit_charge_speed: float = 800.0
+@export_range(0, 100, 1, "slider", ETP.PROPERTY) var dynamic_force_percent: float = 0
 
 
 @export_group("Components")

@@ -32,6 +32,10 @@ Ui="*uid://chgd83msiecgj"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/xesa/ExposeThemProperties/plugin.cfg")
+
 [file_customization]
 
 folder_colors={

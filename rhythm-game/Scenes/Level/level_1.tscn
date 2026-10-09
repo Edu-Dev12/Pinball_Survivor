@@ -11,9 +11,10 @@ script = ExtResource("1_m5hwo")
 level_map = NodePath("Pinball_Machine")
 
 [node name="Pinball_Machine" parent="." unique_id=1384302898 instance=ExtResource("1_k541i")]
+position = Vector2(6, 0)
 
 [node name="Player" parent="." unique_id=288184236 instance=ExtResource("2_m5hwo")]
-position = Vector2(582, 284)
+position = Vector2(319, 290)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1268715982]
 

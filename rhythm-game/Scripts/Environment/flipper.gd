@@ -5,11 +5,11 @@ class_name Flipper
 signal rotation_completed
 
 @export var animated_sprite: AnimatedSprite2D
-@export var shake_intensity: float = 2.0
+@export_custom(ETP.NONE, ETP.PROPERTY) var shake_intensity: float = 2.0
 @export var pivot: Node2D
-@export var max_rotation_degrees: float = -45.0
-@export var fade_duration: float = 0.2
-@export var release_duration: float = 0.05
+@export_custom(ETP.NONE, ETP.PROPERTY) var max_rotation_degrees: float = -45.0
+@export_custom(ETP.NONE, ETP.PROPERTY) var fade_duration: float = 0.2
+@export_custom(ETP.NONE, ETP.PROPERTY) var release_duration: float = 0.05
 
 var _is_fully_charged: bool = false
 var _base_target_rotation: float = 0.0

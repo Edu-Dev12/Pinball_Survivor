@@ -1,8 +1,8 @@
 extends Node
 class_name AnimationSpeedFromVelocityComponent
 
-@export var base_speed: float = 150.0
-@export var min_anim_speed: float = 0.2
+@export_custom(ETP.NONE, ETP.PROPERTY) var base_speed: float = 150.0
+@export_custom(ETP.NONE, ETP.PROPERTY) var min_anim_speed: float = 0.2
 
 @export_group("Components")
 @export var rigid_body: RigidBody2D

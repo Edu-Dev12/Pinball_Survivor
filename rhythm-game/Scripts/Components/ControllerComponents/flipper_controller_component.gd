@@ -1,7 +1,7 @@
 extends Node2D
 class_name FlipperControllerComponent
 
-@export var hit_cooldown: float = 0.5 
+@export_custom(ETP.NONE, ETP.PROPERTY) var hit_cooldown: float = 0.5 
 
 @export_group("Components")
 @export var inputControllerComponent: InputControllerComponent

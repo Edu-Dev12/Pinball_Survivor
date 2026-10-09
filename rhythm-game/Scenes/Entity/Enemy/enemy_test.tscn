@@ -5,10 +5,10 @@
 [ext_resource type="Script" uid="uid://dirog1u42u7vt" path="res://Scripts/Components/BehaviorComponents/rebounce_behavior_component.gd" id="3_j30pi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_knogg"]
-radius = 22.549944
+radius = 9.617692
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pv2mu"]
-radius = 29.017237
+radius = 15.0
 
 [node name="EnemyTest" type="CharacterBody2D" unique_id=131443137]
 collision_layer = 4
@@ -17,7 +17,7 @@ motion_mode = 1
 script = ExtResource("1_cqgqi")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=694149303]
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.11, 0.11)
 texture = ExtResource("2_2crsy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1865638181]
