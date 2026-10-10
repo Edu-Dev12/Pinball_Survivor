@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://3ajbn7qjec5c" path="res://Scripts/Entity/Player/player.gd" id="1_tydqb"]
 [ext_resource type="Script" uid="uid://c3ubyrkitdk1s" path="res://Scripts/Components/MovementComponent/custom_impulse_physic_component.gd" id="2_7lf8o"]
+[ext_resource type="Script" uid="uid://b54ppp0tp2hr8" path="res://Scripts/Other/player_rigid_body.gd" id="2_078to"]
 [ext_resource type="Script" uid="uid://dtxg0841okwd2" path="res://Scripts/Components/CollisionComponents/collision_detector_component.gd" id="3_ox502"]
 [ext_resource type="Script" uid="uid://corcd5l7j5her" path="res://Scripts/Components/AnimationComponents/animation_speed_from_velocity_component.gd" id="4_20bu7"]
 [ext_resource type="Script" uid="uid://cd8m0bngtah5w" path="res://Scripts/Components/ControllerComponents/input_controller_component.gd" id="4_rt8bh"]
@@ -22,13 +23,15 @@ script = ExtResource("1_tydqb")
 rigidBody2D = NodePath("RigidBody2D")
 metadata/is_importer_node = true
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=620001952 groups=["Player"]]
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=620001952 node_paths=PackedStringArray("player") groups=["Player"]]
 scale = Vector2(1.0001864, 0.9976705)
 collision_layer = 2
 collision_mask = 9
 physics_material_override = SubResource("PhysicsMaterial_bo1nx")
 gravity_scale = 0.0
 contact_monitor = true
+script = ExtResource("2_078to")
+player = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1630081939]
 scale = Vector2(0.3414182, 0.3394021)

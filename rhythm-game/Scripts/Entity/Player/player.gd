@@ -4,5 +4,5 @@ class_name PlayerBody
 
 @export var rigidBody2D: RigidBody2D
 
-func _physics_process(_delta: float) -> void:
-	pass
+@export var max_speed: float = 1200.0
+@export var passthrough_speed: float = 1000.0
