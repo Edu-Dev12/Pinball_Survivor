@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dl56cslmn1pl7"]
+
+[ext_resource type="Texture2D" uid="uid://bvccmnsp5blhf" path="res://Assets/Enviroment/Structure/Bumper.png" id="1_h2fge"]
+[ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/health_component.gd" id="1_oghan"]
+[ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/hurtbox_component.gd" id="2_3ipfl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ipfl"]
+radius = 21.023796
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vflbt"]
+radius = 23.0
+
+[node name="Bumper" type="StaticBody2D" unique_id=1580442525 groups=["Structure"]]
+collision_layer = 8
+collision_mask = 7
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=736451564]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_h2fge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=643430479]
+shape = SubResource("CircleShape2D_3ipfl")
+
+[node name="HealthComponent" type="Node2D" parent="." unique_id=913220320]
+script = ExtResource("1_oghan")
+
+[node name="HurtBoxComponent" type="Area2D" parent="." unique_id=1318254410 node_paths=PackedStringArray("health_component")]
+collision_mask = 7
+script = ExtResource("2_3ipfl")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent" unique_id=795748170]
+shape = SubResource("CircleShape2D_vflbt")
+debug_color = Color(0.648439, 0.5210578, 3.85046e-07, 0.41960785)
