@@ -25,6 +25,8 @@ radius = 12.000001
 rotation = 0.0027932574
 script = ExtResource("1_tydqb")
 rigidBody2D = NodePath("RigidBody2D")
+max_speed = 1300.0
+passthrough_speed = 900.0
 metadata/is_importer_node = true
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=620001952 node_paths=PackedStringArray("player") groups=["Player"]]

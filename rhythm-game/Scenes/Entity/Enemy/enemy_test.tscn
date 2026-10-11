@@ -2,19 +2,22 @@
 
 [ext_resource type="Script" uid="uid://dm883n7ys36ej" path="res://Scripts/Entity/Enemy/enemy.gd" id="1_cqgqi"]
 [ext_resource type="Texture2D" uid="uid://cwiko4k1ganpd" path="res://Assets/Entity/Enemy/EnemyPlaceholder.png" id="2_2crsy"]
+[ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/hurtbox_component.gd" id="3_buog3"]
 [ext_resource type="Script" uid="uid://dirog1u42u7vt" path="res://Scripts/Components/BehaviorComponents/rebounce_behavior_component.gd" id="3_j30pi"]
+[ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/health_component.gd" id="5_jwjyh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_knogg"]
 radius = 9.617692
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_pv2mu"]
-radius = 15.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_426oi"]
+radius = 15.033297
 
-[node name="EnemyTest" type="CharacterBody2D" unique_id=131443137]
+[node name="EnemyTest" type="CharacterBody2D" unique_id=131443137 node_paths=PackedStringArray("health_component")]
 collision_layer = 4
 collision_mask = 12
 motion_mode = 1
 script = ExtResource("1_cqgqi")
+health_component = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=694149303]
 scale = Vector2(0.11, 0.11)
@@ -24,19 +27,26 @@ texture = ExtResource("2_2crsy")
 position = Vector2(1.5, 2.5)
 shape = SubResource("CircleShape2D_knogg")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1854524060]
-position = Vector2(1, 3)
-collision_layer = 0
-collision_mask = 2
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=112419854 node_paths=PackedStringArray("health_component")]
+position = Vector2(2, 2)
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("3_buog3")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://csy647r8tv7w5"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=744303152]
-shape = SubResource("CircleShape2D_pv2mu")
-debug_color = Color(0.9953175, 0, 0.21522194, 0.41960785)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1821804054]
+shape = SubResource("CircleShape2D_426oi")
+debug_color = Color(0.99942786, 0, 0.08243848, 0.41960785)
 
-[node name="RebounceBehaviorComponent" type="Node" parent="." unique_id=1288834642 node_paths=PackedStringArray("source")]
+[node name="RebounceBehaviorComponent" type="Node" parent="." unique_id=1288834642 node_paths=PackedStringArray("source", "hurtBoxComponent")]
 script = ExtResource("3_j30pi")
 rebounce_force = 10.0
-source = NodePath("../Area2D")
+source = NodePath("..")
+hurtBoxComponent = NodePath("../HurtboxComponent")
 metadata/_custom_type_script = "uid://dirog1u42u7vt"
 
-[connection signal="body_entered" from="Area2D" to="." method="collision"]
+[node name="HealthComponent" type="Node" parent="." unique_id=509042474]
+script = ExtResource("5_jwjyh")
+max_health = 1
+metadata/_custom_type_script = "uid://clwsd3i4f8ndy"

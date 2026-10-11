@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://dlunrxo48npk2" path="res://Scripts/Level/level_1.gd" id="1_m5hwo"]
 [ext_resource type="PackedScene" uid="uid://c46x7behm7yyv" path="res://Scenes/Entity/Player/player.tscn" id="2_m5hwo"]
 [ext_resource type="PackedScene" uid="uid://cs5005lieyom7" path="res://Scenes/Environment/Spawner/base_wave_spawner.tscn" id="4_knogg"]
-[ext_resource type="PackedScene" uid="uid://da270g7fgddom" path="res://Scenes/Entity/Enemy/enemy_test.tscn" id="4_wtlyx"]
 [ext_resource type="PackedScene" uid="uid://dl56cslmn1pl7" path="res://Scenes/Environment/Structure/bumper.tscn" id="6_uoico"]
 [ext_resource type="PackedScene" uid="uid://dssk46d0vkivi" path="res://Scenes/Entity/Enemy/first_enemy.tscn" id="7_4snqv"]
 
@@ -22,19 +21,16 @@ position = Vector2(577, 105)
 [node name="BaseWaveSpawner" parent="Enemies" unique_id=568859415 instance=ExtResource("4_knogg")]
 position = Vector2(290, 340)
 enabled = true
-enemy_to_spawn = ExtResource("4_wtlyx")
+enemy_to_spawn = ExtResource("7_4snqv")
 max_qty_to_spawn = 30
 zone_size = Vector2(50, 750)
 
 [node name="BaseWaveSpawner2" parent="Enemies" unique_id=1235780487 instance=ExtResource("4_knogg")]
 position = Vector2(840, 340)
 enabled = true
-enemy_to_spawn = ExtResource("4_wtlyx")
+enemy_to_spawn = ExtResource("7_4snqv")
 max_qty_to_spawn = 30
 zone_size = Vector2(50, 750)
-
-[node name="EnemyTest" parent="Enemies" unique_id=1508799657 instance=ExtResource("4_wtlyx")]
-position = Vector2(499, 100)
 
 [node name="Structures" type="Node2D" parent="." unique_id=1233858462]
 

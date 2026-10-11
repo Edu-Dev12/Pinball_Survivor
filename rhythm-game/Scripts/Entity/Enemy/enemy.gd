@@ -6,6 +6,8 @@ const DEAD_BODY_EFFECT = preload("uid://u116yfkbse07")
 @export var lifetime: float = 15.0
 
 @onready var rebounce_behavior_component: RebounceBehaviorComponent = $RebounceBehaviorComponent
+@export var health_component: HealthComponent
+
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 var player: Node2D
@@ -13,6 +15,7 @@ var is_dead: bool = false
 var tween: Tween
 
 func _ready() -> void:
+	health_component.died.connect(die_by_player)
 	add_to_group(Global.ENEMY_GROUP)
 	player = get_tree().get_first_node_in_group(Global.PLAYER_GROUP)
 	start_countdown()

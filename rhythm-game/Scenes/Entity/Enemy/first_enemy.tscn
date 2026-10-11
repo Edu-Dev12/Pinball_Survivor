@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://ch6byh3nbtss" path="res://Scripts/Entity/Enemy/first_enemy.gd" id="1_gyvh0"]
 [ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/health_component.gd" id="2_x1513"]
 [ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/hurtbox_component.gd" id="3_1buj2"]
+[ext_resource type="Script" uid="uid://dirog1u42u7vt" path="res://Scripts/Components/BehaviorComponents/rebounce_behavior_component.gd" id="5_t6tdw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pv2mu"]
 radius = 7.0
@@ -16,6 +17,7 @@ collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_gyvh0")
 healthComponent = NodePath("HealthComponent")
+speed = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=351780946]
 texture_filter = 1
@@ -23,11 +25,6 @@ texture = ExtResource("1_fiqnb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2049795404]
 shape = SubResource("CapsuleShape2D_pv2mu")
-
-[node name="HealthComponent" type="Node" parent="." unique_id=1531943528]
-script = ExtResource("2_x1513")
-max_health = 1
-metadata/_custom_type_script = "uid://clwsd3i4f8ndy"
 
 [node name="HurtboxComponent" type="Area2D" parent="." unique_id=785968862 node_paths=PackedStringArray("health_component")]
 collision_layer = 32
@@ -39,3 +36,15 @@ metadata/_custom_type_script = "uid://csy647r8tv7w5"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1747850796]
 shape = SubResource("CapsuleShape2D_426oi")
 debug_color = Color(0.64454705, 0.5230215, 0, 0.41960785)
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1531943528]
+script = ExtResource("2_x1513")
+max_health = 1
+metadata/_custom_type_script = "uid://clwsd3i4f8ndy"
+
+[node name="RebounceBehaviorComponent" type="Node" parent="." unique_id=274603130 node_paths=PackedStringArray("source", "hurt_box_component")]
+script = ExtResource("5_t6tdw")
+speed_limit = 900.0
+source = NodePath("..")
+hurt_box_component = NodePath("../HurtboxComponent")
+metadata/_custom_type_script = "uid://dirog1u42u7vt"
