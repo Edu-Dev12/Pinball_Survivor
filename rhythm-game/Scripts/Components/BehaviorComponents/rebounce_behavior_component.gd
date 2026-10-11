@@ -3,6 +3,7 @@ class_name RebounceBehaviorComponent
 
 @export var rebounce_force: float = 120.0
 @export var speed_limit: float = 1000.0
+@export var speed_slowdown_rate: float = 1.1
 
 @export var source: Node2D
 @export var target: RigidBody2D
@@ -32,7 +33,7 @@ func apply_normal_rebounce(current_speed: float) -> void:
 
 func execute_strong_impact() -> void:
 	TimeManager.slow_motion(0.2, 0.2)
-	target.linear_velocity = target.linear_velocity / 1.1
+	target.linear_velocity = target.linear_velocity / speed_slowdown_rate
 	
 	var camera = get_tree().get_first_node_in_group(Global.CAMERA_GROUP)
 	if camera and camera.has_node("CameraShakeComponent"):
