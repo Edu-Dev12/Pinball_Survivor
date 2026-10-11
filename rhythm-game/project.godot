@@ -85,8 +85,12 @@ Dash={
 [layer_names]
 
 2d_physics/layer_1="WALL"
-2d_physics/layer_2="Player"
-2d_physics/layer_3="Enemy"
+2d_physics/layer_2="PLAYER_COLLISION"
+2d_physics/layer_3="PLAYER_HITBOX"
+2d_physics/layer_4="ENEMY_COLLISION"
+2d_physics/layer_5="ENEMY_HITBOX"
+2d_physics/layer_6="ENEMY_HURTBOX"
+2d_physics/layer_7="STRUCTURE_COLLISION"
 
 [physics]
 

@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cs5005lieyom7" path="res://Scenes/Environment/Spawner/base_wave_spawner.tscn" id="4_knogg"]
 [ext_resource type="PackedScene" uid="uid://da270g7fgddom" path="res://Scenes/Entity/Enemy/enemy_test.tscn" id="4_wtlyx"]
 [ext_resource type="PackedScene" uid="uid://dl56cslmn1pl7" path="res://Scenes/Environment/Structure/bumper.tscn" id="6_uoico"]
+[ext_resource type="PackedScene" uid="uid://dssk46d0vkivi" path="res://Scenes/Entity/Enemy/first_enemy.tscn" id="7_4snqv"]
 
 [node name="Level_1" type="Node2D" unique_id=989795356 node_paths=PackedStringArray("level_map")]
 script = ExtResource("1_m5hwo")
@@ -39,3 +40,12 @@ position = Vector2(499, 100)
 
 [node name="Bumper" parent="Structures" unique_id=1580442525 instance=ExtResource("6_uoico")]
 position = Vector2(575, 315)
+
+[node name="Bumper2" parent="Structures" unique_id=866372587 instance=ExtResource("6_uoico")]
+position = Vector2(458, 522)
+
+[node name="Bumper3" parent="Structures" unique_id=968883077 instance=ExtResource("6_uoico")]
+position = Vector2(697, 109)
+
+[node name="FirstEnemy" parent="." unique_id=493257173 instance=ExtResource("7_4snqv")]
+position = Vector2(403, 314)

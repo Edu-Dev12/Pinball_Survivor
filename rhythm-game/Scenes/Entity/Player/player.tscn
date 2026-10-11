@@ -10,12 +10,16 @@
 [ext_resource type="Script" uid="uid://dqx6kklg130k4" path="res://Scripts/Components/ControllerComponents/flipper_controller_component.gd" id="5_ox502"]
 [ext_resource type="PackedScene" uid="uid://7jt3es052ni" path="res://Scenes/Environment/flipper.tscn" id="7_7lf8o"]
 [ext_resource type="SpriteFrames" uid="uid://00efdki45518" path="res://Assets/Entity/Player/SpriteFrames/player_sprite_frames.tres" id="7_ox502"]
+[ext_resource type="Script" uid="uid://nd4ko4vpkdi3" path="res://Scripts/Components/hitbox_component.gd" id="11_4osmd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bo1nx"]
 bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rm36b"]
 radius = 35.14096
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pv2mu"]
+radius = 12.000001
 
 [node name="Player" type="Node2D" unique_id=1636152561 node_paths=PackedStringArray("rigidBody2D")]
 rotation = 0.0027932574
@@ -26,7 +30,7 @@ metadata/is_importer_node = true
 [node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=620001952 node_paths=PackedStringArray("player") groups=["Player"]]
 scale = Vector2(1.0001864, 0.9976705)
 collision_layer = 2
-collision_mask = 9
+collision_mask = 65
 physics_material_override = SubResource("PhysicsMaterial_bo1nx")
 gravity_scale = 0.0
 contact_monitor = true
@@ -39,6 +43,10 @@ shape = SubResource("CircleShape2D_rm36b")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="RigidBody2D" unique_id=1909381886]
 remote_path = NodePath("../../VisualContainer")
+update_rotation = false
+
+[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="RigidBody2D" unique_id=695232043]
+remote_path = NodePath("../../HitboxComponent")
 update_rotation = false
 
 [node name="VisualContainer" type="Node2D" parent="." unique_id=1258022582]
@@ -86,6 +94,19 @@ rigidBody2D = NodePath("../../RigidBody2D")
 
 [node name="FlipperHitComponent" type="Node2D" parent="MovementComponents" unique_id=6811151 node_paths=PackedStringArray("customImpulsePhysic")]
 script = ExtResource("5_20bu7")
-hit_charge_speed = 1600.0
+hit_max_charge = 1000.0
+hit_charge_speed = 1800.0
 dynamic_force_percent = 100.0
 customImpulsePhysic = NodePath("../CustomImpulsePhysicComponent")
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=761844913]
+scale = Vector2(1.0001863, 0.99767053)
+collision_layer = 4
+collision_mask = 32
+script = ExtResource("11_4osmd")
+damage = 10
+metadata/_custom_type_script = "uid://nd4ko4vpkdi3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=284572767]
+shape = SubResource("CircleShape2D_pv2mu")
+debug_color = Color(0.9939429, 0, 0.23695627, 0.41960785)

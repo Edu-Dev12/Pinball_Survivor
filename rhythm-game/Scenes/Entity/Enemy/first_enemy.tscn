@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dssk46d0vkivi"]
+
+[ext_resource type="Texture2D" uid="uid://0ltkrosjoiof" path="res://Assets/Entity/Enemy/skull007.png" id="1_fiqnb"]
+[ext_resource type="Script" uid="uid://ch6byh3nbtss" path="res://Scripts/Entity/Enemy/first_enemy.gd" id="1_gyvh0"]
+[ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/health_component.gd" id="2_x1513"]
+[ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/hurtbox_component.gd" id="3_1buj2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pv2mu"]
+radius = 7.0
+height = 24.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_426oi"]
+
+[node name="FirstEnemy" type="CharacterBody2D" unique_id=493257173 node_paths=PackedStringArray("healthComponent")]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_gyvh0")
+healthComponent = NodePath("HealthComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=351780946]
+texture_filter = 1
+texture = ExtResource("1_fiqnb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2049795404]
+shape = SubResource("CapsuleShape2D_pv2mu")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1531943528]
+script = ExtResource("2_x1513")
+max_health = 1
+metadata/_custom_type_script = "uid://clwsd3i4f8ndy"
+
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=785968862 node_paths=PackedStringArray("health_component")]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("3_1buj2")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://csy647r8tv7w5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1747850796]
+shape = SubResource("CapsuleShape2D_426oi")
+debug_color = Color(0.64454705, 0.5230215, 0, 0.41960785)

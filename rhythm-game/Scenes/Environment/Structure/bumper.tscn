@@ -11,8 +11,8 @@ radius = 21.023796
 radius = 23.0
 
 [node name="Bumper" type="StaticBody2D" unique_id=1580442525 groups=["Structure"]]
-collision_layer = 8
-collision_mask = 7
+collision_layer = 64
+collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=736451564]
 scale = Vector2(0.3, 0.3)
