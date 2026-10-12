@@ -16,7 +16,10 @@ func _ready() -> void:
 	if not target:
 		target = get_tree().get_first_node_in_group(Global.PLAYER_GROUP) as RigidBody2D
 
-func _on_was_hurt() -> void:
+func _on_was_hurt(hitbox: HitboxComponent) -> void:
+	if !hitbox.apply_ball_bounce:
+		return
+	
 	if not target or not source: return
 	
 	var current_speed: float = target.linear_velocity.length()

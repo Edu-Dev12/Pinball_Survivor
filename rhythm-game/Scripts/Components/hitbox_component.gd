@@ -4,6 +4,7 @@ class_name HitboxComponent
 signal hit
 
 @export var damage : int
+@export var apply_ball_bounce: bool = false
 
 
 func _ready() -> void:
@@ -11,5 +12,5 @@ func _ready() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is HurtboxComponent:
-		area.hurt(damage)
+		area.hurt(damage, self)
 		hit.emit()
