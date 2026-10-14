@@ -26,8 +26,8 @@ radius = 12.000001
 rotation = 0.0027932574
 script = ExtResource("1_tydqb")
 rigidBody2D = NodePath("RigidBody2D")
-max_speed = 1300.0
-passthrough_speed = 900.0
+max_speed = 800.0
+passthrough_speed = 500.0
 metadata/is_importer_node = true
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=620001952 node_paths=PackedStringArray("player") groups=["Player"]]
@@ -116,4 +116,6 @@ shape = SubResource("CircleShape2D_pv2mu")
 debug_color = Color(0.9939429, 0, 0.23695627, 0.41960785)
 
 [node name="IncendiaryBallUpgrade" parent="." unique_id=1858903025 node_paths=PackedStringArray("player") instance=ExtResource("12_gfrdd")]
+trail_lifetime = 4.0
+spawn_distance_interval = 15.0
 player = NodePath("../RigidBody2D")
