@@ -30,6 +30,9 @@ enabled = true
 enemy_to_spawn = ExtResource("7_4snqv")
 zone_size = Vector2(50, 750)
 
+[node name="FirstEnemy" parent="Enemies" unique_id=493257173 instance=ExtResource("7_4snqv")]
+position = Vector2(403, 314)
+
 [node name="Structures" type="Node2D" parent="." unique_id=1233858462]
 
 [node name="Bumper" parent="Structures" unique_id=1580442525 instance=ExtResource("6_uoico")]
@@ -40,6 +43,3 @@ position = Vector2(458, 522)
 
 [node name="Bumper3" parent="Structures" unique_id=968883077 instance=ExtResource("6_uoico")]
 position = Vector2(697, 109)
-
-[node name="FirstEnemy" parent="." unique_id=493257173 instance=ExtResource("7_4snqv")]
-position = Vector2(403, 314)

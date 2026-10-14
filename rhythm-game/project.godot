@@ -29,7 +29,6 @@ Ui="*uid://chgd83msiecgj"
 
 [display]
 
-window/size/mode=3
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -88,6 +87,8 @@ Dash={
 2d_physics/layer_5="ENEMY_HITBOX"
 2d_physics/layer_6="ENEMY_HURTBOX"
 2d_physics/layer_7="STRUCTURE_COLLISION"
+2d_physics/layer_8="STRUCTURE_HITBOX"
+2d_physics/layer_9="STRUCTURE_HURTBOX"
 
 [physics]
 

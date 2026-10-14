@@ -3,12 +3,27 @@
 [ext_resource type="Texture2D" uid="uid://bvccmnsp5blhf" path="res://Assets/Enviroment/Structure/Bumper.png" id="1_h2fge"]
 [ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/health_component.gd" id="1_oghan"]
 [ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/hurtbox_component.gd" id="2_3ipfl"]
+[ext_resource type="Script" uid="uid://q1akalh1qvyc" path="res://Scripts/Components/hp_bar_component.gd" id="4_vflbt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3ipfl"]
 radius = 21.023796
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vflbt"]
 radius = 23.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vm0e"]
+bg_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vflbt"]
+bg_color = Color(1.0107458e-06, 0.6514312, 0.13586748, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [node name="Bumper" type="StaticBody2D" unique_id=1580442525 groups=["Structure"]]
 collision_layer = 64
@@ -25,10 +40,27 @@ shape = SubResource("CircleShape2D_3ipfl")
 script = ExtResource("1_oghan")
 
 [node name="HurtBoxComponent" type="Area2D" parent="." unique_id=1318254410 node_paths=PackedStringArray("health_component")]
-collision_mask = 7
+collision_layer = 128
+collision_mask = 16
 script = ExtResource("2_3ipfl")
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent" unique_id=795748170]
 shape = SubResource("CircleShape2D_vflbt")
 debug_color = Color(0.648439, 0.5210578, 3.85046e-07, 0.41960785)
+
+[node name="HPBarComponent" type="ProgressBar" parent="." unique_id=1241211068 node_paths=PackedStringArray("health_component")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -35.0
+offset_top = -30.0
+offset_right = 35.0
+offset_bottom = -25.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_7vm0e")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vflbt")
+show_percentage = false
+script = ExtResource("4_vflbt")
+health_component = NodePath("../HealthComponent")
