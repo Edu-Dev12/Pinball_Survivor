@@ -26,7 +26,7 @@ radius = 12.000001
 rotation = 0.0027932574
 script = ExtResource("1_tydqb")
 rigidBody2D = NodePath("RigidBody2D")
-max_speed = 800.0
+max_speed = 3000.0
 passthrough_speed = 500.0
 metadata/is_importer_node = true
 

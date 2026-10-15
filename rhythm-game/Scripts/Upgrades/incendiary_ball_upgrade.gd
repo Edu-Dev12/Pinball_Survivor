@@ -44,5 +44,5 @@ func spawn_trail(spawn_position: Vector2) -> void:
 	collision_shape.shape = circle_shape
 	area_instance.add_child(collision_shape)
 	
-	get_tree().current_scene.add_child(area_instance)
 	area_instance.global_position = spawn_position
+	get_tree().current_scene.add_child(area_instance)
