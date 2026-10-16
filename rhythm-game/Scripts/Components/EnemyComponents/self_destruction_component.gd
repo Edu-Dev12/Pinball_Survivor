@@ -22,11 +22,8 @@ func explode() -> void:
 	var explosion : HitboxComponent = SELF_DESTRUCTION_AREA.instantiate()
 	explosion.damage = damage
 	explosion.global_position = enemy_navigation.enemy.global_position
+	explosion.is_temporary = true
 	
 	sprite_2d.set_deferred("visible", false)
-	
 	enemy_navigation.enemy.get_parent().add_child(explosion)
-	await get_tree().create_timer(1.0).timeout
-	explosion.call_deferred("queue_free")
-	
 	enemy_navigation.enemy.queue_free()

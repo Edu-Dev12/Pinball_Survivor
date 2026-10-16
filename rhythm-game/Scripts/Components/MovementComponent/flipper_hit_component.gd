@@ -5,6 +5,7 @@ class_name FlipperHitComponent
 @export_custom(ETP.NONE, ETP.PROPERTY) var hit_min_charge: float = 200.0
 @export_custom(ETP.NONE, ETP.PROPERTY) var hit_charge_speed: float = 800.0
 @export_range(0, 100, 1, "slider", ETP.PROPERTY) var dynamic_force_percent: float = 0
+@export_range(0, 100, 1, "slider", ETP.PROPERTY) var percent_velocity_override: float = 0
 
 
 @export_group("Components")
@@ -27,7 +28,7 @@ func flipper_charge(delta: float, charge_direction: Vector2) -> void:
 func flipper_hit(buffer_hit_direction: Vector2 = Vector2.ZERO) -> void:
 	if customImpulsePhysic:
 		
-		var calculated_override: float = remap(hit_force, hit_min_charge, hit_max_charge, 0.0, 100.0)
+		var calculated_override: float = remap(hit_force, hit_min_charge, hit_max_charge, 0.0, percent_velocity_override)
 		customImpulsePhysic.apply_dynamic_impulse(buffer_hit_direction, hit_force, int(dynamic_force_percent), int(calculated_override))
 	
 	hit_force = 0.0
