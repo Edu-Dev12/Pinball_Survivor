@@ -40,7 +40,7 @@ shape = SubResource("CircleShape2D_3ipfl")
 script = ExtResource("1_oghan")
 
 [node name="HurtBoxComponent" type="Area2D" parent="." unique_id=1318254410 node_paths=PackedStringArray("health_component")]
-collision_layer = 128
+collision_layer = 256
 collision_mask = 16
 script = ExtResource("2_3ipfl")
 health_component = NodePath("../HealthComponent")

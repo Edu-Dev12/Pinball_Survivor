@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b7a1ts5nj82lg"]
+
+[ext_resource type="Script" uid="uid://nd4ko4vpkdi3" path="res://Scripts/Components/hitbox_component.gd" id="1_l0i6o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o1g8r"]
+radius = 50.0
+
+[node name="SelfDestructionArea" type="Area2D" unique_id=1687576114]
+collision_layer = 16
+collision_mask = 256
+script = ExtResource("1_l0i6o")
+metadata/_custom_type_script = "uid://nd4ko4vpkdi3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=792619865]
+shape = SubResource("CircleShape2D_o1g8r")
+debug_color = Color(0.99215686, 0, 0, 0.41960785)

@@ -8,5 +8,4 @@ signal was_hurt(hitbox: HitboxComponent)
 func hurt(damage: int, hitbox: HitboxComponent) -> void:
 	if health_component:
 		health_component.receive_damage(damage)
-		
 	was_hurt.emit(hitbox)
