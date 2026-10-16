@@ -6,3 +6,4 @@
 script = ExtResource("1_goatc")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=1845058462]
+volume_db = -11.375

@@ -19,4 +19,4 @@ const STRUCTURE_COLLISION_LAYER: String = "STRUCTURE_COLLISION"
 const BGM_SPACE_CADET_PINBALL = preload("uid://dysdjipgntjs6")
 
 # SFX
-const PINBALL_IMPACT_TEST = preload("uid://d1ossa0vx70me")
+const SFX_PINBALL_IMPACT_TEST = preload("uid://d1ossa0vx70me")

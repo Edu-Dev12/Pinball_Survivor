@@ -5,13 +5,17 @@ var cascade_timer: SceneTreeTimer = null
 
 func hit_stop(freeze_time: float):
 	Engine.time_scale = 0
+	AudioServer.playback_speed_scale = 0.0
 	await get_tree().create_timer(freeze_time, true, false, true).timeout
 	Engine.time_scale = 1
+	AudioServer.playback_speed_scale = 1.0
 	
 func slow_motion(slow_time: float, freeze_time: float):
 	Engine.time_scale = slow_time
+	AudioServer.playback_speed_scale = slow_time
 	await get_tree().create_timer(freeze_time, true, false, true).timeout
 	Engine.time_scale = 1
+	AudioServer.playback_speed_scale = 1.0
 	
 func slow_motion_cascade():
 	cascade_level += 1
@@ -20,6 +24,7 @@ func slow_motion_cascade():
 	var target_time_scale: float = max(0.3, base_slow - (cascade_level * 0.10))
 	
 	Engine.time_scale = target_time_scale
+	#AudioServer.playback_speed_scale = target_time_scale
 	
 	var current_timer_id: int = cascade_level
 	cascade_timer = get_tree().create_timer(0.3, true, false, true)
@@ -29,3 +34,4 @@ func slow_motion_cascade():
 	if cascade_level == current_timer_id:
 		cascade_level = 0
 		Engine.time_scale = 1.0
+		#AudioServer.playback_speed_scale = 1.0
