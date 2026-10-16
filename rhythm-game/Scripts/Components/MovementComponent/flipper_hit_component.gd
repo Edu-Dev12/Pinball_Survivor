@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 class_name FlipperHitComponent
 
 @export_custom(ETP.NONE, ETP.PROPERTY) var hit_max_charge: float = 1200.0
@@ -26,6 +26,8 @@ func flipper_charge(delta: float, charge_direction: Vector2) -> void:
 
 func flipper_hit(buffer_hit_direction: Vector2 = Vector2.ZERO) -> void:
 	if customImpulsePhysic:
-		customImpulsePhysic.apply_dynamic_impulse(buffer_hit_direction, hit_force, int(dynamic_force_percent))
+		
+		var calculated_override: float = remap(hit_force, hit_min_charge, hit_max_charge, 0.0, 100.0)
+		customImpulsePhysic.apply_dynamic_impulse(buffer_hit_direction, hit_force, int(dynamic_force_percent), int(calculated_override))
 	
 	hit_force = 0.0

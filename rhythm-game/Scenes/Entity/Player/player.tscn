@@ -7,11 +7,18 @@
 [ext_resource type="Script" uid="uid://corcd5l7j5her" path="res://Scripts/Components/AnimationComponents/animation_speed_from_velocity_component.gd" id="4_20bu7"]
 [ext_resource type="Script" uid="uid://cd8m0bngtah5w" path="res://Scripts/Components/ControllerComponents/input_controller_component.gd" id="4_rt8bh"]
 [ext_resource type="Script" uid="uid://b2f6c1qr6tjye" path="res://Scripts/Components/MovementComponent/flipper_hit_component.gd" id="5_20bu7"]
+[ext_resource type="Script" uid="uid://djajujxlt2f1l" path="res://Scripts/Effects/trail_effect.gd" id="5_gfrdd"]
 [ext_resource type="Script" uid="uid://dqx6kklg130k4" path="res://Scripts/Components/ControllerComponents/flipper_controller_component.gd" id="5_ox502"]
 [ext_resource type="PackedScene" uid="uid://7jt3es052ni" path="res://Scenes/Environment/flipper.tscn" id="7_7lf8o"]
 [ext_resource type="SpriteFrames" uid="uid://00efdki45518" path="res://Assets/Entity/Player/SpriteFrames/player_sprite_frames.tres" id="7_ox502"]
 [ext_resource type="Script" uid="uid://nd4ko4vpkdi3" path="res://Scripts/Components/hitbox_component.gd" id="11_4osmd"]
-[ext_resource type="PackedScene" uid="uid://jsrv1q7anjmf" path="res://Scenes/Upgrades/incendiary_ball_upgrade.tscn" id="12_gfrdd"]
+
+[sub_resource type="Curve" id="Curve_gfrdd"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_gfrdd"]
+colors = PackedColorArray(1, 1, 1, 0, 0.3372549, 0.15294118, 0.32941177, 1)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bo1nx"]
 bounce = 1.0
@@ -26,9 +33,18 @@ radius = 12.000001
 rotation = 0.0027932574
 script = ExtResource("1_tydqb")
 rigidBody2D = NodePath("RigidBody2D")
-max_speed = 3000.0
-passthrough_speed = 500.0
+max_speed = 700.0
+passthrough_speed = 400.0
 metadata/is_importer_node = true
+
+[node name="Trail_Effect" type="Line2D" parent="." unique_id=1647312235 node_paths=PackedStringArray("trail_target")]
+top_level = true
+width = 10.395
+width_curve = SubResource("Curve_gfrdd")
+gradient = SubResource("Gradient_gfrdd")
+joint_mode = 2
+script = ExtResource("5_gfrdd")
+trail_target = NodePath("../RigidBody2D")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=620001952 node_paths=PackedStringArray("player") groups=["Player"]]
 scale = Vector2(1.0001864, 0.9976705)
@@ -56,6 +72,7 @@ update_rotation = false
 scale = Vector2(1.0001863, 0.99767053)
 
 [node name="PinballImage" type="AnimatedSprite2D" parent="VisualContainer" unique_id=2045320341]
+z_index = 1
 scale = Vector2(0.104, 0.104)
 sprite_frames = ExtResource("7_ox502")
 autoplay = "default"
@@ -65,7 +82,7 @@ release_duration = 0.02
 
 [node name="AnimationComponents" type="Node2D" parent="." unique_id=1967926830]
 
-[node name="AnimationSpeedFromVelocityComponent" type="Node2D" parent="AnimationComponents" unique_id=155847660 node_paths=PackedStringArray("rigid_body", "animated_sprite")]
+[node name="AnimationSpeedFromVelocityComponent" type="Node" parent="AnimationComponents" unique_id=1122751491 node_paths=PackedStringArray("rigid_body", "animated_sprite")]
 script = ExtResource("4_20bu7")
 min_anim_speed = 1.0
 rigid_body = NodePath("../../RigidBody2D")
@@ -79,10 +96,10 @@ rigidBody2D = NodePath("../../RigidBody2D")
 
 [node name="ControllerComponents" type="Node2D" parent="." unique_id=1117724950]
 
-[node name="InputControllerComponent" type="Node2D" parent="ControllerComponents" unique_id=547130087]
+[node name="InputControllerComponent" type="Node" parent="ControllerComponents" unique_id=1236695514]
 script = ExtResource("4_rt8bh")
 
-[node name="FlipperControllerComponent" type="Node2D" parent="ControllerComponents" unique_id=651942725 node_paths=PackedStringArray("inputControllerComponent", "flipperHitComponent", "flipper")]
+[node name="FlipperControllerComponent" type="Node" parent="ControllerComponents" unique_id=2049450949 node_paths=PackedStringArray("inputControllerComponent", "flipperHitComponent", "flipper")]
 script = ExtResource("5_ox502")
 hit_cooldown = 0.2
 inputControllerComponent = NodePath("../InputControllerComponent")
@@ -91,14 +108,14 @@ flipper = NodePath("../../VisualContainer/Flipper")
 
 [node name="MovementComponents" type="Node2D" parent="." unique_id=662177905]
 
-[node name="CustomImpulsePhysicComponent" type="Node2D" parent="MovementComponents" unique_id=552723732 node_paths=PackedStringArray("rigidBody2D")]
+[node name="CustomImpulsePhysicComponent" type="Node" parent="MovementComponents" unique_id=1839390894 node_paths=PackedStringArray("rigidBody2D")]
 script = ExtResource("2_7lf8o")
 rigidBody2D = NodePath("../../RigidBody2D")
 
-[node name="FlipperHitComponent" type="Node2D" parent="MovementComponents" unique_id=6811151 node_paths=PackedStringArray("customImpulsePhysic")]
+[node name="FlipperHitComponent" type="Node" parent="MovementComponents" unique_id=1128045567 node_paths=PackedStringArray("customImpulsePhysic")]
 script = ExtResource("5_20bu7")
-hit_max_charge = 1000.0
-hit_charge_speed = 1800.0
+hit_max_charge = 500.0
+hit_min_charge = 60.0
 dynamic_force_percent = 100.0
 customImpulsePhysic = NodePath("../CustomImpulsePhysicComponent")
 
@@ -114,8 +131,3 @@ metadata/_custom_type_script = "uid://nd4ko4vpkdi3"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=284572767]
 shape = SubResource("CircleShape2D_pv2mu")
 debug_color = Color(0.9939429, 0, 0.23695627, 0.41960785)
-
-[node name="IncendiaryBallUpgrade" parent="." unique_id=1858903025 node_paths=PackedStringArray("player") instance=ExtResource("12_gfrdd")]
-trail_lifetime = 4.0
-spawn_distance_interval = 15.0
-player = NodePath("../RigidBody2D")

@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 class_name FlipperControllerComponent
 
 @export_custom(ETP.NONE, ETP.PROPERTY) var hit_cooldown: float = 0.5 

@@ -35,7 +35,7 @@ func apply_normal_rebounce(current_speed: float) -> void:
 	target.linear_velocity = escape_direction * final_speed
 
 func execute_strong_impact() -> void:
-	TimeManager.slow_motion(0.2, 0.2)
+	TimeManager.slow_motion_cascade()
 	target.linear_velocity = target.linear_velocity / speed_slowdown_rate
 	
 	var camera = get_tree().get_first_node_in_group(Global.CAMERA_GROUP)

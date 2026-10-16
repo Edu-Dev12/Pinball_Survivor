@@ -1,5 +1,5 @@
 @icon("res://Assets/Icon/2d/office/icon-gamepad-2d.svg")
-extends Node2D
+extends Node
 class_name InputControllerComponent
 
 var movement_vector: Vector2
