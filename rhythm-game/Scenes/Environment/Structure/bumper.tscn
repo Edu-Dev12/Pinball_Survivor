@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://dl56cslmn1pl7"]
 
 [ext_resource type="Texture2D" uid="uid://bvccmnsp5blhf" path="res://Assets/Enviroment/Structure/Bumper.png" id="1_h2fge"]
-[ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/health_component.gd" id="1_oghan"]
-[ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/hurtbox_component.gd" id="2_3ipfl"]
-[ext_resource type="Script" uid="uid://q1akalh1qvyc" path="res://Scripts/Components/hp_bar_component.gd" id="4_vflbt"]
+[ext_resource type="Script" uid="uid://cx51qp6cl6ttm" path="res://Scripts/Environment/Structures/structure.gd" id="1_nto01"]
+[ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/HealthComponents/health_component.gd" id="1_oghan"]
+[ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/HurtboxComponents/hurtbox_component.gd" id="2_3ipfl"]
+[ext_resource type="Script" uid="uid://q1akalh1qvyc" path="res://Scripts/Components/HealthComponents/hp_bar_component.gd" id="4_vflbt"]
+[ext_resource type="Script" uid="uid://gre2rxaqfxfc" path="res://Scripts/Components/StructureComponents/structure_death_component.gd" id="5_7vm0e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3ipfl"]
 radius = 21.023796
@@ -28,6 +30,7 @@ corner_radius_bottom_left = 15
 [node name="Bumper" type="StaticBody2D" unique_id=1580442525 groups=["Structure"]]
 collision_layer = 64
 collision_mask = 0
+script = ExtResource("1_nto01")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=736451564]
 scale = Vector2(0.3, 0.3)
@@ -35,9 +38,6 @@ texture = ExtResource("1_h2fge")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=643430479]
 shape = SubResource("CircleShape2D_3ipfl")
-
-[node name="HealthComponent" type="Node2D" parent="." unique_id=913220320]
-script = ExtResource("1_oghan")
 
 [node name="HurtBoxComponent" type="Area2D" parent="." unique_id=1318254410 node_paths=PackedStringArray("health_component")]
 collision_layer = 256
@@ -63,4 +63,13 @@ theme_override_styles/background = SubResource("StyleBoxFlat_7vm0e")
 theme_override_styles/fill = SubResource("StyleBoxFlat_vflbt")
 show_percentage = false
 script = ExtResource("4_vflbt")
+health_component = NodePath("../HealthComponent")
+
+[node name="HealthComponent" type="Node2D" parent="." unique_id=913220320]
+script = ExtResource("1_oghan")
+
+[node name="StructureDeathComponent" type="Node" parent="." unique_id=2143347069 node_paths=PackedStringArray("structure", "sprite_2d", "health_component")]
+script = ExtResource("5_7vm0e")
+structure = NodePath("..")
+sprite_2d = NodePath("../Sprite2D")
 health_component = NodePath("../HealthComponent")

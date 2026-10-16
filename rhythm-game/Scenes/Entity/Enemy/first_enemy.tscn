@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://dssk46d0vkivi"]
 
 [ext_resource type="Texture2D" uid="uid://0ltkrosjoiof" path="res://Assets/Entity/Enemy/skull007.png" id="1_fiqnb"]
-[ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/health_component.gd" id="2_x1513"]
-[ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/hurtbox_component.gd" id="3_1buj2"]
+[ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/HealthComponents/health_component.gd" id="2_x1513"]
+[ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/HurtboxComponents/hurtbox_component.gd" id="3_1buj2"]
 [ext_resource type="Script" uid="uid://dirog1u42u7vt" path="res://Scripts/Components/BehaviorComponents/rebounce_behavior_component.gd" id="5_t6tdw"]
-[ext_resource type="Script" uid="uid://cph3wab7jau4j" path="res://Scripts/self_destruction_component.gd" id="6_pcolw"]
-[ext_resource type="Script" uid="uid://bxcngec2b54ck" path="res://Scripts/Components/enemy_navigation_component.gd" id="6_rhb01"]
-[ext_resource type="Script" uid="uid://p85gg66bqnm8" path="res://Scripts/enemy_death_component.gd" id="7_pcolw"]
+[ext_resource type="Script" uid="uid://cph3wab7jau4j" path="res://Scripts/Components/EnemyComponents/self_destruction_component.gd" id="6_pcolw"]
+[ext_resource type="Script" uid="uid://bxcngec2b54ck" path="res://Scripts/Components/EnemyComponents/enemy_navigation_component.gd" id="6_rhb01"]
+[ext_resource type="Script" uid="uid://p85gg66bqnm8" path="res://Scripts/Components/EnemyComponents/enemy_death_component.gd" id="7_pcolw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pv2mu"]
 radius = 7.0
@@ -61,11 +61,12 @@ metadata/_custom_type_script = "uid://dirog1u42u7vt"
 
 [node name="SelfDestructionComponent" type="Node" parent="." unique_id=759719018 node_paths=PackedStringArray("sprite_2d", "enemy_navigation")]
 script = ExtResource("6_pcolw")
+lifetime = 8.0
 sprite_2d = NodePath("../Sprite2D")
 enemy_navigation = NodePath("../EnemyNavigationComponent")
 
-[node name="EnemyDeathComponent" type="Node" parent="." unique_id=814837995 node_paths=PackedStringArray("health_component", "enemy", "sprite_2d")]
+[node name="EnemyDeathComponent" type="Node" parent="." unique_id=814837995 node_paths=PackedStringArray("enemy", "sprite_2d", "health_component")]
 script = ExtResource("7_pcolw")
-health_component = NodePath("../HealthComponent")
 enemy = NodePath("..")
 sprite_2d = NodePath("../Sprite2D")
+health_component = NodePath("../HealthComponent")

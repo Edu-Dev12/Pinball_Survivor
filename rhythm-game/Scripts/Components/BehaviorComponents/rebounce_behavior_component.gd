@@ -17,6 +17,7 @@ func _ready() -> void:
 		target = get_tree().get_first_node_in_group(Global.PLAYER_GROUP) as RigidBody2D
 
 func _on_was_hurt(hitbox: HitboxComponent) -> void:
+	AudioManager.play_sound_effect(Global.PINBALL_IMPACT_TEST, "SFX")
 	if !hitbox.apply_ball_bounce:
 		return
 	

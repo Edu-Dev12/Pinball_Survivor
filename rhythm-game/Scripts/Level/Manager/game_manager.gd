@@ -27,7 +27,7 @@ func _ready() -> void:
 	SignalManager.level_loaded.connect(update_tilemap)
 	SignalManager.game_over.connect(game_over)
 	
-	SignalManager.player_spawned.connect(update_player)
+	#SignalManager.player_spawned.connect(update_player)
 	SignalManager.player_died.connect(player_died)
 	
 	SignalManager.request_camera_reference.connect(send_camera_reference)

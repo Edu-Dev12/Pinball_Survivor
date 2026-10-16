@@ -29,7 +29,7 @@ func update_camera_limits(new_tilemap: TileMapLayer) -> void:
 	limit_left = int(map_rect.position.x * real_tile_size.x + global_pos.x)
 	limit_top = int(map_rect.position.y * real_tile_size.y + global_pos.y)
 	limit_right = int(map_rect.end.x * real_tile_size.x + global_pos.x)
-	limit_bottom = int(map_rect.end.y * real_tile_size.y + global_pos.y)
+	#limit_bottom = int(map_rect.end.y * real_tile_size.y + global_pos.y)
 	
 
 func update_player_node(new_player):

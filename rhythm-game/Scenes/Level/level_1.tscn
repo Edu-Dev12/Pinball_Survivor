@@ -22,20 +22,22 @@ level_map = NodePath("Pinball_Machine")
 
 [node name="Player" parent="." unique_id=288184236 instance=ExtResource("2_m5hwo")]
 position = Vector2(577, 105)
+max_speed = 3000.0
+passthrough_speed = 500.0
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1268715982]
 
 [node name="BaseWaveSpawner" parent="Enemies" unique_id=568859415 instance=ExtResource("4_knogg")]
-position = Vector2(-24, 340)
+position = Vector2(-30, 280)
 enabled = true
 enemy_to_spawn = ExtResource("7_4snqv")
-zone_size = Vector2(50, 750)
+zone_size = Vector2(50, 550)
 
 [node name="BaseWaveSpawner2" parent="Enemies" unique_id=1235780487 instance=ExtResource("4_knogg")]
-position = Vector2(1159, 340)
+position = Vector2(1180, 280)
 enabled = true
 enemy_to_spawn = ExtResource("7_4snqv")
-zone_size = Vector2(50, 750)
+zone_size = Vector2(50, 550)
 
 [node name="FirstEnemy" parent="Enemies" unique_id=493257173 instance=ExtResource("7_4snqv")]
 position = Vector2(403, 314)
@@ -43,13 +45,13 @@ position = Vector2(403, 314)
 [node name="Structures" type="Node2D" parent="." unique_id=1233858462]
 
 [node name="Bumper" parent="Structures" unique_id=1580442525 instance=ExtResource("6_uoico")]
-position = Vector2(575, 315)
+position = Vector2(565, 300)
 
 [node name="Bumper2" parent="Structures" unique_id=866372587 instance=ExtResource("6_uoico")]
-position = Vector2(458, 522)
+position = Vector2(249, 438)
 
 [node name="Bumper3" parent="Structures" unique_id=968883077 instance=ExtResource("6_uoico")]
-position = Vector2(697, 109)
+position = Vector2(874, 169)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1646438040]
 navigation_polygon = SubResource("NavigationPolygon_o1g8r")

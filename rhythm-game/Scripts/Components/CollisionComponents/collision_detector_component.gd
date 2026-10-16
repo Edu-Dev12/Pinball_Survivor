@@ -11,5 +11,6 @@ func _ready() -> void:
 		rigidBody2D.body_entered.connect(get_collision)
 
 func get_collision(body: Node):
+	AudioManager.play_sound_effect(Global.PINBALL_IMPACT_TEST, "SFX")
 	if body.is_in_group(Global.ENEMY_GROUP): 
 		body.die_by_player()

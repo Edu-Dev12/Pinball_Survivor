@@ -19,7 +19,6 @@ func slow_motion_cascade():
 	var base_slow: float = 0.9
 	var target_time_scale: float = max(0.3, base_slow - (cascade_level * 0.10))
 	
-	print(target_time_scale)
 	Engine.time_scale = target_time_scale
 	
 	var current_timer_id: int = cascade_level

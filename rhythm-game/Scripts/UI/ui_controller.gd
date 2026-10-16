@@ -10,7 +10,7 @@ var timer: Timer
 
 func _ready() -> void:
 	setup_timer()
-	set_player_health(100)
+	set_player_health(0)
 	set_initial_time(300)
 	add_score(0)
 	run_timer()

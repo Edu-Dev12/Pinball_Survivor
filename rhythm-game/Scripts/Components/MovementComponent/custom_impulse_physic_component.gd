@@ -7,7 +7,6 @@ func apply_basic_impulse(direction: Vector2, force: float, percent_velocity_rese
 	if not rigidBody2D: return
 	rigidBody2D.linear_velocity *= (100 - percent_velocity_reset) / 100.0
 	rigidBody2D.apply_central_impulse(direction * force)
-	print("BASIC: Applied Force: " + str(direction * force))
 
 func apply_dynamic_impulse(direction: Vector2, force: float, percent_inpulse_compensation: int = 0, percent_velocity_override: int = 0) -> void:
 	if not rigidBody2D: return
@@ -27,5 +26,3 @@ func apply_dynamic_impulse(direction: Vector2, force: float, percent_inpulse_com
 	
 	var final_impulse: Vector2 = dir_norm * (force + compensation_impulse)
 	rigidBody2D.apply_central_impulse(final_impulse)
-	
-	print("DYNAMIC: Applied Force: " + str(final_impulse))

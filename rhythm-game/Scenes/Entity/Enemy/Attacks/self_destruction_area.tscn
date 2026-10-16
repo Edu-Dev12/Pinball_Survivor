@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b7a1ts5nj82lg"]
 
-[ext_resource type="Script" uid="uid://nd4ko4vpkdi3" path="res://Scripts/Components/hitbox_component.gd" id="1_l0i6o"]
+[ext_resource type="Script" uid="uid://nd4ko4vpkdi3" path="res://Scripts/Components/HitboxComponents/hitbox_component.gd" id="1_l0i6o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o1g8r"]
 radius = 50.0

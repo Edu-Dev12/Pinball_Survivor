@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dm883n7ys36ej" path="res://Scripts/Entity/Enemy/enemy.gd" id="1_cqgqi"]
 [ext_resource type="Texture2D" uid="uid://cwiko4k1ganpd" path="res://Assets/Entity/Enemy/EnemyPlaceholder.png" id="2_2crsy"]
-[ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/hurtbox_component.gd" id="3_buog3"]
+[ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/HurtboxComponents/hurtbox_component.gd" id="3_buog3"]
 [ext_resource type="Script" uid="uid://dirog1u42u7vt" path="res://Scripts/Components/BehaviorComponents/rebounce_behavior_component.gd" id="3_j30pi"]
-[ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/health_component.gd" id="5_jwjyh"]
+[ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/HealthComponents/health_component.gd" id="5_jwjyh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_knogg"]
 radius = 9.617692

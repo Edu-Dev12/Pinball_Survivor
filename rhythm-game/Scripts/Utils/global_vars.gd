@@ -14,3 +14,9 @@ const ENEMY_COLLISION_LAYER: String = "ENEMY_COLLISION"
 const ENEMY_HITBOX_LAYER: String = "ENEMY_HITBOX"
 const ENEMY_HURTBOX_LAYER: String = "ENEMY_HURTBOX"
 const STRUCTURE_COLLISION_LAYER: String = "STRUCTURE_COLLISION"
+
+# BGM
+const BGM_SPACE_CADET_PINBALL = preload("uid://dysdjipgntjs6")
+
+# SFX
+const PINBALL_IMPACT_TEST = preload("uid://d1ossa0vx70me")

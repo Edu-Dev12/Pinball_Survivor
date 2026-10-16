@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://dfk0qhf7wk1mc" path="res://Scripts/Camera/game_camera.gd" id="1_f7m5w"]
 
 [node name="GameCamera" type="Camera2D" unique_id=1832176273]
+physics_interpolation_mode = 2
 script = ExtResource("1_f7m5w")

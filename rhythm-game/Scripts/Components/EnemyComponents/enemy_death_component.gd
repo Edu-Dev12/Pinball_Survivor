@@ -3,9 +3,10 @@ class_name EnemyDeathComponent
 
 const DEAD_BODY_EFFECT = preload("uid://u116yfkbse07")
 
-@export var health_component: HealthComponent
 @export var enemy: CharacterBody2D
 @export var sprite_2d: Sprite2D
+@export var health_component: HealthComponent
+@export var score_value := 100
 
 func _ready() -> void:
 	health_component.died.connect(death)
@@ -13,6 +14,8 @@ func _ready() -> void:
 func death() -> void:
 	sprite_2d.set_deferred("visible", false)
 	create_body_effect()
+	Ui.add_score(score_value)
+	
 	enemy.queue_free()
 
 func create_body_effect():
