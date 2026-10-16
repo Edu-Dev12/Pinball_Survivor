@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://dssk46d0vkivi"]
 
 [ext_resource type="Texture2D" uid="uid://0ltkrosjoiof" path="res://Assets/Entity/Enemy/skull007.png" id="1_fiqnb"]
-[ext_resource type="Script" uid="uid://ch6byh3nbtss" path="res://Scripts/Entity/Enemy/first_enemy.gd" id="1_gyvh0"]
 [ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/health_component.gd" id="2_x1513"]
 [ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/hurtbox_component.gd" id="3_1buj2"]
 [ext_resource type="Script" uid="uid://dirog1u42u7vt" path="res://Scripts/Components/BehaviorComponents/rebounce_behavior_component.gd" id="5_t6tdw"]
+[ext_resource type="Script" uid="uid://cph3wab7jau4j" path="res://Scripts/self_destruction_component.gd" id="6_pcolw"]
+[ext_resource type="Script" uid="uid://bxcngec2b54ck" path="res://Scripts/Components/enemy_navigation_component.gd" id="6_rhb01"]
+[ext_resource type="Script" uid="uid://p85gg66bqnm8" path="res://Scripts/enemy_death_component.gd" id="7_pcolw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pv2mu"]
 radius = 7.0
@@ -12,12 +14,9 @@ height = 24.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_426oi"]
 
-[node name="FirstEnemy" type="CharacterBody2D" unique_id=493257173 node_paths=PackedStringArray("healthComponent")]
+[node name="FirstEnemy" type="CharacterBody2D" unique_id=493257173]
 collision_layer = 8
 collision_mask = 72
-script = ExtResource("1_gyvh0")
-healthComponent = NodePath("HealthComponent")
-speed = 25.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=351780946]
 texture_filter = 1
@@ -37,6 +36,16 @@ metadata/_custom_type_script = "uid://csy647r8tv7w5"
 shape = SubResource("CapsuleShape2D_426oi")
 debug_color = Color(0.64454705, 0.5230215, 0, 0.41960785)
 
+[node name="EnemyNavigationComponent" type="NavigationAgent2D" parent="." unique_id=797026272 node_paths=PackedStringArray("enemy")]
+path_desired_distance = 10.0
+avoidance_enabled = true
+radius = 5.0
+debug_path_custom_color = Color(1, 1, 0.12156863, 1)
+script = ExtResource("6_rhb01")
+enemy = NodePath("..")
+speed = 50.0
+orbit_radius = 40.0
+
 [node name="HealthComponent" type="Node" parent="." unique_id=1531943528]
 script = ExtResource("2_x1513")
 max_health = 4
@@ -48,3 +57,14 @@ rebounce_force = 30.0
 source = NodePath("..")
 hurt_box_component = NodePath("../HurtboxComponent")
 metadata/_custom_type_script = "uid://dirog1u42u7vt"
+
+[node name="SelfDestructionComponent" type="Node" parent="." unique_id=759719018 node_paths=PackedStringArray("sprite_2d", "enemy_navigation")]
+script = ExtResource("6_pcolw")
+sprite_2d = NodePath("../Sprite2D")
+enemy_navigation = NodePath("../EnemyNavigationComponent")
+
+[node name="EnemyDeathComponent" type="Node" parent="." unique_id=814837995 node_paths=PackedStringArray("health_component", "enemy", "sprite_2d")]
+script = ExtResource("7_pcolw")
+health_component = NodePath("../HealthComponent")
+enemy = NodePath("..")
+sprite_2d = NodePath("../Sprite2D")

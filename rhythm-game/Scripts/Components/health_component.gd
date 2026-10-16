@@ -24,7 +24,8 @@ func heal_health(heal_amount: int) -> void:
 	set_health(after_heal_health)
 
 func receive_damage(damage_amount: int) -> void:
-	current_health = max(0, current_health - damage_amount)
+	var new_health = max(0, current_health - damage_amount)
+	set_health(new_health)
 	if current_health <= 0:
 		is_dead = true
 		died.emit()
