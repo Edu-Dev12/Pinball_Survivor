@@ -46,10 +46,18 @@ func _on_velocity_computed(safe_velocity: Vector2) -> void:
 		enemy.velocity = safe_velocity
 		enemy.move_and_slide()
 
+# Ajustar
 func find_structure() -> void:
 	var structure_list = get_tree().get_nodes_in_group(Global.STRUCTURE_GROUP)
+	var target_to_remove : Node2D
 	
 	if structure_list.size() > 0:
+		for target_check in structure_list:
+			if target_to_remove == null:
+				target_to_remove = target_check
+			elif target_to_remove.global_position.distance_to(enemy.global_position) > target_check.global_position.distance_to(enemy.global_position):
+				target_to_remove = target_check
+		structure_list.erase(target_to_remove)
 		target = structure_list.pick_random() as Node2D
 		
 		var random_angle = randf() * TAU

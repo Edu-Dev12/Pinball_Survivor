@@ -28,19 +28,16 @@ passthrough_speed = 500.0
 [node name="Enemies" type="Node2D" parent="." unique_id=1268715982]
 
 [node name="BaseWaveSpawner" parent="Enemies" unique_id=568859415 instance=ExtResource("4_knogg")]
-position = Vector2(-30, 280)
+position = Vector2(-30, 150)
 enabled = true
 enemy_to_spawn = ExtResource("7_4snqv")
-zone_size = Vector2(50, 550)
+zone_size = Vector2(50, 300)
 
 [node name="BaseWaveSpawner2" parent="Enemies" unique_id=1235780487 instance=ExtResource("4_knogg")]
-position = Vector2(1180, 280)
+position = Vector2(1180, 420)
 enabled = true
 enemy_to_spawn = ExtResource("7_4snqv")
-zone_size = Vector2(50, 550)
-
-[node name="FirstEnemy" parent="Enemies" unique_id=493257173 instance=ExtResource("7_4snqv")]
-position = Vector2(403, 314)
+zone_size = Vector2(50, 300)
 
 [node name="Structures" type="Node2D" parent="." unique_id=1233858462]
 
