@@ -11,20 +11,29 @@ signal orbit_reached
 var target: Node2D
 var target_offset_position: Vector2
 var _has_emitted_orbit: bool = false
+var knockback_velocity: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	velocity_computed.connect(_on_velocity_computed)
 	call_deferred("find_structure")
 
+func apply_knockback(force: Vector2) -> void:
+	knockback_velocity = force
+
 func _physics_process(_delta: float) -> void:
 	if not enemy or not target or not is_instance_valid(target):
 		return
+	
+	if knockback_velocity != Vector2.ZERO:
+		enemy.velocity = knockback_velocity
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, _delta * 1000.0)
+		enemy.move_and_slide()
 		
 	if is_navigation_finished():
 		enemy.velocity = Vector2.ZERO
 		enemy.move_and_slide()
 		return
-		
+	
 	if not _has_emitted_orbit:
 		if enemy.global_position.distance_to(target.global_position) <= orbit_radius + attack_off_set:
 			_has_emitted_orbit = true
@@ -46,19 +55,20 @@ func _on_velocity_computed(safe_velocity: Vector2) -> void:
 		enemy.velocity = safe_velocity
 		enemy.move_and_slide()
 
-# Ajustar
 func find_structure() -> void:
 	var structure_list = get_tree().get_nodes_in_group(Global.STRUCTURE_GROUP)
-	var target_to_remove : Node2D
 	
 	if structure_list.size() > 0:
+		var target_to_remove: Node2D = structure_list[0]
 		for target_check in structure_list:
-			if target_to_remove == null:
-				target_to_remove = target_check
-			elif target_to_remove.global_position.distance_to(enemy.global_position) > target_check.global_position.distance_to(enemy.global_position):
+			if target_to_remove.global_position.distance_to(enemy.global_position) > target_check.global_position.distance_to(enemy.global_position):
 				target_to_remove = target_check
 		structure_list.erase(target_to_remove)
-		target = structure_list.pick_random() as Node2D
+		
+		if structure_list.size() > 0:
+			target = structure_list.pick_random() as Node2D
+		else:
+			target = target_to_remove
 		
 		var random_angle = randf() * TAU
 		var offset_dir = Vector2(cos(random_angle), sin(random_angle))

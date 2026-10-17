@@ -31,12 +31,14 @@ passthrough_speed = 500.0
 position = Vector2(-30, 150)
 enabled = true
 enemy_to_spawn = ExtResource("7_4snqv")
+max_qty_to_spawn = 15
 zone_size = Vector2(50, 300)
 
 [node name="BaseWaveSpawner2" parent="Enemies" unique_id=1235780487 instance=ExtResource("4_knogg")]
 position = Vector2(1180, 420)
 enabled = true
 enemy_to_spawn = ExtResource("7_4snqv")
+max_qty_to_spawn = 15
 zone_size = Vector2(50, 300)
 
 [node name="Structures" type="Node2D" parent="." unique_id=1233858462]

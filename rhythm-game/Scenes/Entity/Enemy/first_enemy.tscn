@@ -14,7 +14,7 @@ radius = 14.035668
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_426oi"]
 height = 32.0
 
-[node name="FirstEnemy" type="CharacterBody2D" unique_id=493257173]
+[node name="FirstEnemy" type="CharacterBody2D" unique_id=493257173 groups=["Enemy"]]
 collision_layer = 8
 collision_mask = 72
 
@@ -41,10 +41,11 @@ path_desired_distance = 10.0
 avoidance_enabled = true
 radius = 15.0
 neighbor_distance = 40.0
+max_speed = 1500.0
 debug_path_custom_color = Color(1, 1, 0.12156863, 1)
 script = ExtResource("6_rhb01")
 enemy = NodePath("..")
-speed = 50.0
+speed = 200.0
 orbit_radius = 40.0
 attack_off_set = 10.0
 

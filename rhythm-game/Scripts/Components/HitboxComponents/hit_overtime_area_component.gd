@@ -2,7 +2,6 @@ extends HitboxComponent
 class_name HitOverTimeAreaComponent
 
 @export var damage_interval: float = 0.5
-@export var lifetime: float = 3.0
 
 @export var shrink_over_time: bool = false
 @export var shrink_transition_type: Tween.TransitionType = Tween.TRANS_LINEAR
