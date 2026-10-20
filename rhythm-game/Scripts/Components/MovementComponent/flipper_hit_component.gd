@@ -28,7 +28,7 @@ func flipper_charge(delta: float, charge_direction: Vector2) -> void:
 func flipper_hit(buffer_hit_direction: Vector2 = Vector2.ZERO) -> void:
 	if customImpulsePhysic:
 		
-		var calculated_override: float = remap(hit_force, hit_min_charge, hit_max_charge, 0.0, percent_velocity_override)
+		var calculated_override: float = remap(hit_force, hit_min_charge, hit_max_charge, 0, 100)
 		customImpulsePhysic.apply_dynamic_impulse(buffer_hit_direction, hit_force, int(dynamic_force_percent), int(calculated_override))
 	
 	hit_force = 0.0

@@ -18,6 +18,7 @@ func _physics_process(delta: float) -> void:
 	var input_direction = inputControllerComponent.movement_vector
 	
 	if input_direction != Vector2.ZERO and can_use_flipper:
+		#TimeManager.slow_motion(0.4, 1)
 		flipper_charging = true
 		flipperHitComponent.flipper_charge(delta, input_direction)
 		

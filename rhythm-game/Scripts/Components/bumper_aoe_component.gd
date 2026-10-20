@@ -1,7 +1,7 @@
 extends Area2D
 class_name BumperAOEComponent
 
-@export var bumper_visual: Sprite2D
+@export var bumper_visual: AnimatedSprite2D
 @export var push_strength: float = 500.0 
 @export var punch_scale: Vector2 = Vector2(1.5, 1.5)
 @export var push_radius: float = 100
