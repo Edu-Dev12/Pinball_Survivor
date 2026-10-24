@@ -26,6 +26,14 @@ bounce = 1.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_rm36b"]
 radius = 35.14096
 
+[sub_resource type="Curve" id="Curve_mcf8x"]
+_data = [Vector2(0, 0.12396699), 0.0, 0.0, 0, 0, Vector2(0.3704319, 0.8937007), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_wfu16"]
+_data = [Vector2(0.0023255795, 1), 0.0, 4.268545, 0, 0, Vector2(0.4372093, 0.70689654), -5.2955575, -5.2955575, 0, 0, Vector2(0.627907, 0.21839082), -1.1297208, -1.1297208, 0, 0, Vector2(0.87674415, 0.15517241), 0.0, 0.0, 0, 0, Vector2(1, 0.10344827), -2.376217, 0.0, 0, 0]
+point_count = 5
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_pv2mu"]
 radius = 12.000001
 
@@ -33,8 +41,7 @@ radius = 12.000001
 rotation = 0.0027932574
 script = ExtResource("1_tydqb")
 rigidBody2D = NodePath("RigidBody2D")
-max_speed = 700.0
-passthrough_speed = 400.0
+max_speed = 2000.0
 metadata/is_importer_node = true
 
 [node name="Trail_Effect" type="Line2D" parent="." unique_id=1647312235 node_paths=PackedStringArray("trail_target")]
@@ -82,11 +89,12 @@ release_duration = 0.02
 
 [node name="AnimationComponents" type="Node2D" parent="." unique_id=1967926830]
 
-[node name="AnimationSpeedFromVelocityComponent" type="Node" parent="AnimationComponents" unique_id=1122751491 node_paths=PackedStringArray("rigid_body", "animated_sprite")]
+[node name="AnimationSpeedFromVelocityComponent" type="Node" parent="AnimationComponents" unique_id=1122751491 node_paths=PackedStringArray("rigid_body", "animated_sprite", "player")]
 script = ExtResource("4_20bu7")
 min_anim_speed = 1.0
 rigid_body = NodePath("../../RigidBody2D")
 animated_sprite = NodePath("../../VisualContainer/PinballImage")
+player = NodePath("../..")
 
 [node name="CollisionComponents" type="Node2D" parent="." unique_id=1305891504]
 
@@ -117,7 +125,8 @@ script = ExtResource("5_20bu7")
 hit_max_charge = 500.0
 hit_min_charge = 60.0
 dynamic_force_percent = 100.0
-percent_velocity_override = 95.0
+velocity_override_curve = SubResource("Curve_mcf8x")
+slow_motion_curve = SubResource("Curve_wfu16")
 customImpulsePhysic = NodePath("../CustomImpulsePhysicComponent")
 
 [node name="HitboxComponent" type="Area2D" parent="." unique_id=761844913]

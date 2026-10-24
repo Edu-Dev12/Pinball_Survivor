@@ -13,6 +13,10 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is RigidBody2D:
 		trigger_bumper_effect()
+		
+		var camera = get_tree().get_first_node_in_group(Global.CAMERA_GROUP)
+		if camera and camera.has_node("CameraShakeComponent"):
+			camera.cameraShakeComponent.trigger_shake()
 
 func trigger_bumper_effect() -> void:
 	apply_aoe_push()

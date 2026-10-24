@@ -7,7 +7,7 @@ class_name AnimationSpeedFromVelocityComponent
 @export_group("Components")
 @export var rigid_body: RigidBody2D
 @export var animated_sprite: AnimatedSprite2D
-@onready var player: PlayerBody = $"../.."
+@export var player: PlayerBody
 
 func _physics_process(_delta: float) -> void:
 	change_speed_animation()
@@ -21,8 +21,7 @@ func change_speed_animation() -> void:
 func change_color_animation() -> void:
 	if rigid_body and animated_sprite:
 		var current_speed: float = rigid_body.linear_velocity.length()
-		
-		## REMOVER ESSA VALOR ARBITRARIO
+
 		if current_speed >= player.passthrough_speed:
 			animated_sprite.modulate.b = 0
 		else:

@@ -17,6 +17,7 @@ collision_layer = 4
 collision_mask = 76
 motion_mode = 1
 script = ExtResource("1_cqgqi")
+speed = 10.0
 health_component = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=694149303]

@@ -11,16 +11,26 @@ class_name FlipperControllerComponent
 var flipper_charging: bool = false
 var can_use_flipper: bool = true
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not inputControllerComponent:
 		return
 		
 	var input_direction = inputControllerComponent.movement_vector
 	
 	if input_direction != Vector2.ZERO and can_use_flipper:
-		#TimeManager.slow_motion(0.4, 1)
 		flipper_charging = true
-		flipperHitComponent.flipper_charge(delta, input_direction)
+		flipperHitComponent.flipper_charge(input_direction)
+		
+		if flipperHitComponent.slow_motion_curve:
+			var current_charge_percent: float = remap(
+				flipperHitComponent.hit_force, 
+				flipperHitComponent.hit_min_charge, 
+				flipperHitComponent.hit_max_charge, 
+				0.0, 1.0
+			)
+			var target_scale: float = flipperHitComponent.slow_motion_curve.sample(current_charge_percent)
+			Engine.time_scale = target_scale
+			AudioServer.playback_speed_scale = target_scale
 		
 		if flipper:
 			flipper.rotation = input_direction.angle() + deg_to_rad(90.0)
@@ -29,6 +39,9 @@ func _physics_process(delta: float) -> void:
 	elif flipper_charging and can_use_flipper:
 		flipper_charging = false
 		can_use_flipper = false
+		
+		Engine.time_scale = 1.0
+		AudioServer.playback_speed_scale = 1.0
 		
 		var buffered_dir = inputControllerComponent.get_best_buffered_direction(input_direction)
 		

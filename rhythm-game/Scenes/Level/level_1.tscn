@@ -22,8 +22,6 @@ level_map = NodePath("Pinball_Machine")
 
 [node name="Player" parent="." unique_id=288184236 instance=ExtResource("2_m5hwo")]
 position = Vector2(577, 105)
-max_speed = 3000.0
-passthrough_speed = 500.0
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1268715982]
 

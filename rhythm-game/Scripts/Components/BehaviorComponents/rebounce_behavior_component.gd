@@ -3,7 +3,7 @@ class_name RebounceBehaviorComponent
 
 @export var rebounce_force: float = 120.0
 @export var speed_slowdown_rate: float = 1.1
-@export var passthrough_speed: float = 500.0
+@export var passthrough_speed: float = 800.0
 
 @export var source: Node2D
 @export var target: RigidBody2D
@@ -25,6 +25,7 @@ func _on_was_hurt(hitbox: HitboxComponent) -> void:
 	
 	var current_speed: float = target.linear_velocity.length()
 	
+	print(current_speed)
 	if current_speed < passthrough_speed:
 		apply_normal_rebounce(current_speed)
 	else:
