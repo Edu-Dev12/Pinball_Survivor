@@ -2,12 +2,12 @@ extends Node
 class_name GameManager
 
 @export_enum("menu","game_over","level_1") var starting_level_name: String = "menu"
-@export_enum("menu","game_over","level_1") var try_again_scene_name: String = "game_over"
+@export_enum("menu","game_over_level","level_1") var try_again_scene_name: String = "game_over_level"
 @onready var camera: Camera2D = $GameCamera
 
 # Leveis de sistema e fluxo
 const MENU = preload("res://Scenes/Level/menu.tscn")
-const GAME_OVER = preload("res://Scenes/Level/game_over.tscn")
+const GAME_OVER_LEVEL = preload("res://Scenes/Level/game_over_level.tscn")
 # Leveis de jogo
 const LEVEL_1_1 = preload("res://Scenes/Level/level_1.tscn")
 
@@ -16,7 +16,7 @@ var current_level_packed_scene: PackedScene
 var game_leveis = {
 	# Telas de sistema e fluxo
 	"menu": MENU,
-	"game_over": GAME_OVER,
+	"game_over_level": GAME_OVER_LEVEL,
 	# Fases do jogo
 	"level_1": LEVEL_1_1
 }
@@ -67,10 +67,9 @@ func player_died():
 func game_over():
 	if current_level_node:
 		current_level_node.queue_free()
-	camera.free_limits()
-	camera.position = Vector2(128,120)
 	
 	if game_leveis.has(try_again_scene_name):
+		print("a")
 		var try_again_scene = game_leveis[try_again_scene_name]
 		var new_current_level = try_again_scene.instantiate()
 		add_child(new_current_level)

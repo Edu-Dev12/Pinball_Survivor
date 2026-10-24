@@ -89,11 +89,6 @@ autoplay = "default"
 [node name="Flipper" parent="VisualContainer" unique_id=380740414 instance=ExtResource("7_7lf8o")]
 release_duration = 0.02
 
-[node name="DirectionalLine" parent="VisualContainer/Flipper" index="1" unique_id=674420964 node_paths=PackedStringArray("ball_rigidbody", "input_controller", "flipper_hit")]
-ball_rigidbody = NodePath("../../../RigidBody2D")
-input_controller = NodePath("../../../ControllerComponents/InputControllerComponent")
-flipper_hit = NodePath("../../../MovementComponents/FlipperHitComponent")
-
 [node name="AnimationComponents" type="Node2D" parent="." unique_id=1967926830]
 
 [node name="AnimationSpeedFromVelocityComponent" type="Node" parent="AnimationComponents" unique_id=1122751491 node_paths=PackedStringArray("rigid_body", "animated_sprite", "player")]

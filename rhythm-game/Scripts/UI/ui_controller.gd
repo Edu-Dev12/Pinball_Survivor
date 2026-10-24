@@ -9,11 +9,20 @@ var current_time: int = 300
 var timer: Timer
 
 func _ready() -> void:
+	restart_ui()
+
+func restart_ui() -> void:
+	if not self.visible:
+		self.visible = true
 	setup_timer()
 	set_player_health(0)
 	set_initial_time(0)
 	add_score(0)
 	run_timer()
+
+func disable_ui():
+	stop_timer()
+	self.visible = false
 
 # --- PLAYER ---
 func set_player_health(amount: int) -> void:
@@ -29,10 +38,8 @@ func add_player_health(heal_amount: int) -> void:
 func remove_player_health(damage_amount: int) -> void:
 	current_health = max(0, current_health - damage_amount)
 	ui.set_player_health(current_health)
-	
 	if current_health <= 0:
-		@warning_ignore("standalone_expression")
-		SignalManager.game_over
+		SignalManager.game_over.emit()
 
 # --- SCORE ---
 func add_score(amount: int) -> void:
@@ -66,8 +73,7 @@ func _on_timer_timeout() -> void:
 		pass # AudioManager.play_sound_effect(TIME_SFX, "SFX", -5, 1, 1)
 		
 	if current_time <= 0:
-		@warning_ignore("standalone_expression")
-		SignalManager.level_timer_ended
+		SignalManager.level_timer_ended.emit()
 
 # --- AUXILIAR ---
 func kill_player() -> void:

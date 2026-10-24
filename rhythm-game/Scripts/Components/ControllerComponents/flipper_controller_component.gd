@@ -31,7 +31,7 @@ func update(_delta: float, input_direction: Vector2) -> void:
 			AudioServer.playback_speed_scale = target_scale
 		
 		if flipper:
-			flipper.rotation = input_direction.angle() + deg_to_rad(90.0)
+			flipper.rotation = inputControllerComponent.get_attack_direction().angle() + deg_to_rad(90.0)
 			flipper.animate_charge(flipperHitComponent.hit_force, flipperHitComponent.hit_min_charge, flipperHitComponent.hit_max_charge)
 			
 	elif flipper_charging and can_use_flipper:
