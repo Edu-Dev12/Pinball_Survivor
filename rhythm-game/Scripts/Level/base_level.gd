@@ -7,9 +7,8 @@ class_name BaseLevel
 @export_group("Level Traits")
 @export var level_map: LevelMap
 @export var level_initial_time_seconds: int = 120
-
-@onready var player: PlayerBody = $Player
-@onready var enemies: Node2D = $Enemies
+@export var player: PlayerBody
+@export var enemies: Node2D 
 
 var tile_map_layer: TileMapLayer
 var camera_reference: Camera2D

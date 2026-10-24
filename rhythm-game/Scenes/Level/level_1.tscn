@@ -14,9 +14,11 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-55, -2, 1204, 2, 1210,
 source_geometry_mode = 2
 source_geometry_group_name = &"Structure"
 
-[node name="Level_1" type="Node2D" unique_id=989795356 node_paths=PackedStringArray("level_map")]
+[node name="Level_1" type="Node2D" unique_id=989795356 node_paths=PackedStringArray("level_map", "player", "enemies")]
 script = ExtResource("1_m5hwo")
 level_map = NodePath("Pinball_Machine")
+player = NodePath("Player")
+enemies = NodePath("Enemies")
 
 [node name="Pinball_Machine" parent="." unique_id=1384302898 instance=ExtResource("1_k541i")]
 
