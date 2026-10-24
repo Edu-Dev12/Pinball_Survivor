@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://caacjc1hrrj21" path="res://Assets/Enviroment/Structure/Bumper_Spritesheet.png" id="2_b5jrd"]
 [ext_resource type="Script" uid="uid://q1akalh1qvyc" path="res://Scripts/Components/HealthComponents/hp_bar_component.gd" id="4_vflbt"]
 [ext_resource type="Script" uid="uid://gre2rxaqfxfc" path="res://Scripts/Components/StructureComponents/structure_death_component.gd" id="5_7vm0e"]
+[ext_resource type="PackedScene" uid="uid://bimrga5n7rcws" path="res://Scenes/Environment/Structure/bumper_effect.tscn" id="5_avsp8"]
 [ext_resource type="Script" uid="uid://cgntmhvnp3yuv" path="res://Scripts/Components/bumper_aoe_component.gd" id="7_b5jrd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_avsp8"]
@@ -89,6 +90,7 @@ collision_layer = 64
 collision_mask = 2
 script = ExtResource("7_b5jrd")
 bumper_visual = NodePath("../AnimatedSprite2D")
+bumper_effect_scene = ExtResource("5_avsp8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BumperAOEComponent" unique_id=1913241770]
 shape = SubResource("CircleShape2D_o1g8r")

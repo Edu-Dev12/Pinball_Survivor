@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bimrga5n7rcws"]
+
+[ext_resource type="Script" uid="uid://e04207x175p5" path="res://Scripts/Effects/bumper_effect.gd" id="1_i0w81"]
+[ext_resource type="Texture2D" uid="uid://urptdkl43ese" path="res://Assets/Effects/masks for  particles/masks for  particles transparent/T_flare12.png" id="2_xgc2p"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_426oi"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_f0k01"]
+_data = [Vector2(0, 0.086206794), 0.0, 0.0, 0, 0, Vector2(0.072607264, 1), 0.0, 0.0, 0, 0, Vector2(0.65676564, 0.2950819), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_n6fuf"]
+curve = SubResource("Curve_f0k01")
+
+[sub_resource type="Gradient" id="Gradient_i0w81"]
+colors = PackedColorArray(1, 0.7647059, 0.007843138, 1, 1, 0.5294118, 0.19607843, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xgc2p"]
+gradient = SubResource("Gradient_i0w81")
+
+[sub_resource type="Curve" id="Curve_gtqew"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_i2oxg"]
+curve = SubResource("Curve_gtqew")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pv2mu"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 0.19999999
+scale_max = 0.19999999
+scale_curve = SubResource("CurveTexture_i2oxg")
+color_ramp = SubResource("GradientTexture1D_xgc2p")
+alpha_curve = SubResource("CurveTexture_n6fuf")
+
+[node name="BumperEffect" type="Node2D" unique_id=2103187542]
+script = ExtResource("1_i0w81")
+
+[node name="BumperEffect" type="GPUParticles2D" parent="." unique_id=1712737794]
+material = SubResource("CanvasItemMaterial_426oi")
+emitting = false
+amount = 1
+texture = ExtResource("2_xgc2p")
+lifetime = 0.6
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_pv2mu")

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://sjdb0evhe8kt" path="res://Scripts/Environment/flipper.gd" id="1_8x31y"]
 [ext_resource type="Texture2D" uid="uid://cqo2evrrhm3j7" path="res://Assets/Entity/Player/FlipperSpritesheet.png" id="2_vjvvj"]
 [ext_resource type="Script" uid="uid://rjw4n4dy8ycy" path="res://Scripts/Other/directional_line.gd" id="3_vjvvj"]
-[ext_resource type="Texture2D" uid="uid://cy1nwhqe0ur8o" path="res://Assets/Entity/Player/download__1_-removebg-preview.png" id="4_pgric"]
+[ext_resource type="Texture2D" uid="uid://cy1nwhqe0ur8o" path="res://Assets/Entity/Player/ball_aim2.png" id="4_pgric"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8x31y"]
 atlas = ExtResource("2_vjvvj")

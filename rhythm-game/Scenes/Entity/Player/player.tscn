@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://7jt3es052ni" path="res://Scenes/Environment/flipper.tscn" id="7_7lf8o"]
 [ext_resource type="SpriteFrames" uid="uid://00efdki45518" path="res://Assets/Entity/Player/SpriteFrames/player_sprite_frames.tres" id="7_ox502"]
 [ext_resource type="Script" uid="uid://nd4ko4vpkdi3" path="res://Scripts/Components/HitboxComponents/hitbox_component.gd" id="11_4osmd"]
+[ext_resource type="Script" uid="uid://k5t182vt4jh" path="res://Scripts/Components/Player/player_streak_component.gd" id="13_wfu16"]
 
 [sub_resource type="Curve" id="Curve_gfrdd"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -37,7 +38,7 @@ point_count = 5
 [sub_resource type="CircleShape2D" id="CircleShape2D_pv2mu"]
 radius = 12.000001
 
-[node name="Player" type="Node2D" unique_id=1636152561 node_paths=PackedStringArray("rigidBody2D", "flipperControllerComponent", "inputControllerComponent")]
+[node name="Player" type="Node2D" unique_id=1636152561 node_paths=PackedStringArray("rigidBody2D", "flipperControllerComponent", "inputControllerComponent") groups=["Player"]]
 rotation = 0.0027932574
 script = ExtResource("1_tydqb")
 rigidBody2D = NodePath("RigidBody2D")
@@ -55,7 +56,7 @@ joint_mode = 2
 script = ExtResource("5_gfrdd")
 trail_target = NodePath("../RigidBody2D")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=620001952 node_paths=PackedStringArray("player") groups=["Player"]]
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=620001952 node_paths=PackedStringArray("player") groups=["Player_Body"]]
 scale = Vector2(1.0001864, 0.9976705)
 collision_layer = 2
 collision_mask = 65
@@ -88,11 +89,6 @@ autoplay = "default"
 
 [node name="Flipper" parent="VisualContainer" unique_id=380740414 instance=ExtResource("7_7lf8o")]
 release_duration = 0.02
-
-[node name="DirectionalLine" parent="VisualContainer/Flipper" index="1" unique_id=674420964 node_paths=PackedStringArray("ball_rigidbody", "input_controller", "flipper_hit")]
-ball_rigidbody = NodePath("../../../RigidBody2D")
-input_controller = NodePath("../../../ControllerComponents/InputControllerComponent")
-flipper_hit = NodePath("../../../MovementComponents/FlipperHitComponent")
 
 [node name="AnimationComponents" type="Node2D" parent="." unique_id=1967926830]
 
@@ -150,5 +146,9 @@ metadata/_custom_type_script = "uid://nd4ko4vpkdi3"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=284572767]
 shape = SubResource("CircleShape2D_pv2mu")
 debug_color = Color(0.9939429, 0, 0.23695627, 0.41960785)
+
+[node name="PlayerStreakComponent" type="Node" parent="." unique_id=1941743159 groups=["Player_Streak"]]
+script = ExtResource("13_wfu16")
+streak_timeout = 0.5
 
 [editable path="VisualContainer/Flipper"]
