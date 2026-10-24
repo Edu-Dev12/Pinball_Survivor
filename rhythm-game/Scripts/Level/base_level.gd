@@ -2,7 +2,7 @@ extends Node2D
 class_name BaseLevel
 
 @export_group("Level Manager")
-@export_enum("menu", "game_over_level", "level_1") var next_level: String
+@export_enum("menu", "run_over_level", "level_1") var next_level: String
 
 @export_group("Level Traits")
 @export var level_map: LevelMap

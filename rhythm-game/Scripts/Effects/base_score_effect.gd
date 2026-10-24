@@ -25,6 +25,7 @@ func _ready() -> void:
 		var current: float = float(player_streak.player_streak_kill)
 		var max_s: float = float(player_streak.max_streak)
 		
+		@warning_ignore("narrowing_conversion")
 		var streak_percentage: float = clampi(current, 0, max_s) / max_s
 		label.modulate = base_color.lerp(max_streak_color, streak_percentage)
 		

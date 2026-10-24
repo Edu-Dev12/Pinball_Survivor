@@ -4,7 +4,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o1g8r"]
 
-[node name="BaseWaveSpawner" type="Area2D" unique_id=568859415 node_paths=PackedStringArray("collision_shape")]
+[node name="BaseWaveSpawner" type="Area2D" unique_id=568859415 node_paths=PackedStringArray("collision_shape") groups=["Spawner"]]
 script = ExtResource("1_owog0")
 enabled = null
 collision_shape = NodePath("CollisionShape2D")

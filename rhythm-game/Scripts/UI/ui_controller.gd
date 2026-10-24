@@ -39,7 +39,7 @@ func remove_player_health(damage_amount: int) -> void:
 	current_health = max(0, current_health - damage_amount)
 	ui.set_player_health(current_health)
 	if current_health <= 0:
-		SignalManager.game_over.emit()
+		SignalManager.run_over.emit()
 
 # --- SCORE ---
 func add_score(amount: int) -> void:
@@ -73,6 +73,7 @@ func _on_timer_timeout() -> void:
 		pass # AudioManager.play_sound_effect(TIME_SFX, "SFX", -5, 1, 1)
 		
 	if current_time <= 0:
+		stop_timer()
 		SignalManager.level_timer_ended.emit()
 
 # --- AUXILIAR ---
