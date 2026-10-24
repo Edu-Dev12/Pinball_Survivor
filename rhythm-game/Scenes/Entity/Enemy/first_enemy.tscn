@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dssk46d0vkivi"]
 
-[ext_resource type="Texture2D" uid="uid://0ltkrosjoiof" path="res://Assets/Entity/Enemy/skull007.png" id="1_fiqnb"]
+[ext_resource type="SpriteFrames" uid="uid://6w372xfj5ijk" path="res://Assets/Entity/Enemy/SpriteFrames/first_enemy_sprite_frames.tres" id="1_j5h8p"]
 [ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/HealthComponents/health_component.gd" id="2_x1513"]
 [ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/HurtboxComponents/hurtbox_component.gd" id="3_1buj2"]
 [ext_resource type="Script" uid="uid://dirog1u42u7vt" path="res://Scripts/Components/BehaviorComponents/rebounce_behavior_component.gd" id="5_t6tdw"]
@@ -19,10 +19,12 @@ height = 32.0
 [node name="FirstEnemy" type="CharacterBody2D" unique_id=493257173 groups=["Enemy"]]
 collision_layer = 8
 collision_mask = 72
+motion_mode = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=351780946]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=487314480]
 texture_filter = 1
-texture = ExtResource("1_fiqnb")
+sprite_frames = ExtResource("1_j5h8p")
+animation = &"Idling"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2049795404]
 shape = SubResource("CircleShape2D_rrj3t")
@@ -64,16 +66,16 @@ source = NodePath("..")
 hurt_box_component = NodePath("../HurtboxComponent")
 metadata/_custom_type_script = "uid://dirog1u42u7vt"
 
-[node name="SelfDestructionComponent" type="Node" parent="." unique_id=759719018 node_paths=PackedStringArray("sprite_2d", "enemy_navigation")]
+[node name="SelfDestructionComponent" type="Node" parent="." unique_id=759719018 node_paths=PackedStringArray("animated_sprite_2d", "enemy_navigation")]
 script = ExtResource("6_pcolw")
 lifetime = 8.0
-sprite_2d = NodePath("../Sprite2D")
+animated_sprite_2d = NodePath("../AnimatedSprite2D")
 enemy_navigation = NodePath("../EnemyNavigationComponent")
 
-[node name="EnemyDeathComponent" type="Node" parent="." unique_id=814837995 node_paths=PackedStringArray("enemy", "sprite_2d", "health_component")]
+[node name="EnemyDeathComponent" type="Node" parent="." unique_id=814837995 node_paths=PackedStringArray("enemy", "animated_sprite_2d", "health_component")]
 script = ExtResource("7_pcolw")
 enemy = NodePath("..")
-sprite_2d = NodePath("../Sprite2D")
+animated_sprite_2d = NodePath("../AnimatedSprite2D")
 health_component = NodePath("../HealthComponent")
 score_effect_scene = ExtResource("8_v5xdt")
 hit_effect_scene = ExtResource("9_j5h8p")

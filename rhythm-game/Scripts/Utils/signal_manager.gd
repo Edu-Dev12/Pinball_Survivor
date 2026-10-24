@@ -2,6 +2,8 @@
 extends Node
 
 # Level Management
+signal level_timer_ended
+signal level_won
 signal next_level_reached(next_level: String)
 signal level_loaded(new_tilemap: TileMapLayer)
 signal game_over

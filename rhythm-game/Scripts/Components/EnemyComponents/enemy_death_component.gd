@@ -4,7 +4,7 @@ class_name EnemyDeathComponent
 const DEAD_BODY_EFFECT = preload("uid://u116yfkbse07")
 
 @export var enemy: CharacterBody2D
-@export var sprite_2d: Sprite2D
+@export var animated_sprite_2d: AnimatedSprite2D
 @export var health_component: HealthComponent
 @export var score_value : int = 100
 @export var score_effect_scene : PackedScene
@@ -14,7 +14,7 @@ func _ready() -> void:
 	health_component.died.connect(death)
 
 func death() -> void:
-	sprite_2d.set_deferred("visible", false)
+	animated_sprite_2d.set_deferred("visible", false)
 	create_body_effect()
 	Ui.add_score(score_value)
 	create_score_effect()
@@ -25,8 +25,8 @@ func create_body_effect():
 	var effect: DeadBodyEffect = DEAD_BODY_EFFECT.instantiate()
 	var player = get_tree().get_first_node_in_group("Player")
 	
-	effect.sprite = sprite_2d.texture
-	effect.new_scale = sprite_2d.scale
+	effect.sprite = animated_sprite_2d.sprite_frames.get_frame_texture(animated_sprite_2d.animation, animated_sprite_2d.frame)
+	effect.new_scale = animated_sprite_2d.scale
 	effect.global_position = enemy.global_position
 	
 	var direction = (enemy.global_position - player.global_position).normalized()

@@ -3,7 +3,7 @@ class_name SelfDestructionComponent
 
 @export var lifetime: float = 3.0
 @export var damage: int = 1
-@export var sprite_2d: Sprite2D
+@export var animated_sprite_2d: AnimatedSprite2D
 @export var enemy_navigation: EnemyNavigationComponent
 
 const SELF_DESTRUCTION_AREA = preload("uid://b7a1ts5nj82lg")
@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func start_countdown() -> void:
 	tween = create_tween()
-	tween.tween_property(sprite_2d, "modulate", Color(1, 0, 0, 1), lifetime)
+	tween.tween_property(animated_sprite_2d, "modulate", Color(1, 0, 0, 1), lifetime)
 	tween.tween_callback(explode)
 
 func explode() -> void:
@@ -24,6 +24,6 @@ func explode() -> void:
 	explosion.global_position = enemy_navigation.enemy.global_position
 	explosion.is_temporary = true
 	
-	sprite_2d.set_deferred("visible", false)
+	animated_sprite_2d.set_deferred("visible", false)
 	enemy_navigation.enemy.get_parent().add_child(explosion)
 	enemy_navigation.enemy.queue_free()

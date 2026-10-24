@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://6w372xfj5ijk"]
+
+[ext_resource type="Texture2D" uid="uid://0ltkrosjoiof" path="res://Assets/Entity/Enemy/skull007.png" id="1_jhxv4"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jhxv4")
+}],
+"loop": 1,
+"name": &"Idling",
+"speed": 5.0
+}]
