@@ -18,10 +18,7 @@ func _ready() -> void:
 
 func add_kill() -> void:
 	player_streak_kill = clampi(player_streak_kill + 1, 0, max_streak)
-	
 	streak_timer.start()
-	
-	print(player_streak_kill)
 
 func _on_streak_timeout() -> void:
 	player_streak_kill = 0

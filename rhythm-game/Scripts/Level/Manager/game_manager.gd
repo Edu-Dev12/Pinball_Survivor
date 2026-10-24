@@ -69,7 +69,6 @@ func run_over():
 		current_level_node.queue_free()
 	
 	if game_leveis.has(try_again_scene_name):
-		print("a")
 		var try_again_scene = game_leveis[try_again_scene_name]
 		var new_current_level = try_again_scene.instantiate()
 		add_child(new_current_level)
