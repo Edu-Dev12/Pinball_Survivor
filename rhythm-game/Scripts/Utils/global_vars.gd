@@ -2,6 +2,9 @@ extends Node
 
 # Grupos (Group)
 const PLAYER_GROUP: String = "Player"
+const PLAYER_BODY_GROUP: String = "Player_Body"
+const PLAYER_STREAK_GROUP: String = "Player_Streak"
+
 const ENEMY_GROUP: String = "Enemy"
 const STRUCTURE_GROUP: String = "Structure"
 const SPAWNER_GROUP: String = "Spawner"

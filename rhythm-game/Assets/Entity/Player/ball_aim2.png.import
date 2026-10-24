@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cy1nwhqe0ur8o"
-path="res://.godot/imported/download__1_-removebg-preview.png-a223bd3f7f6ba6f54fb294cc9da33e54.ctex"
+path="res://.godot/imported/ball_aim2.png-1d10119bf180c44fbdd9f40f159423ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Entity/Player/download__1_-removebg-preview.png"
-dest_files=["res://.godot/imported/download__1_-removebg-preview.png-a223bd3f7f6ba6f54fb294cc9da33e54.ctex"]
+source_file="res://Assets/Entity/Player/ball_aim2.png"
+dest_files=["res://.godot/imported/ball_aim2.png-1d10119bf180c44fbdd9f40f159423ed.ctex"]
 
 [params]
 

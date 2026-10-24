@@ -14,7 +14,7 @@ func _ready() -> void:
 		hurt_box_component.was_hurt.connect(_on_was_hurt)
 	
 	if not target:
-		target = get_tree().get_first_node_in_group(Global.PLAYER_GROUP) as RigidBody2D
+		target = get_tree().get_first_node_in_group(Global.PLAYER_BODY_GROUP) as RigidBody2D
 
 func _on_was_hurt(hitbox: HitboxComponent) -> void:
 	AudioManager.play_sound_effect(Global.SFX_PINBALL_IMPACT_TEST, "SFX")

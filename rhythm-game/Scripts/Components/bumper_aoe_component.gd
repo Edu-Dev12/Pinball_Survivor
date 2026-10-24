@@ -2,10 +2,13 @@ extends Area2D
 class_name BumperAOEComponent
 
 @export var bumper_visual: AnimatedSprite2D
+@export var damage: int = 10
 @export var push_strength: float = 500.0 
 @export var punch_scale: Vector2 = Vector2(1.5, 1.5)
 @export var push_radius: float = 100
 @export var tween_duration: float = 0.1
+
+@export var bumper_effect_scene: PackedScene
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
@@ -19,6 +22,7 @@ func _on_body_entered(body: Node2D) -> void:
 			camera.cameraShakeComponent.trigger_shake()
 
 func trigger_bumper_effect() -> void:
+	create_bumper_effect()
 	apply_aoe_push()
 	play_punch_tween()
 
@@ -26,6 +30,7 @@ func apply_aoe_push() -> void:
 	var all_enemies = get_tree().get_nodes_in_group(Global.ENEMY_GROUP)
 	
 	for enemy in all_enemies:
+		
 		if is_instance_valid(enemy):
 			var distance = global_position.distance_to(enemy.global_position)
 			if distance <= push_radius:
@@ -37,6 +42,10 @@ func apply_aoe_push() -> void:
 				var component = enemy.get_node_or_null("EnemyNavigationComponent")
 				if component and component.has_method("apply_knockback"):
 					component.apply_knockback(final_push)
+					
+				var healthComponet = enemy.get_node_or_null("HealthComponent") as HealthComponent
+				healthComponet.receive_damage(damage)
+				
 
 func play_punch_tween() -> void:
 	if not bumper_visual:
@@ -46,3 +55,8 @@ func play_punch_tween() -> void:
 	
 	tween.tween_property(bumper_visual, "scale", original_scale * punch_scale, tween_duration)
 	tween.tween_property(bumper_visual, "scale", original_scale, tween_duration)
+
+func create_bumper_effect():
+	var bumper_effect = bumper_effect_scene.instantiate() as Node2D
+	bumper_effect.global_position = global_position
+	get_parent().get_parent().add_child(bumper_effect)

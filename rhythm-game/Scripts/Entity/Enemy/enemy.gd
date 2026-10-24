@@ -17,7 +17,7 @@ var tween: Tween
 func _ready() -> void:
 	health_component.died.connect(die_by_player)
 	add_to_group(Global.ENEMY_GROUP)
-	player = get_tree().get_first_node_in_group(Global.PLAYER_GROUP)
+	player = get_tree().get_first_node_in_group(Global.PLAYER_BODY_GROUP)
 	start_countdown()
 
 func _physics_process(_delta: float) -> void:

@@ -15,15 +15,25 @@ func _ready() -> void:
 
 func death() -> void:
 	animated_sprite_2d.set_deferred("visible", false)
+	
+	var final_score = score_value
+	var player_streak = get_tree().get_first_node_in_group(Global.PLAYER_STREAK_GROUP) as PlayerStreakComponent
+	
+	if player_streak:
+		var bonus = 1.0 + (player_streak.player_streak_kill * player_streak.streak_multiplayer)
+		final_score = int(score_value * bonus)
+		player_streak.add_kill()
+	
+	Ui.add_score(final_score)
 	create_body_effect()
-	Ui.add_score(score_value)
-	create_score_effect()
+	create_score_effect(final_score)
 	crete_hit_effect()
+	
 	enemy.queue_free()
 
 func create_body_effect():
 	var effect: DeadBodyEffect = DEAD_BODY_EFFECT.instantiate()
-	var player = get_tree().get_first_node_in_group("Player")
+	var player = get_tree().get_first_node_in_group(Global.PLAYER_BODY_GROUP)
 	
 	effect.sprite = animated_sprite_2d.sprite_frames.get_frame_texture(animated_sprite_2d.animation, animated_sprite_2d.frame)
 	effect.new_scale = animated_sprite_2d.scale
@@ -34,10 +44,10 @@ func create_body_effect():
 	
 	enemy.get_parent().add_child(effect)
 
-func create_score_effect():
+func create_score_effect(final_score: int):
 	var score_effect = score_effect_scene.instantiate() as Node2D
 	score_effect.global_position = enemy.global_position
-	score_effect.score = score_value
+	score_effect.score = final_score
 	get_parent().get_parent().add_child(score_effect)
 
 func crete_hit_effect():
