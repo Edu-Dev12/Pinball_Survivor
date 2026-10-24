@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://sjdb0evhe8kt" path="res://Scripts/Environment/flipper.gd" id="1_8x31y"]
 [ext_resource type="Texture2D" uid="uid://cqo2evrrhm3j7" path="res://Assets/Entity/Player/FlipperSpritesheet.png" id="2_vjvvj"]
+[ext_resource type="Script" uid="uid://rjw4n4dy8ycy" path="res://Scripts/Other/directional_line.gd" id="3_vjvvj"]
+[ext_resource type="Texture2D" uid="uid://cy1nwhqe0ur8o" path="res://Assets/Entity/Player/download__1_-removebg-preview.png" id="4_pgric"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8x31y"]
 atlas = ExtResource("2_vjvvj")
@@ -66,3 +68,12 @@ position = Vector2(-33, -3)
 scale = Vector2(0.49, 0.49)
 sprite_frames = SubResource("SpriteFrames_pv2mu")
 frame_progress = 0.17548491
+
+[node name="DirectionalLine" type="Line2D" parent="." unique_id=674420964]
+script = ExtResource("3_vjvvj")
+
+[node name="BallAim" type="Sprite2D" parent="." unique_id=1836143488]
+modulate = Color(18.892157, 16.00457, 0, 1)
+position = Vector2(0, 23)
+scale = Vector2(0.19, 0.605)
+texture = ExtResource("4_pgric")

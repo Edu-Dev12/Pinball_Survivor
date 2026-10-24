@@ -37,11 +37,13 @@ point_count = 5
 [sub_resource type="CircleShape2D" id="CircleShape2D_pv2mu"]
 radius = 12.000001
 
-[node name="Player" type="Node2D" unique_id=1636152561 node_paths=PackedStringArray("rigidBody2D")]
+[node name="Player" type="Node2D" unique_id=1636152561 node_paths=PackedStringArray("rigidBody2D", "flipperControllerComponent", "inputControllerComponent")]
 rotation = 0.0027932574
 script = ExtResource("1_tydqb")
 rigidBody2D = NodePath("RigidBody2D")
 max_speed = 2000.0
+flipperControllerComponent = NodePath("ControllerComponents/FlipperControllerComponent")
+inputControllerComponent = NodePath("ControllerComponents/InputControllerComponent")
 metadata/is_importer_node = true
 
 [node name="Trail_Effect" type="Line2D" parent="." unique_id=1647312235 node_paths=PackedStringArray("trail_target")]
@@ -87,6 +89,11 @@ autoplay = "default"
 [node name="Flipper" parent="VisualContainer" unique_id=380740414 instance=ExtResource("7_7lf8o")]
 release_duration = 0.02
 
+[node name="DirectionalLine" parent="VisualContainer/Flipper" index="1" unique_id=674420964 node_paths=PackedStringArray("ball_rigidbody", "input_controller", "flipper_hit")]
+ball_rigidbody = NodePath("../../../RigidBody2D")
+input_controller = NodePath("../../../ControllerComponents/InputControllerComponent")
+flipper_hit = NodePath("../../../MovementComponents/FlipperHitComponent")
+
 [node name="AnimationComponents" type="Node2D" parent="." unique_id=1967926830]
 
 [node name="AnimationSpeedFromVelocityComponent" type="Node" parent="AnimationComponents" unique_id=1122751491 node_paths=PackedStringArray("rigid_body", "animated_sprite", "player")]
@@ -106,6 +113,7 @@ rigidBody2D = NodePath("../../RigidBody2D")
 
 [node name="InputControllerComponent" type="Node" parent="ControllerComponents" unique_id=1236695514]
 script = ExtResource("4_rt8bh")
+diagonal_tolerance_time = 0.03
 
 [node name="FlipperControllerComponent" type="Node" parent="ControllerComponents" unique_id=2049450949 node_paths=PackedStringArray("inputControllerComponent", "flipperHitComponent", "flipper")]
 script = ExtResource("5_ox502")
@@ -142,3 +150,5 @@ metadata/_custom_type_script = "uid://nd4ko4vpkdi3"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=284572767]
 shape = SubResource("CircleShape2D_pv2mu")
 debug_color = Color(0.9939429, 0, 0.23695627, 0.41960785)
+
+[editable path="VisualContainer/Flipper"]

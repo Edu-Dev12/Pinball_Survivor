@@ -6,3 +6,9 @@ class_name PlayerBody
 
 @export var max_speed: float = 1200.0
 @export var passthrough_speed: float = 1000.0
+
+@export var flipperControllerComponent: FlipperControllerComponent
+@export var inputControllerComponent: InputControllerComponent
+
+func _physics_process(delta: float) -> void:
+	flipperControllerComponent.update(delta, inputControllerComponent.get_input())
