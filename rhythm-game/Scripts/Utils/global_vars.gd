@@ -7,6 +7,7 @@ const PLAYER_STREAK_GROUP: String = "Player_Streak"
 
 const ENEMY_GROUP: String = "Enemy"
 const STRUCTURE_GROUP: String = "Structure"
+const SPAWNER_GROUP: String = "Spawner"
 const CAMERA_GROUP: String = "Camera"
 
 # Camadas de Física (Physics Layers)

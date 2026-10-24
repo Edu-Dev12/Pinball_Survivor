@@ -1,11 +1,14 @@
 extends Node2D
 class_name BaseLevel
 
-@export_enum("menu", "game_over", "level_1") var next_level: String
-@export var level_map: LevelMap
+@export_group("Level Manager")
+@export_enum("menu", "game_over_level", "level_1") var next_level: String
 
-@onready var player: PlayerBody = $Player
-@onready var enemies: Node2D = $Enemies
+@export_group("Level Traits")
+@export var level_map: LevelMap
+@export var level_initial_time_seconds: int = 120
+@export var player: PlayerBody
+@export var enemies: Node2D 
 
 var tile_map_layer: TileMapLayer
 var camera_reference: Camera2D
@@ -21,6 +24,8 @@ func _ready() -> void:
 		SignalManager.player_spawned.emit(player)
 		
 	SignalManager.request_camera_reference.emit()
+	
+	Ui.set_initial_time(level_initial_time_seconds)
 
 func update_camera_reference(new_camera_reference: Camera2D) -> void:
 	camera_reference = new_camera_reference
