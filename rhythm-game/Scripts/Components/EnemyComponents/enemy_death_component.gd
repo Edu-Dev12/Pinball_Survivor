@@ -6,7 +6,8 @@ const DEAD_BODY_EFFECT = preload("uid://u116yfkbse07")
 @export var enemy: CharacterBody2D
 @export var sprite_2d: Sprite2D
 @export var health_component: HealthComponent
-@export var score_value := 100
+@export var score_value : int = 100
+@export var score_effect_scene : PackedScene
 
 func _ready() -> void:
 	health_component.died.connect(death)
@@ -15,7 +16,7 @@ func death() -> void:
 	sprite_2d.set_deferred("visible", false)
 	create_body_effect()
 	Ui.add_score(score_value)
-	
+	create_score_effect()
 	enemy.queue_free()
 
 func create_body_effect():
@@ -30,3 +31,9 @@ func create_body_effect():
 	effect.emmit_direction = direction
 	
 	enemy.get_parent().add_child(effect)
+
+func create_score_effect():
+	var score_effect = score_effect_scene.instantiate() as Node2D
+	score_effect.global_position = enemy.global_position
+	score_effect.score = score_value
+	get_parent().get_parent().add_child(score_effect)

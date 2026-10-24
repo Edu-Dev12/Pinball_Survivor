@@ -25,7 +25,6 @@ func _on_was_hurt(hitbox: HitboxComponent) -> void:
 	
 	var current_speed: float = target.linear_velocity.length()
 	
-	print(current_speed)
 	if current_speed < passthrough_speed:
 		apply_normal_rebounce(current_speed)
 	else:

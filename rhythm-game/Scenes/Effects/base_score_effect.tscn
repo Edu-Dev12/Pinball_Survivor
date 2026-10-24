@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bhq7ci643e2yj"]
+
+[ext_resource type="Script" uid="uid://d13c58e1jeel2" path="res://Scripts/Effects/base_score_effect.gd" id="1_nrpio"]
+[ext_resource type="FontFile" uid="uid://mfxvgdgfyh7a" path="res://Assets/Fonts/gilgongo.regular.ttf" id="2_0qhws"]
+
+[node name="BaseScoreEffect" type="Node2D" unique_id=630264296]
+script = ExtResource("1_nrpio")
+min_rotation = -0.3
+max_rotation = 0.3
+
+[node name="Label" type="Label" parent="." unique_id=1766091016]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 0.8117647, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_0qhws")
+theme_override_font_sizes/font_size = 16
+text = "600"

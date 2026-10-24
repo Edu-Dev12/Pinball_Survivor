@@ -31,7 +31,7 @@ _data = [Vector2(0, 0.12396699), 0.0, 0.0, 0, 0, Vector2(0.3704319, 0.8937007), 
 point_count = 3
 
 [sub_resource type="Curve" id="Curve_wfu16"]
-_data = [Vector2(0.0023255795, 1), 0.0, 4.268545, 0, 0, Vector2(0.4372093, 0.70689654), -5.2955575, -5.2955575, 0, 0, Vector2(0.627907, 0.21839082), -1.1297208, -1.1297208, 0, 0, Vector2(0.87674415, 0.15517241), 0.0, 0.0, 0, 0, Vector2(1, 0.10344827), -2.376217, 0.0, 0, 0]
+_data = [Vector2(0.0023255795, 1), 0.0, 4.268545, 0, 0, Vector2(0.4372093, 0.70689654), -5.2955575, -5.2955575, 0, 0, Vector2(0.62972975, 0.34931505), -1.1297208, -1.1297208, 0, 0, Vector2(0.85945946, 0.29452056), 0.0, 0.0, 0, 0, Vector2(1, 0.22602737), -2.376217, 0.0, 0, 0]
 point_count = 5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pv2mu"]
@@ -122,8 +122,9 @@ rigidBody2D = NodePath("../../RigidBody2D")
 
 [node name="FlipperHitComponent" type="Node" parent="MovementComponents" unique_id=1128045567 node_paths=PackedStringArray("customImpulsePhysic")]
 script = ExtResource("5_20bu7")
-hit_max_charge = 500.0
+hit_max_charge = 800.0
 hit_min_charge = 60.0
+hit_charge_speed = 1800.0
 dynamic_force_percent = 100.0
 velocity_override_curve = SubResource("Curve_mcf8x")
 slow_motion_curve = SubResource("Curve_wfu16")
