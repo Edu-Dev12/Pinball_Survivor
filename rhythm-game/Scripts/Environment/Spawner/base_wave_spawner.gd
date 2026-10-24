@@ -36,7 +36,7 @@ func _ready() -> void:
 	spawn_timer.timeout.connect(verify_spawn)
 
 func _physics_process(_delta: float) -> void:
-	if Engine.is_editor_hint():
+	if Engine.is_editor_hint() or !enabled:
 		return
 	spawned_enemies = spawned_enemies.filter(func(enemy): return is_instance_valid(enemy))
 

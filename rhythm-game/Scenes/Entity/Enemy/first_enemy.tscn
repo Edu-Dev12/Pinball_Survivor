@@ -70,7 +70,6 @@ metadata/_custom_type_script = "uid://dirog1u42u7vt"
 [node name="SelfDestructionComponent" type="Node" parent="." unique_id=759719018 node_paths=PackedStringArray("animated_sprite_2d", "enemy_navigation")]
 script = ExtResource("6_pcolw")
 lifetime = 8.0
-damage = 10
 animated_sprite_2d = NodePath("../AnimatedSprite2D")
 enemy_navigation = NodePath("../EnemyNavigationComponent")
 

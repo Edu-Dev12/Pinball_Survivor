@@ -14,9 +14,12 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-55, -2, 1204, 2, 1210,
 source_geometry_mode = 2
 source_geometry_group_name = &"Structure"
 
-[node name="Level_1" type="Node2D" unique_id=989795356 node_paths=PackedStringArray("level_map", "player", "enemies")]
+[node name="Level_1" type="Node2D" unique_id=989795356 node_paths=PackedStringArray("boss_spawn_pointer", "level_map", "player", "enemies")]
 script = ExtResource("1_m5hwo")
+boss_spawn_pointer = NodePath("BossSpawnPoint")
+next_level = "run_over_level"
 level_map = NodePath("Pinball_Machine")
+level_initial_time_seconds = 10
 player = NodePath("Player")
 enemies = NodePath("Enemies")
 
@@ -51,6 +54,9 @@ position = Vector2(249, 438)
 
 [node name="Bumper3" parent="Structures" unique_id=968883077 instance=ExtResource("6_uoico")]
 position = Vector2(874, 169)
+
+[node name="BossSpawnPoint" type="Marker2D" parent="." unique_id=978882349]
+position = Vector2(140, 112)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1646438040]
 visible = false
