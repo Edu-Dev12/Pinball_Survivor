@@ -8,6 +8,7 @@ const DEAD_BODY_EFFECT = preload("uid://u116yfkbse07")
 @export var health_component: HealthComponent
 @export var score_value : int = 100
 @export var score_effect_scene : PackedScene
+@export var hit_effect_scene: PackedScene
 
 func _ready() -> void:
 	health_component.died.connect(death)
@@ -17,6 +18,7 @@ func death() -> void:
 	create_body_effect()
 	Ui.add_score(score_value)
 	create_score_effect()
+	crete_hit_effect()
 	enemy.queue_free()
 
 func create_body_effect():
@@ -37,3 +39,8 @@ func create_score_effect():
 	score_effect.global_position = enemy.global_position
 	score_effect.score = score_value
 	get_parent().get_parent().add_child(score_effect)
+
+func crete_hit_effect():
+	var hit_effect = hit_effect_scene.instantiate() as Node2D
+	hit_effect.global_position = enemy.global_position
+	get_parent().get_parent().add_child(hit_effect)

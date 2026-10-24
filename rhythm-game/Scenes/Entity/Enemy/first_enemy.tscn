@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bxcngec2b54ck" path="res://Scripts/Components/EnemyComponents/enemy_navigation_component.gd" id="6_rhb01"]
 [ext_resource type="Script" uid="uid://p85gg66bqnm8" path="res://Scripts/Components/EnemyComponents/enemy_death_component.gd" id="7_pcolw"]
 [ext_resource type="PackedScene" uid="uid://bhq7ci643e2yj" path="res://Scenes/Effects/base_score_effect.tscn" id="8_v5xdt"]
+[ext_resource type="PackedScene" uid="uid://dlsfpaiiacyim" path="res://Scenes/Effects/hit_effect.tscn" id="9_j5h8p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rrj3t"]
 radius = 14.035668
@@ -75,3 +76,4 @@ enemy = NodePath("..")
 sprite_2d = NodePath("../Sprite2D")
 health_component = NodePath("../HealthComponent")
 score_effect_scene = ExtResource("8_v5xdt")
+hit_effect_scene = ExtResource("9_j5h8p")

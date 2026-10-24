@@ -37,6 +37,7 @@ window/stretch/aspect="expand"
 folder_colors={
 "res://Assets/": "orange",
 "res://Audio/": "green",
+"res://Resounce/": "gray",
 "res://Scenes/": "purple",
 "res://Scripts/": "blue"
 }

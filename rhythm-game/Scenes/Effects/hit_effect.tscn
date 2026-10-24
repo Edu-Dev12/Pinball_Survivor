@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dlsfpaiiacyim"]
+
+[ext_resource type="Texture2D" uid="uid://dhokk8rwb4hdb" path="res://Assets/Effects/masks for  particles/masks for  particles transparent/T_flare81.png" id="1_rpxr8"]
+[ext_resource type="Script" uid="uid://bvmyx5rm7y1qn" path="res://Scripts/Effects/hit_effect.gd" id="1_vm7lc"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8jo5o"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_8jo5o"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.14802632, 1), 0.0, 0.0, 0, 0, Vector2(0.49342102, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_thpyl"]
+curve = SubResource("Curve_8jo5o")
+
+[sub_resource type="Gradient" id="Gradient_ytw8e"]
+colors = PackedColorArray(1, 0.7647059, 0.007843138, 1, 1, 0.5294118, 0.19607843, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mimyt"]
+gradient = SubResource("Gradient_ytw8e")
+
+[sub_resource type="Curve" id="Curve_ft3o8"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.04276316, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_j5h8p"]
+curve = SubResource("Curve_ft3o8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rndqn"]
+particle_flag_disable_z = true
+angle_min = -29.99999
+angle_max = 30.000011
+gravity = Vector3(0, 0, 0)
+scale_min = 0.29999998
+scale_max = 0.29999998
+scale_curve = SubResource("CurveTexture_j5h8p")
+color_ramp = SubResource("GradientTexture1D_mimyt")
+alpha_curve = SubResource("CurveTexture_thpyl")
+
+[node name="HitEffect" type="Node2D" unique_id=556399041]
+script = ExtResource("1_vm7lc")
+
+[node name="HitEffect" type="GPUParticles2D" parent="." unique_id=1901468747]
+material = SubResource("CanvasItemMaterial_8jo5o")
+emitting = false
+amount = 1
+texture = ExtResource("1_rpxr8")
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_rndqn")
