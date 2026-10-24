@@ -2,31 +2,41 @@
 extends Node
 class_name InputControllerComponent
 
+@export var diagonal_tolerance_time: float = 0.08
+
 var movement_vector: Vector2
+var last_direction: Vector2 = Vector2.DOWN
 
-var _input_history: Array[Vector2] = []
-const BUFFER_SIZE: int = 6
+var _is_diagonal: bool = false
+var _diagonal_timer: float = 0.0
+var _saved_diagonal: Vector2 = Vector2.ZERO
 
-func _unhandled_input(_event: InputEvent) -> void:
-	movement_vector = Input.get_vector("Right", "Left", "Down", "Up")
+func _process(delta: float) -> void:
+	var raw_vector = Input.get_vector("Right", "Left", "Down", "Up")
+	movement_vector = raw_vector
 	
 	if movement_vector != Vector2.ZERO:
-		_input_history.append(movement_vector)
-		if _input_history.size() > BUFFER_SIZE:
-			_input_history.remove_at(0)
-
-func get_best_buffered_direction(fallback_direction: Vector2) -> Vector2:
-	if _input_history.is_empty():
-		return fallback_direction
+		last_direction = movement_vector
 		
-	var best_dir: Vector2 = fallback_direction
-	var max_diagonal_score: float = -1.0
-	
-	for dir in _input_history:
-		var score: float = abs(dir.x) * abs(dir.y)
-		if score > max_diagonal_score:
-			max_diagonal_score = score
-			best_dir = dir.normalized()
-			
-	_input_history.clear()
-	return best_dir
+		if abs(movement_vector.x) > 0.1 and abs(movement_vector.y) > 0.1:
+			_is_diagonal = true
+			_saved_diagonal = movement_vector
+			_diagonal_timer = diagonal_tolerance_time
+		else:
+			if _is_diagonal and _diagonal_timer > 0.0:
+				_diagonal_timer -= delta
+			else:
+				_is_diagonal = false
+	else:
+		if _is_diagonal and _diagonal_timer > 0.0:
+			_diagonal_timer -= delta
+		else:
+			_is_diagonal = false
+
+func get_input() -> Vector2:
+	return movement_vector
+
+func get_attack_direction() -> Vector2:
+	if _is_diagonal and _diagonal_timer > 0.0:
+		return _saved_diagonal
+	return last_direction

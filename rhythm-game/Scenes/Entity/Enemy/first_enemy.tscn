@@ -61,6 +61,7 @@ metadata/_custom_type_script = "uid://clwsd3i4f8ndy"
 [node name="RebounceBehaviorComponent" type="Node" parent="." unique_id=274603130 node_paths=PackedStringArray("source", "hurt_box_component")]
 script = ExtResource("5_t6tdw")
 rebounce_force = 10.0
+speed_slowdown_rate = 1.15
 passthrough_speed = 1000.0
 source = NodePath("..")
 hurt_box_component = NodePath("../HurtboxComponent")
