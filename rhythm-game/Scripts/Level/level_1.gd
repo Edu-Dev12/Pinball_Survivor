@@ -8,6 +8,7 @@ class_name Level1
 func _ready() -> void:
 	AudioManager.change_current_music(Global.BGM_SPACE_CADET_PINBALL)
 	SignalManager.level_timer_ended.connect(start_boss_fight)
+	SignalManager.level_won.connect(next_level_reached)
 	super()
 
 func start_boss_fight() -> void:

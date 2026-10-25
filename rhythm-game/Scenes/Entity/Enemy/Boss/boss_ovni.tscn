@@ -28,7 +28,7 @@ state_path = NodePath("../RunOver")
 chance = 100.0
 metadata/_custom_type_script = "uid://bwalxg3elnj63"
 
-[node name="BossOVNI" type="CharacterBody2D" unique_id=2109643780 node_paths=PackedStringArray("animated_sprite_2d", "hurtbox") groups=["Enemy"]]
+[node name="BossOVNI" type="CharacterBody2D" unique_id=2109643780 node_paths=PackedStringArray("animated_sprite_2d", "hurtbox") groups=["Boss", "Enemy"]]
 scale = Vector2(0.3, 0.3)
 collision_layer = 72
 collision_mask = 73
@@ -81,7 +81,7 @@ health_component = NodePath("../HealthComponent")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=416065685]
 script = ExtResource("1_dmrh2")
-max_health = 25
+max_health = 250
 metadata/_custom_type_script = "uid://clwsd3i4f8ndy"
 
 [node name="RebounceBehaviorComponent" type="Node" parent="." unique_id=1446800304 node_paths=PackedStringArray("source", "hurt_box_component")]

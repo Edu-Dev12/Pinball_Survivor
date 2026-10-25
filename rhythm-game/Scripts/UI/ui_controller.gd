@@ -17,7 +17,7 @@ func restart_ui() -> void:
 	setup_timer()
 	set_player_health(0)
 	set_initial_time(0)
-	add_score(0)
+	set_score(0)
 	run_timer()
 
 func disable_ui():
@@ -44,6 +44,10 @@ func remove_player_health(damage_amount: int) -> void:
 # --- SCORE ---
 func add_score(amount: int) -> void:
 	current_score += amount
+	ui.set_score(current_score)
+
+func set_score(amount: int) -> void:
+	current_score = amount
 	ui.set_score(current_score)
 
 # --- TIMER ---

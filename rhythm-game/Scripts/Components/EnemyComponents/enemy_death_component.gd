@@ -29,6 +29,8 @@ func death() -> void:
 	create_score_effect(final_score)
 	crete_hit_effect()
 	
+	if enemy.is_in_group(Global.BOSS_GROUP):
+		SignalManager.level_won.emit()
 	enemy.queue_free()
 
 func create_body_effect():
