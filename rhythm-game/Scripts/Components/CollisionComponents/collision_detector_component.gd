@@ -10,7 +10,5 @@ func _ready() -> void:
 		rigidBody2D.max_contacts_reported = 20
 		rigidBody2D.body_entered.connect(get_collision)
 
-func get_collision(body: Node):
+func get_collision(_body: Node):
 	AudioManager.play_sound_effect(Global.SFX_PINBALL_IMPACT_TEST, "SFX")
-	if body.is_in_group(Global.ENEMY_GROUP): 
-		body.die_by_player()

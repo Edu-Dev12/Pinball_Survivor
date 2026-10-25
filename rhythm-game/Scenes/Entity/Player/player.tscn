@@ -139,7 +139,7 @@ scale = Vector2(1.0001863, 0.99767053)
 collision_layer = 4
 collision_mask = 32
 script = ExtResource("11_4osmd")
-damage = 10
+damage = 1
 apply_ball_bounce = true
 metadata/_custom_type_script = "uid://nd4ko4vpkdi3"
 

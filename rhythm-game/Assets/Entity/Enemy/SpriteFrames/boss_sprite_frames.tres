@@ -9,6 +9,14 @@ animations = [{
 "texture": ExtResource("1_a713j")
 }],
 "loop": 1,
-"name": &"idling",
+"name": &"Fighting",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_a713j")
+}],
+"loop": 1,
+"name": &"Idling",
 "speed": 5.0
 }]

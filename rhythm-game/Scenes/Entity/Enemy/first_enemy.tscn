@@ -55,7 +55,7 @@ attack_off_set = 10.0
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1531943528]
 script = ExtResource("2_x1513")
-max_health = 4
+max_health = 1
 metadata/_custom_type_script = "uid://clwsd3i4f8ndy"
 
 [node name="RebounceBehaviorComponent" type="Node" parent="." unique_id=274603130 node_paths=PackedStringArray("source", "hurt_box_component")]

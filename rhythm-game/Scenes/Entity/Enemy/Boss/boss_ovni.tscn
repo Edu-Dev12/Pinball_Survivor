@@ -1,13 +1,20 @@
 [gd_scene format=3 uid="uid://cy7k5gbhf1b5i"]
 
 [ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/HealthComponents/health_component.gd" id="1_dmrh2"]
+[ext_resource type="Script" uid="uid://bhf85ltaqsfqp" path="res://Scripts/Entity/Enemy/Boss/boss_ovni.gd" id="1_eh146"]
 [ext_resource type="SpriteFrames" uid="uid://cvn4jo40vicu" path="res://Assets/Entity/Enemy/SpriteFrames/boss_sprite_frames.tres" id="1_trbu4"]
 [ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/HurtboxComponents/hurtbox_component.gd" id="2_3mmt8"]
+[ext_resource type="PackedScene" uid="uid://6cme64k5pcmd" path="res://Scenes/UI/hp_bar.tscn" id="3_57g3f"]
 [ext_resource type="Script" uid="uid://dirog1u42u7vt" path="res://Scripts/Components/BehaviorComponents/rebounce_behavior_component.gd" id="3_nsn1a"]
+[ext_resource type="Script" uid="uid://nd4ko4vpkdi3" path="res://Scripts/Components/HitboxComponents/hitbox_component.gd" id="4_okwah"]
 [ext_resource type="Script" uid="uid://p85gg66bqnm8" path="res://Scripts/Components/EnemyComponents/enemy_death_component.gd" id="4_v2fdq"]
 [ext_resource type="Script" uid="uid://qx8pxlfrqqeh" path="res://Scripts/Entity/FSM/Base/fsm.gd" id="6_6fkno"]
+[ext_resource type="PackedScene" uid="uid://bhq7ci643e2yj" path="res://Scenes/Effects/base_score_effect.tscn" id="6_q5wtb"]
+[ext_resource type="PackedScene" uid="uid://dlsfpaiiacyim" path="res://Scenes/Effects/hit_effect.tscn" id="7_57g3f"]
 [ext_resource type="Script" uid="uid://bvkt1n1tetopp" path="res://Scripts/Entity/FSM/boss_idling.gd" id="7_trbu4"]
 [ext_resource type="Script" uid="uid://b6rep5mr8lt6k" path="res://Scripts/Entity/FSM/boss_menancing.gd" id="8_ra502"]
+[ext_resource type="Script" uid="uid://bwalxg3elnj63" path="res://Scripts/Entity/FSM/Base/state_chance.gd" id="13_6f68d"]
+[ext_resource type="Script" uid="uid://cmgxvsaj8dof1" path="res://Scripts/Entity/FSM/run_over.gd" id="13_54n7g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o1g8r"]
 radius = 240.0
@@ -15,15 +22,25 @@ radius = 240.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_nsn1a"]
 radius = 240.0
 
-[node name="BossOVNI" type="CharacterBody2D" unique_id=2109643780 groups=["Enemy"]]
-scale = Vector2(0.25, 0.25)
-collision_layer = 8
+[sub_resource type="Resource" id="Resource_54n7g"]
+script = ExtResource("13_6f68d")
+state_path = NodePath("../RunOver")
+chance = 100.0
+metadata/_custom_type_script = "uid://bwalxg3elnj63"
+
+[node name="BossOVNI" type="CharacterBody2D" unique_id=2109643780 node_paths=PackedStringArray("animated_sprite_2d", "hurtbox") groups=["Enemy"]]
+scale = Vector2(0.3, 0.3)
+collision_layer = 72
 collision_mask = 73
 motion_mode = 1
+script = ExtResource("1_eh146")
+animated_sprite_2d = NodePath("AnimatedSprite2D")
+hurtbox = NodePath("HurtboxComponent")
+speed = 250.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1610083332]
 sprite_frames = ExtResource("1_trbu4")
-animation = &"idling"
+animation = &"Idling"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2098884020]
 shape = SubResource("CircleShape2D_o1g8r")
@@ -39,6 +56,29 @@ metadata/_custom_type_script = "uid://csy647r8tv7w5"
 shape = SubResource("CircleShape2D_nsn1a")
 debug_color = Color(0.9954062, 0, 0.21373373, 0.41960785)
 
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=1082325010]
+collision_layer = 16
+collision_mask = 256
+script = ExtResource("4_okwah")
+damage = 1
+metadata/_custom_type_script = "uid://nd4ko4vpkdi3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1449839098]
+shape = SubResource("CircleShape2D_nsn1a")
+debug_color = Color(0.9954062, 0, 0.21373373, 0.41960785)
+
+[node name="HPBarComponent" parent="." unique_id=734155304 node_paths=PackedStringArray("health_component") instance=ExtResource("3_57g3f")]
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = -104.99999
+offset_top = -270.0
+offset_right = -34.999992
+offset_bottom = -265.0
+grow_horizontal = 1
+scale = Vector2(3, 3)
+health_component = NodePath("../HealthComponent")
+
 [node name="HealthComponent" type="Node" parent="." unique_id=416065685]
 script = ExtResource("1_dmrh2")
 max_health = 25
@@ -52,15 +92,19 @@ source = NodePath("..")
 hurt_box_component = NodePath("../HurtboxComponent")
 metadata/_custom_type_script = "uid://dirog1u42u7vt"
 
-[node name="EnemyDeathComponent" type="Node" parent="." unique_id=1082359465 node_paths=PackedStringArray("enemy", "health_component")]
+[node name="EnemyDeathComponent" type="Node" parent="." unique_id=1082359465 node_paths=PackedStringArray("enemy", "animated_sprite_2d", "health_component")]
 script = ExtResource("4_v2fdq")
 enemy = NodePath("..")
+animated_sprite_2d = NodePath("../AnimatedSprite2D")
 health_component = NodePath("../HealthComponent")
+score_value = 10000
+score_effect_scene = ExtResource("6_q5wtb")
+hit_effect_scene = ExtResource("7_57g3f")
 metadata/_custom_type_script = "uid://p85gg66bqnm8"
 
 [node name="FSM" type="Node" parent="." unique_id=34959048 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_6fkno")
-initial_state = NodePath("BossIdling")
+initial_state = NodePath("BossFighting")
 
 [node name="BossIdling" type="Node" parent="FSM" unique_id=1773474287 node_paths=PackedStringArray("after_idle_state")]
 script = ExtResource("7_trbu4")
@@ -68,3 +112,10 @@ after_idle_state = NodePath("../BossFighting")
 
 [node name="BossFighting" type="Node" parent="FSM" unique_id=623250890]
 script = ExtResource("8_ra502")
+weighted_states = Array[ExtResource("13_6f68d")]([SubResource("Resource_54n7g")])
+rest_time = 2.0
+
+[node name="RunOver" type="Node" parent="FSM" unique_id=1236627211 node_paths=PackedStringArray("after_idle_state")]
+script = ExtResource("13_54n7g")
+after_idle_state = NodePath("../BossFighting")
+run_over_duration = 15.0

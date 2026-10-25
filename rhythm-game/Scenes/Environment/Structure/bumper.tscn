@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/HealthComponents/health_component.gd" id="1_oghan"]
 [ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/HurtboxComponents/hurtbox_component.gd" id="2_3ipfl"]
 [ext_resource type="Texture2D" uid="uid://caacjc1hrrj21" path="res://Assets/Enviroment/Structure/Bumper_Spritesheet.png" id="2_b5jrd"]
-[ext_resource type="Script" uid="uid://q1akalh1qvyc" path="res://Scripts/Components/HealthComponents/hp_bar_component.gd" id="4_vflbt"]
 [ext_resource type="Script" uid="uid://gre2rxaqfxfc" path="res://Scripts/Components/StructureComponents/structure_death_component.gd" id="5_7vm0e"]
 [ext_resource type="PackedScene" uid="uid://bimrga5n7rcws" path="res://Scenes/Environment/Structure/bumper_effect.tscn" id="5_avsp8"]
+[ext_resource type="PackedScene" uid="uid://6cme64k5pcmd" path="res://Scenes/UI/hp_bar.tscn" id="7_avsp8"]
 [ext_resource type="Script" uid="uid://cgntmhvnp3yuv" path="res://Scripts/Components/bumper_aoe_component.gd" id="7_b5jrd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_avsp8"]
@@ -47,20 +47,6 @@ radius = 23.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_o1g8r"]
 radius = 23.194826
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vm0e"]
-bg_color = Color(1, 0, 0, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vflbt"]
-bg_color = Color(1.0107458e-06, 0.6514312, 0.13586748, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-
 [node name="Bumper" type="StaticBody2D" unique_id=1580442525 groups=["Structure"]]
 collision_layer = 64
 collision_mask = 0
@@ -90,6 +76,7 @@ collision_layer = 64
 collision_mask = 2
 script = ExtResource("7_b5jrd")
 bumper_visual = NodePath("../AnimatedSprite2D")
+damage = 1
 bumper_effect_scene = ExtResource("5_avsp8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BumperAOEComponent" unique_id=1913241770]
@@ -99,20 +86,7 @@ debug_color = Color(0.7935812, 0.4267305, 7.70092e-07, 0.41960785)
 [node name="HealthComponent" type="Node2D" parent="." unique_id=913220320]
 script = ExtResource("1_oghan")
 
-[node name="HPBarComponent" type="ProgressBar" parent="." unique_id=1241211068 node_paths=PackedStringArray("health_component")]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -35.0
-offset_top = -30.0
-offset_right = 35.0
-offset_bottom = -25.0
-grow_horizontal = 2
-size_flags_horizontal = 4
-theme_override_styles/background = SubResource("StyleBoxFlat_7vm0e")
-theme_override_styles/fill = SubResource("StyleBoxFlat_vflbt")
-show_percentage = false
-script = ExtResource("4_vflbt")
+[node name="HPBarComponent" parent="." unique_id=734155304 node_paths=PackedStringArray("health_component") instance=ExtResource("7_avsp8")]
 health_component = NodePath("../HealthComponent")
 
 [node name="StructureDeathComponent" type="Node" parent="." unique_id=2143347069 node_paths=PackedStringArray("structure", "animatedSprite2D", "health_component")]

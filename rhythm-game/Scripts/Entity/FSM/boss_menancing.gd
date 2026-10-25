@@ -24,7 +24,7 @@ func enter() -> void:
 func _on_rest_timer_timeout() -> void:
 	var next_state = choose_next_state()
 	if next_state:
-		transitioned.emit(self, next_state)
+		transitioned.emit(self, next_state.name)
 
 func choose_next_state() -> State:
 	var random_value = randf() * 100.0

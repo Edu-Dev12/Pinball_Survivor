@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dko0vq4ku86vb" path="res://Scenes/Environment/pinball_machine.tscn" id="1_k541i"]
 [ext_resource type="Script" uid="uid://dlunrxo48npk2" path="res://Scripts/Level/level_1.gd" id="1_m5hwo"]
+[ext_resource type="PackedScene" uid="uid://cy7k5gbhf1b5i" path="res://Scenes/Entity/Enemy/Boss/boss_ovni.tscn" id="2_4snqv"]
 [ext_resource type="PackedScene" uid="uid://c46x7behm7yyv" path="res://Scenes/Entity/Player/player.tscn" id="2_m5hwo"]
 [ext_resource type="PackedScene" uid="uid://cs5005lieyom7" path="res://Scenes/Environment/Spawner/base_wave_spawner.tscn" id="4_knogg"]
 [ext_resource type="PackedScene" uid="uid://dl56cslmn1pl7" path="res://Scenes/Environment/Structure/bumper.tscn" id="6_uoico"]
@@ -17,9 +18,9 @@ source_geometry_group_name = &"Structure"
 [node name="Level_1" type="Node2D" unique_id=989795356 node_paths=PackedStringArray("boss_spawn_pointer", "level_map", "player", "enemies")]
 script = ExtResource("1_m5hwo")
 boss_spawn_pointer = NodePath("BossSpawnPoint")
+boss_to_spawn = ExtResource("2_4snqv")
 next_level = "run_over_level"
 level_map = NodePath("Pinball_Machine")
-level_initial_time_seconds = 10
 player = NodePath("Player")
 enemies = NodePath("Enemies")
 

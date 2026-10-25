@@ -11,7 +11,6 @@ func _ready() -> void:
 	super()
 
 func start_boss_fight() -> void:
-	print("a")
 	for spawner : BaseWaveSpawner in get_tree().get_nodes_in_group(Global.SPAWNER_GROUP):
 		spawner.enabled = false
 	boss_spawn()
