@@ -30,7 +30,7 @@ metadata/_custom_type_script = "uid://bwalxg3elnj63"
 
 [node name="BossOVNI" type="CharacterBody2D" unique_id=2109643780 node_paths=PackedStringArray("animated_sprite_2d", "hurtbox") groups=["Boss", "Enemy"]]
 scale = Vector2(0.3, 0.3)
-collision_layer = 72
+collision_layer = 8
 collision_mask = 73
 motion_mode = 1
 script = ExtResource("1_eh146")
@@ -87,7 +87,7 @@ metadata/_custom_type_script = "uid://clwsd3i4f8ndy"
 [node name="RebounceBehaviorComponent" type="Node" parent="." unique_id=1446800304 node_paths=PackedStringArray("source", "hurt_box_component")]
 script = ExtResource("3_nsn1a")
 rebounce_force = 10.0
-passthrough_speed = 1000.0
+passthrough_speed = 9999.0
 source = NodePath("..")
 hurt_box_component = NodePath("../HurtboxComponent")
 metadata/_custom_type_script = "uid://dirog1u42u7vt"
