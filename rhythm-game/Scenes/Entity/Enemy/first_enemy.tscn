@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://ch6byh3nbtss" path="res://Scripts/Entity/Enemy/first_enemy.gd" id="1_ytw8e"]
 [ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/HealthComponents/health_component.gd" id="2_x1513"]
 [ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/HurtboxComponents/hurtbox_component.gd" id="3_1buj2"]
+[ext_resource type="Script" uid="uid://be1l2tkvrxun" path="res://Scripts/Animation/first_enemy_animation.gd" id="4_ft3o8"]
 [ext_resource type="Script" uid="uid://dirog1u42u7vt" path="res://Scripts/Components/BehaviorComponents/rebounce_behavior_component.gd" id="5_t6tdw"]
 [ext_resource type="Script" uid="uid://cph3wab7jau4j" path="res://Scripts/Components/EnemyComponents/self_destruction_component.gd" id="6_pcolw"]
 [ext_resource type="Script" uid="uid://bxcngec2b54ck" path="res://Scripts/Components/EnemyComponents/enemy_navigation_component.gd" id="6_rhb01"]
@@ -17,6 +18,103 @@ radius = 14.035668
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_426oi"]
 height = 32.0
 
+[sub_resource type="Animation" id="Animation_ytw8e"]
+resource_name = "Charging"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Charging", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_iel3e"]
+resource_name = "Explode"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Explode", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ft3o8"]
+resource_name = "Walk"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Walk"],
+"method": &"play_backwards"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iel3e"]
+_data = {
+&"Charging": SubResource("Animation_ytw8e"),
+&"Explode": SubResource("Animation_iel3e"),
+&"Walk": SubResource("Animation_ft3o8")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iel3e"]
+animation = &"Charging"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ft3o8"]
+animation = &"Explode"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ytw8e"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ft3o8"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iel3e"]
+advance_mode = 2
+advance_expression = "is_charging"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h0rip"]
+advance_mode = 2
+advance_expression = "is_explode"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xol7p"]
+advance_mode = 2
+advance_expression = "!is_charging"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oof5y"]
+advance_mode = 2
+advance_expression = "!is_explode"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_pv2mu"]
+states/Charging/node = SubResource("AnimationNodeAnimation_iel3e")
+states/Charging/position = Vector2(604, 100)
+states/End/position = Vector2(1047, 100)
+states/Explode/node = SubResource("AnimationNodeAnimation_ft3o8")
+states/Explode/position = Vector2(844, 100)
+states/Walk/node = SubResource("AnimationNodeAnimation_ytw8e")
+states/Walk/position = Vector2(348, 100)
+transitions = ["Start", "Walk", SubResource("AnimationNodeStateMachineTransition_ft3o8"), "Walk", "Charging", SubResource("AnimationNodeStateMachineTransition_iel3e"), "Charging", "Explode", SubResource("AnimationNodeStateMachineTransition_h0rip"), "Charging", "Walk", SubResource("AnimationNodeStateMachineTransition_xol7p"), "Explode", "Charging", SubResource("AnimationNodeStateMachineTransition_oof5y")]
+graph_offset = Vector2(-33, 2)
+
 [node name="FirstEnemy" type="CharacterBody2D" unique_id=493257173 node_paths=PackedStringArray("animatedSprite2D") groups=["Enemy"]]
 collision_layer = 8
 collision_mask = 72
@@ -28,9 +126,8 @@ animatedSprite2D = NodePath("AnimatedSprite2D")
 texture_filter = 1
 scale = Vector2(0.175, 0.175)
 sprite_frames = ExtResource("1_j5h8p")
-animation = &"Idling"
-autoplay = "Idling"
-frame_progress = 0.7871422
+animation = &"Charging"
+frame_progress = 0.5951289
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2049795404]
 shape = SubResource("CircleShape2D_rrj3t")
@@ -59,6 +156,10 @@ speed = 200.0
 orbit_radius = 40.0
 attack_off_set = 10.0
 
+[node name="FirstEnemyAnimation" type="Node" parent="." unique_id=1491399051 node_paths=PackedStringArray("selfDestructionComponent")]
+script = ExtResource("4_ft3o8")
+selfDestructionComponent = NodePath("../SelfDestructionComponent")
+
 [node name="HealthComponent" type="Node" parent="." unique_id=1531943528]
 script = ExtResource("2_x1513")
 metadata/_custom_type_script = "uid://clwsd3i4f8ndy"
@@ -85,3 +186,11 @@ animated_sprite_2d = NodePath("../AnimatedSprite2D")
 health_component = NodePath("../HealthComponent")
 score_effect_scene = ExtResource("8_v5xdt")
 hit_effect_scene = ExtResource("9_j5h8p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1299088079]
+libraries/ = SubResource("AnimationLibrary_iel3e")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1654135401]
+tree_root = SubResource("AnimationNodeStateMachine_pv2mu")
+advance_expression_base_node = NodePath("../FirstEnemyAnimation")
+anim_player = NodePath("../AnimationPlayer")

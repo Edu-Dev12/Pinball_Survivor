@@ -2,6 +2,54 @@
 
 [ext_resource type="Texture2D" uid="uid://bmj13veyb0cs4" path="res://Assets/Entity/Enemy/Enemy_Spritesheet.png" id="1_jhxv4"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhxv4"]
+atlas = ExtResource("1_jhxv4")
+region = Rect2(0, 540, 360, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4cf0"]
+atlas = ExtResource("1_jhxv4")
+region = Rect2(360, 540, 360, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gat26"]
+atlas = ExtResource("1_jhxv4")
+region = Rect2(720, 540, 360, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yk0a"]
+atlas = ExtResource("1_jhxv4")
+region = Rect2(1080, 540, 360, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqkio"]
+atlas = ExtResource("1_jhxv4")
+region = Rect2(1440, 540, 360, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wscke"]
+atlas = ExtResource("1_jhxv4")
+region = Rect2(1800, 540, 360, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2s10"]
+atlas = ExtResource("1_jhxv4")
+region = Rect2(2160, 540, 360, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akx7h"]
+atlas = ExtResource("1_jhxv4")
+region = Rect2(2520, 540, 360, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5avnk"]
+atlas = ExtResource("1_jhxv4")
+region = Rect2(0, 810, 360, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onybo"]
+atlas = ExtResource("1_jhxv4")
+region = Rect2(360, 810, 360, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8rbl"]
+atlas = ExtResource("1_jhxv4")
+region = Rect2(720, 810, 360, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fc1l"]
+atlas = ExtResource("1_jhxv4")
+region = Rect2(1080, 810, 360, 270)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_e6fqw"]
 atlas = ExtResource("1_jhxv4")
 region = Rect2(0, 0, 360, 270)
@@ -38,6 +86,52 @@ region = Rect2(2520, 0, 360, 270)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_jhxv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4cf0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gat26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yk0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqkio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wscke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2s10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akx7h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5avnk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onybo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8rbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fc1l")
+}],
+"loop": 1,
+"name": &"Charging",
+"speed": 8.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"Explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_e6fqw")
 }, {
 "duration": 1.0,
@@ -62,6 +156,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_t8sjy")
 }],
 "loop": 1,
-"name": &"Idling",
+"name": &"Walk",
 "speed": 12.0
 }]
