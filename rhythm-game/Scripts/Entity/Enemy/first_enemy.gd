@@ -1,18 +1,8 @@
 extends CharacterBody2D
 
-@export var healthComponent: HealthComponent
-var target: Node2D
-
-var structure_list: Array
-
-@export var speed: float = 100.0
-@export var lifetime: float = 15.0
-
-func _ready() -> void:
-	healthComponent.died.connect(_die)
+@export var animatedSprite2D: AnimatedSprite2D
 
 func _physics_process(_delta: float) -> void:
-		move_and_slide()
+		if animatedSprite2D:
+			animatedSprite2D.flip_h = velocity.x >= 0
 		
-func _die():
-	queue_free()

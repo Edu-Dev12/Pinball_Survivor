@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://u116yfkbse07"]
 
 [ext_resource type="Script" uid="uid://cc87iwelxl5ii" path="res://Scripts/Effects/dead_body_effect.gd" id="1_tdwn3"]
+[ext_resource type="Texture2D" uid="uid://bmj13veyb0cs4" path="res://Assets/Entity/Enemy/Enemy_Spritesheet.png" id="2_8a2vg"]
 
 [sub_resource type="Gradient" id="Gradient_wq2qy"]
 offsets = PackedFloat32Array(0.11949685, 1)
@@ -12,6 +13,7 @@ script = ExtResource("1_tdwn3")
 [node name="BodyTexture" type="CPUParticles2D" parent="." unique_id=2132050755]
 emitting = false
 amount = 1
+texture = ExtResource("2_8a2vg")
 one_shot = true
 direction = Vector2(1, 1)
 spread = 0.0

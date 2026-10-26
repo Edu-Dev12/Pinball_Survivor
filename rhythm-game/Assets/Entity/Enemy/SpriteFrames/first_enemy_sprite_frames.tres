@@ -1,14 +1,67 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://6w372xfj5ijk"]
 
-[ext_resource type="Texture2D" uid="uid://0ltkrosjoiof" path="res://Assets/Entity/Enemy/skull007.png" id="1_jhxv4"]
+[ext_resource type="Texture2D" uid="uid://bmj13veyb0cs4" path="res://Assets/Entity/Enemy/Enemy_Spritesheet.png" id="1_jhxv4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6fqw"]
+atlas = ExtResource("1_jhxv4")
+region = Rect2(0, 0, 360, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36tkj"]
+atlas = ExtResource("1_jhxv4")
+region = Rect2(360, 0, 360, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2dqr"]
+atlas = ExtResource("1_jhxv4")
+region = Rect2(720, 0, 360, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jabhk"]
+atlas = ExtResource("1_jhxv4")
+region = Rect2(1080, 0, 360, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ji0nu"]
+atlas = ExtResource("1_jhxv4")
+region = Rect2(1440, 0, 360, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63uqh"]
+atlas = ExtResource("1_jhxv4")
+region = Rect2(1800, 0, 360, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d65e7"]
+atlas = ExtResource("1_jhxv4")
+region = Rect2(2160, 0, 360, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8sjy"]
+atlas = ExtResource("1_jhxv4")
+region = Rect2(2520, 0, 360, 270)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_jhxv4")
+"texture": SubResource("AtlasTexture_e6fqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36tkj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2dqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jabhk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ji0nu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63uqh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d65e7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8sjy")
 }],
 "loop": 1,
 "name": &"Idling",
-"speed": 5.0
+"speed": 12.0
 }]

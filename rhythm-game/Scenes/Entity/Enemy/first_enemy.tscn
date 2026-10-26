@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dssk46d0vkivi"]
 
 [ext_resource type="SpriteFrames" uid="uid://6w372xfj5ijk" path="res://Assets/Entity/Enemy/SpriteFrames/first_enemy_sprite_frames.tres" id="1_j5h8p"]
+[ext_resource type="Script" uid="uid://ch6byh3nbtss" path="res://Scripts/Entity/Enemy/first_enemy.gd" id="1_ytw8e"]
 [ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/HealthComponents/health_component.gd" id="2_x1513"]
 [ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/HurtboxComponents/hurtbox_component.gd" id="3_1buj2"]
 [ext_resource type="Script" uid="uid://dirog1u42u7vt" path="res://Scripts/Components/BehaviorComponents/rebounce_behavior_component.gd" id="5_t6tdw"]
@@ -16,15 +17,20 @@ radius = 14.035668
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_426oi"]
 height = 32.0
 
-[node name="FirstEnemy" type="CharacterBody2D" unique_id=493257173 groups=["Enemy"]]
+[node name="FirstEnemy" type="CharacterBody2D" unique_id=493257173 node_paths=PackedStringArray("animatedSprite2D") groups=["Enemy"]]
 collision_layer = 8
 collision_mask = 72
 motion_mode = 1
+script = ExtResource("1_ytw8e")
+animatedSprite2D = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=487314480]
 texture_filter = 1
+scale = Vector2(0.175, 0.175)
 sprite_frames = ExtResource("1_j5h8p")
 animation = &"Idling"
+autoplay = "Idling"
+frame_progress = 0.7871422
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2049795404]
 shape = SubResource("CircleShape2D_rrj3t")
