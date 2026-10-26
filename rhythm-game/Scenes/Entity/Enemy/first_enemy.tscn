@@ -94,7 +94,7 @@ advance_expression = "is_charging"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h0rip"]
 advance_mode = 2
-advance_expression = "is_explode"
+advance_expression = "is_exploding"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xol7p"]
 advance_mode = 2
@@ -102,7 +102,7 @@ advance_expression = "!is_charging"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oof5y"]
 advance_mode = 2
-advance_expression = "!is_explode"
+advance_expression = "!is_exploding"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_pv2mu"]
 states/Charging/node = SubResource("AnimationNodeAnimation_iel3e")
@@ -116,6 +116,7 @@ transitions = ["Start", "Walk", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-33, 2)
 
 [node name="FirstEnemy" type="CharacterBody2D" unique_id=493257173 node_paths=PackedStringArray("animatedSprite2D") groups=["Enemy"]]
+z_index = 1
 collision_layer = 8
 collision_mask = 72
 motion_mode = 1
@@ -127,7 +128,7 @@ texture_filter = 1
 scale = Vector2(0.175, 0.175)
 sprite_frames = ExtResource("1_j5h8p")
 animation = &"Charging"
-frame_progress = 0.5951289
+frame_progress = 0.4418592
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2049795404]
 shape = SubResource("CircleShape2D_rrj3t")

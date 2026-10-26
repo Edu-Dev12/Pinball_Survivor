@@ -44,7 +44,6 @@ func apply_aoe_push() -> void:
 					component.apply_knockback(final_push)
 					
 				var healthComponet = enemy.get_node_or_null("HealthComponent") as HealthComponent
-				print(healthComponet)
 				healthComponet.receive_damage(damage)
 				
 

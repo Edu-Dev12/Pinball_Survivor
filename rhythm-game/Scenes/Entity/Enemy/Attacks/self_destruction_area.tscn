@@ -1,26 +1,38 @@
 [gd_scene format=3 uid="uid://b7a1ts5nj82lg"]
 
 [ext_resource type="Script" uid="uid://nd4ko4vpkdi3" path="res://Scripts/Components/HitboxComponents/hitbox_component.gd" id="1_l0i6o"]
-[ext_resource type="Texture2D" uid="uid://dt28hqnxryjob" path="res://Assets/Effects/Yellow Effect Bullet Impact Explosion 32x32.png" id="2_c0myn"]
+[ext_resource type="Texture2D" uid="uid://cww33ytjpbamo" path="res://Assets/Effects/Explosao_Spritesheet.png" id="2_c0myn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o1g8r"]
 radius = 50.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hfm11"]
 atlas = ExtResource("2_c0myn")
-region = Rect2(512, 384, 32, 32)
+region = Rect2(0, 0, 750, 550)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dp5bl"]
 atlas = ExtResource("2_c0myn")
-region = Rect2(544, 384, 32, 32)
+region = Rect2(750, 0, 750, 550)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vnhj7"]
 atlas = ExtResource("2_c0myn")
-region = Rect2(576, 384, 32, 32)
+region = Rect2(1500, 0, 750, 550)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pkflk"]
 atlas = ExtResource("2_c0myn")
-region = Rect2(608, 384, 32, 32)
+region = Rect2(0, 550, 750, 550)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1bwx"]
+atlas = ExtResource("2_c0myn")
+region = Rect2(750, 550, 750, 550)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3gb4"]
+atlas = ExtResource("2_c0myn")
+region = Rect2(1500, 550, 750, 550)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dprfd"]
+atlas = ExtResource("2_c0myn")
+region = Rect2(0, 1100, 750, 550)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wq2qy"]
 animations = [{
@@ -39,6 +51,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pkflk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1bwx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3gb4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dprfd")
 }, {
 "duration": 1.0,
 "texture": null
@@ -61,8 +82,8 @@ debug_color = Color(0.99215686, 0, 0, 0.41960785)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=66101145]
 z_index = 1
 texture_filter = 1
-scale = Vector2(2.65625, 2.65625)
+scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_wq2qy")
 autoplay = "default"
-frame = 5
+frame = 8
 frame_progress = 1.0

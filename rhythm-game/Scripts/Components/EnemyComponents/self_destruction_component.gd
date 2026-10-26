@@ -23,6 +23,7 @@ func start_countdown() -> void:
 	tween.tween_callback(explode)
 
 func explode() -> void:
+	
 	is_exploding.emit()
 	var explosion : HitboxComponent = SELF_DESTRUCTION_AREA.instantiate()
 	explosion.damage = damage

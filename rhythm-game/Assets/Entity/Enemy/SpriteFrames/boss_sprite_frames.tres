@@ -1,20 +1,21 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://cvn4jo40vicu"]
 
-[ext_resource type="Texture2D" uid="uid://by6wa2ghwntw6" path="res://Assets/Icon/pinball_image.png" id="1_a713j"]
+[ext_resource type="Texture2D" uid="uid://bhsfq2ykdh3if" path="res://Assets/Entity/Enemy/Boss/BossSprite.png" id="1_a713j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8n3t"]
+atlas = ExtResource("1_a713j")
+region = Rect2(0, 0, 1116, 837)
 
 [resource]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_a713j")
-}],
+"frames": [],
 "loop": 1,
 "name": &"Fighting",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_a713j")
+"texture": SubResource("AtlasTexture_g8n3t")
 }],
 "loop": 1,
 "name": &"Idling",

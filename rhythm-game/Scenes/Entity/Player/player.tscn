@@ -19,6 +19,7 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_gfrdd"]
+offsets = PackedFloat32Array(0, 0.99250937)
 colors = PackedColorArray(1, 1, 1, 0, 0.3372549, 0.15294118, 0.32941177, 1)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bo1nx"]

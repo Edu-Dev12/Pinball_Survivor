@@ -3,49 +3,36 @@
 [ext_resource type="Script" uid="uid://cx51qp6cl6ttm" path="res://Scripts/Environment/Structures/structure.gd" id="1_nto01"]
 [ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/HealthComponents/health_component.gd" id="1_oghan"]
 [ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/HurtboxComponents/hurtbox_component.gd" id="2_3ipfl"]
-[ext_resource type="Texture2D" uid="uid://caacjc1hrrj21" path="res://Assets/Enviroment/Structure/Bumper_Spritesheet.png" id="2_b5jrd"]
+[ext_resource type="Texture2D" uid="uid://cl7m2kqber1ls" path="res://Assets/Enviroment/Structure/BumperPlaneta.png" id="2_avsp8"]
 [ext_resource type="Script" uid="uid://gre2rxaqfxfc" path="res://Scripts/Components/StructureComponents/structure_death_component.gd" id="5_7vm0e"]
-[ext_resource type="PackedScene" uid="uid://bimrga5n7rcws" path="res://Scenes/Environment/Structure/bumper_effect.tscn" id="5_avsp8"]
+[ext_resource type="PackedScene" uid="uid://bimrga5n7rcws" path="res://Scenes/Effects/bumper_effect.tscn" id="5_avsp8"]
 [ext_resource type="PackedScene" uid="uid://6cme64k5pcmd" path="res://Scenes/UI/hp_bar.tscn" id="7_avsp8"]
 [ext_resource type="Script" uid="uid://cgntmhvnp3yuv" path="res://Scripts/Components/bumper_aoe_component.gd" id="7_b5jrd"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_avsp8"]
-atlas = ExtResource("2_b5jrd")
-region = Rect2(0, 0, 360, 270)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_550kq"]
-atlas = ExtResource("2_b5jrd")
-region = Rect2(360, 0, 360, 270)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gtqew"]
-atlas = ExtResource("2_b5jrd")
-region = Rect2(720, 0, 360, 270)
+atlas = ExtResource("2_avsp8")
+region = Rect2(0, 0, 864, 648)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pv2mu"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_avsp8")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_550kq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gtqew")
 }],
 "loop": 0,
 "name": &"default",
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3ipfl"]
-radius = 21.023796
+[sub_resource type="CircleShape2D" id="CircleShape2D_ft3o8"]
+radius = 24.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vflbt"]
 radius = 23.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_o1g8r"]
-radius = 23.194826
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_avsp8"]
+radius = 34.0
+height = 110.0
 
 [node name="Bumper" type="StaticBody2D" unique_id=1580442525 groups=["Structure"]]
 collision_layer = 64
@@ -53,12 +40,13 @@ collision_mask = 0
 script = ExtResource("1_nto01")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1915599717]
-position = Vector2(0, 3.0000005)
-scale = Vector2(0.215, 0.215)
+position = Vector2(0, -2)
+scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_pv2mu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=643430479]
-shape = SubResource("CircleShape2D_3ipfl")
+rotation = 1.5707964
+shape = SubResource("CircleShape2D_ft3o8")
 
 [node name="HurtBoxComponent" type="Area2D" parent="." unique_id=1318254410 node_paths=PackedStringArray("health_component")]
 collision_layer = 256
@@ -79,13 +67,16 @@ bumper_visual = NodePath("../AnimatedSprite2D")
 bumper_effect_scene = ExtResource("5_avsp8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BumperAOEComponent" unique_id=1913241770]
-shape = SubResource("CircleShape2D_o1g8r")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_avsp8")
 debug_color = Color(0.7935812, 0.4267305, 7.70092e-07, 0.41960785)
 
 [node name="HealthComponent" type="Node2D" parent="." unique_id=913220320]
 script = ExtResource("1_oghan")
 
 [node name="HPBarComponent" parent="." unique_id=734155304 node_paths=PackedStringArray("health_component") instance=ExtResource("7_avsp8")]
+offset_top = -37.0
+offset_bottom = -32.0
 health_component = NodePath("../HealthComponent")
 
 [node name="StructureDeathComponent" type="Node" parent="." unique_id=2143347069 node_paths=PackedStringArray("structure", "animatedSprite2D", "health_component")]

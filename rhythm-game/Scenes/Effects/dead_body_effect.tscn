@@ -1,11 +1,40 @@
 [gd_scene format=3 uid="uid://u116yfkbse07"]
 
 [ext_resource type="Script" uid="uid://cc87iwelxl5ii" path="res://Scripts/Effects/dead_body_effect.gd" id="1_tdwn3"]
-[ext_resource type="Texture2D" uid="uid://bmj13veyb0cs4" path="res://Assets/Entity/Enemy/Enemy_Spritesheet.png" id="2_8a2vg"]
+[ext_resource type="Texture2D" uid="uid://8ocgn8jrey8w" path="res://Assets/Effects/sprite-sheet.png" id="2_8a2vg"]
+[ext_resource type="Texture2D" uid="uid://cq1sxamphxh1v" path="res://Assets/Effects/Pecas_Spritesheet.png" id="3_ipi7t"]
 
 [sub_resource type="Gradient" id="Gradient_wq2qy"]
-offsets = PackedFloat32Array(0.11949685, 1)
+offsets = PackedFloat32Array(0.11949685, 0.26966292)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_426oi"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_07561"]
+_data = [Vector2(0.007905133, 1), 0.0, 0.0, 0, 0, Vector2(0.78656125, 0.8260869), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_i2oxg"]
+curve = SubResource("Curve_07561")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pv2mu"]
+particle_flag_disable_z = true
+angle_min = 1.0728835e-05
+angle_max = 1.0728835e-05
+spread = 30.0
+initial_velocity_min = 120.0
+initial_velocity_max = 200.0
+angular_velocity_min = 336.77
+angular_velocity_max = 336.77
+gravity = Vector3(0, 9, 0)
+scale_min = 0.5
+scale_max = 0.5
+alpha_curve = SubResource("CurveTexture_i2oxg")
+anim_offset_max = 1.0
 
 [node name="DeadBodyEffect" type="Node2D" unique_id=1797366084]
 script = ExtResource("1_tdwn3")
@@ -20,6 +49,16 @@ spread = 0.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 312.85
 initial_velocity_max = 312.85
-angular_velocity_min = 647.6
-angular_velocity_max = 647.6
+angular_velocity_min = 300.0
+angular_velocity_max = 300.0
 color_ramp = SubResource("Gradient_wq2qy")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1883873598]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_426oi")
+emitting = false
+amount = 5
+texture = ExtResource("3_ipi7t")
+one_shot = true
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_pv2mu")
