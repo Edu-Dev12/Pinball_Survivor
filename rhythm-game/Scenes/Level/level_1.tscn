@@ -21,6 +21,7 @@ boss_spawn_pointer = NodePath("BossSpawnPoint")
 boss_to_spawn = ExtResource("2_4snqv")
 next_level = "run_over_level"
 level_map = NodePath("Pinball_Machine")
+level_initial_time_seconds = 90
 player = NodePath("Player")
 enemies = NodePath("Enemies")
 

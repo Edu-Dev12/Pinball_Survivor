@@ -7,10 +7,12 @@ class_name BumperAOEComponent
 @export var punch_scale: Vector2 = Vector2(1.5, 1.5)
 @export var push_radius: float = 100
 @export var tween_duration: float = 0.1
+@export var default_scale: Vector2
 
 @export var bumper_effect_scene: PackedScene
 
 func _ready() -> void:
+	default_scale = bumper_visual.scale
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Node2D) -> void:
@@ -50,11 +52,10 @@ func apply_aoe_push() -> void:
 func play_punch_tween() -> void:
 	if not bumper_visual:
 		return
-	var original_scale = bumper_visual.scale
 	var tween = create_tween().set_parallel(false)
 	
-	tween.tween_property(bumper_visual, "scale", original_scale * punch_scale, tween_duration)
-	tween.tween_property(bumper_visual, "scale", original_scale, tween_duration)
+	tween.tween_property(bumper_visual, "scale", default_scale * punch_scale, tween_duration)
+	tween.tween_property(bumper_visual, "scale", default_scale, tween_duration)
 
 func create_bumper_effect():
 	var bumper_effect = bumper_effect_scene.instantiate() as Node2D
