@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bhsfq2ykdh3if" path="res://Assets/Entity/Enemy/Boss/BossSprite.png" id="1_a713j"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g8n3t"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_a713j"]
 atlas = ExtResource("1_a713j")
 region = Rect2(0, 0, 1116, 837)
 
@@ -15,7 +15,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g8n3t")
+"texture": SubResource("AtlasTexture_a713j")
 }],
 "loop": 1,
 "name": &"Idling",
