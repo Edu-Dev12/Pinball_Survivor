@@ -16,9 +16,6 @@ func _ready() -> void:
 
 func boss_hurt(_hitbox: HitboxComponent) -> void:
 	var tween = create_tween()
-	tween.tween_property(animated_sprite_2d, "modulate", Color.RED, 0.2)
-	tween.tween_property(animated_sprite_2d, "modulate", Color.WHITE, 0.2)
-	
 	var new_scale = max(scale.x * scale_decrease_factor, min_scale)
 	tween.tween_property(self, "scale", Vector2(new_scale, new_scale), 0.2)
 	speed *= speed_multiplier

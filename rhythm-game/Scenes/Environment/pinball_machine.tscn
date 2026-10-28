@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://djn5n7ut0aowu" path="res://Scripts/Environment/level_map.gd" id="1_y7jvf"]
 [ext_resource type="TileSet" uid="uid://cts6hhlphsphi" path="res://Assets/Enviroment/TileSet/placeholder_tile_set.tres" id="2_lm7xw"]
-[ext_resource type="Texture2D" uid="uid://nkhormlrst7h" path="res://Assets/Enviroment/fundo 3.png" id="3_roynb"]
+[ext_resource type="Texture2D" uid="uid://bfrq0hiwjgq0l" path="res://Assets/Enviroment/fundo_3.png" id="3_roynb"]
 
 [node name="PinballMachine" type="Node2D" unique_id=1384302898 node_paths=PackedStringArray("tile_map")]
 script = ExtResource("1_y7jvf")

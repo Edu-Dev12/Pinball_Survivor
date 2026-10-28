@@ -55,6 +55,7 @@ func setup_timer() -> void:
 	timer = Timer.new()
 	timer.wait_time = 1.0
 	timer.autostart = false
+	timer.ignore_time_scale = true
 	timer.timeout.connect(_on_timer_timeout)
 	add_child(timer)
 

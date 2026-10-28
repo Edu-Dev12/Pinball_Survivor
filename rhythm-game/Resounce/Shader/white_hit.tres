@@ -1,0 +1,38 @@
+[gd_resource type="VisualShader" format=3 uid="uid://jp7c2s4sppg3"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_fmcfl"]
+output_port_for_preview = 0
+parameter_name = "ColorParameter"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_7cn0i"]
+output_port_for_preview = 0
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(1, 1, 1)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_wi05r"]
+input_name = "texture"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_8engm"]
+output_port_for_preview = 0
+source = 5
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_pwxpg"]
+output_port_for_preview = 0
+parameter_name = "Intensity"
+
+[resource]
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(740, 140)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_fmcfl")
+nodes/fragment/2/position = Vector2(-40, 360)
+nodes/fragment/3/node = SubResource("VisualShaderNodeMix_7cn0i")
+nodes/fragment/3/position = Vector2(460, 420)
+nodes/fragment/4/node = SubResource("VisualShaderNodeInput_wi05r")
+nodes/fragment/4/position = Vector2(-380, 80)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_8engm")
+nodes/fragment/5/position = Vector2(40, -20)
+nodes/fragment/6/node = SubResource("VisualShaderNodeFloatParameter_pwxpg")
+nodes/fragment/6/position = Vector2(-20, 660)
+nodes/fragment/connections = PackedInt32Array(3, 0, 0, 0, 4, 0, 5, 2, 5, 0, 3, 0, 2, 0, 3, 1, 6, 0, 3, 2)

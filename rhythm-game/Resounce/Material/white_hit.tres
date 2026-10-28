@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://2fm1x1kgwske"]
+
+[ext_resource type="Shader" uid="uid://jp7c2s4sppg3" path="res://Resounce/Shader/white_hit.tres" id="1_o377k"]
+
+[resource]
+shader = ExtResource("1_o377k")
+shader_parameter/ColorParameter = Color(1, 1, 1, 1)
+shader_parameter/Intensity = 0.0
