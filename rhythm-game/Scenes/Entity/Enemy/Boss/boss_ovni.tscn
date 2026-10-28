@@ -16,11 +16,17 @@
 [ext_resource type="Script" uid="uid://bwalxg3elnj63" path="res://Scripts/Entity/FSM/Base/state_chance.gd" id="13_6f68d"]
 [ext_resource type="Script" uid="uid://cmgxvsaj8dof1" path="res://Scripts/Entity/FSM/run_over.gd" id="13_54n7g"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_o1g8r"]
-radius = 216.7692
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vytt3"]
+radius = 100.0
+height = 413.3333
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nsn1a"]
-radius = 230.02415
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cyvq4"]
+radius = 223.33333
+height = 873.3333
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_okwah"]
+radius = 143.33333
+height = 633.3333
 
 [sub_resource type="Resource" id="Resource_54n7g"]
 script = ExtResource("13_6f68d")
@@ -43,7 +49,8 @@ sprite_frames = ExtResource("1_trbu4")
 animation = &"Idling"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2098884020]
-shape = SubResource("CircleShape2D_o1g8r")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_vytt3")
 
 [node name="HurtboxComponent" type="Area2D" parent="." unique_id=991444808 node_paths=PackedStringArray("health_component")]
 collision_layer = 32
@@ -53,7 +60,8 @@ health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://csy647r8tv7w5"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=252012112]
-shape = SubResource("CircleShape2D_nsn1a")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_cyvq4")
 debug_color = Color(0.9954062, 0, 0.21373373, 0.41960785)
 
 [node name="HitboxComponent" type="Area2D" parent="." unique_id=1082325010]
@@ -64,7 +72,8 @@ damage = 1
 metadata/_custom_type_script = "uid://nd4ko4vpkdi3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1449839098]
-shape = SubResource("CircleShape2D_nsn1a")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_okwah")
 debug_color = Color(0.9954062, 0, 0.21373373, 0.41960785)
 
 [node name="HPBarComponent" parent="." unique_id=734155304 node_paths=PackedStringArray("health_component") instance=ExtResource("3_57g3f")]
