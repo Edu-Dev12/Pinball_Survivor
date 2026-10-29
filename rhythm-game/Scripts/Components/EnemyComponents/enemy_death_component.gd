@@ -10,49 +10,47 @@ const DEAD_BODY_EFFECT = preload("uid://u116yfkbse07")
 @export var score_effect_scene : PackedScene
 @export var hit_effect_scene: PackedScene
 
+@export var effects: Array[EffectData]
+
+var final_score: int = 0
+
 func _ready() -> void:
 	health_component.died.connect(death)
 
 func death() -> void:
 	animated_sprite_2d.set_deferred("visible", false)
+
+	calculate_final_score()
 	
-	var final_score = score_value
+	Ui.add_score(final_score)
+	create_effects()
+	
+	if enemy.is_in_group(Global.BOSS_GROUP):
+		SignalManager.level_won.emit()
+	enemy.queue_free()
+
+func create_effects():
+	var context: Dictionary = {
+		"position": enemy.global_position,
+		"score": final_score,
+		"direction": get_effect_direction(),
+		"sprite": animated_sprite_2d.sprite_frames.get_frame_texture(animated_sprite_2d.animation, animated_sprite_2d.frame),
+		"scale": animated_sprite_2d.scale,
+		
+	}
+	
+	GlobalEffectManagers.spawn_effects(effects, context)
+
+func calculate_final_score():
+	final_score = score_value
 	var player_streak = get_tree().get_first_node_in_group(Global.PLAYER_STREAK_GROUP) as PlayerStreakComponent
 	
 	if player_streak:
 		var bonus = 1.0 + (player_streak.player_streak_kill * player_streak.streak_multiplayer)
 		final_score = int(score_value * bonus)
 		player_streak.add_kill()
-	
-	Ui.add_score(final_score)
-	create_body_effect()
-	create_score_effect(final_score)
-	crete_hit_effect()
-	
-	if enemy.is_in_group(Global.BOSS_GROUP):
-		SignalManager.level_won.emit()
-	enemy.queue_free()
 
-func create_body_effect():
-	var effect: DeadBodyEffect = DEAD_BODY_EFFECT.instantiate()
+func get_effect_direction() -> Vector2:
 	var player = get_tree().get_first_node_in_group(Global.PLAYER_BODY_GROUP)
 	
-	effect.sprite = animated_sprite_2d.sprite_frames.get_frame_texture(animated_sprite_2d.animation, animated_sprite_2d.frame)
-	effect.new_scale = animated_sprite_2d.scale
-	effect.global_position = enemy.global_position
-	
-	var direction = (enemy.global_position - player.global_position).normalized()
-	effect.emmit_direction = direction
-	
-	enemy.get_parent().add_child(effect)
-
-func create_score_effect(final_score: int):
-	var score_effect = score_effect_scene.instantiate() as Node2D
-	score_effect.global_position = enemy.global_position
-	score_effect.score = final_score
-	get_parent().get_parent().add_child(score_effect)
-
-func crete_hit_effect():
-	var hit_effect = hit_effect_scene.instantiate() as Node2D
-	hit_effect.global_position = enemy.global_position
-	get_parent().get_parent().add_child(hit_effect)
+	return (enemy.global_position - player.global_position).normalized()

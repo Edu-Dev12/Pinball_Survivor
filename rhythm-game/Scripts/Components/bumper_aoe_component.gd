@@ -9,7 +9,8 @@ class_name BumperAOEComponent
 @export var tween_duration: float = 0.1
 @export var default_scale: Vector2
 
-@export var bumper_effect_scene: PackedScene
+@export var effects: Array[EffectData]
+
 
 func _ready() -> void:
 	default_scale = bumper_visual.scale
@@ -24,7 +25,7 @@ func _on_body_entered(body: Node2D) -> void:
 			camera.cameraShakeComponent.trigger_shake()
 
 func trigger_bumper_effect() -> void:
-	create_bumper_effect()
+	create_effects()
 	apply_aoe_push()
 	play_punch_tween()
 
@@ -57,7 +58,9 @@ func play_punch_tween() -> void:
 	tween.tween_property(bumper_visual, "scale", default_scale * punch_scale, tween_duration)
 	tween.tween_property(bumper_visual, "scale", default_scale, tween_duration)
 
-func create_bumper_effect():
-	var bumper_effect = bumper_effect_scene.instantiate() as Node2D
-	bumper_effect.global_position = global_position
-	get_parent().get_parent().add_child(bumper_effect)
+func create_effects():
+	var context: Dictionary = {
+		"position": global_position,
+	}
+	
+	GlobalEffectManagers.spawn_effects(effects, context)

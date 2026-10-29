@@ -11,12 +11,36 @@
 [ext_resource type="Script" uid="uid://p85gg66bqnm8" path="res://Scripts/Components/EnemyComponents/enemy_death_component.gd" id="7_pcolw"]
 [ext_resource type="PackedScene" uid="uid://bhq7ci643e2yj" path="res://Scenes/Effects/base_score_effect.tscn" id="8_v5xdt"]
 [ext_resource type="PackedScene" uid="uid://dlsfpaiiacyim" path="res://Scenes/Effects/hit_effect.tscn" id="9_j5h8p"]
+[ext_resource type="Script" uid="uid://ccrb118msosru" path="res://Resource/Effects/Base_Effect_Data.gd" id="12_h0rip"]
+[ext_resource type="Script" uid="uid://bbcfi1e602tuw" path="res://Resource/Effects/position_effect.gd" id="13_xol7p"]
+[ext_resource type="Script" uid="uid://be4sxaq4mu3hc" path="res://Resource/Effects/score_effect_data.gd" id="14_xol7p"]
+[ext_resource type="PackedScene" uid="uid://u116yfkbse07" path="res://Scenes/Effects/dead_body_effect.tscn" id="15_gpx3d"]
+[ext_resource type="Script" uid="uid://c4jv6sqdkonri" path="res://Resource/Effects/complex_effect_data.gd" id="16_td6jc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rrj3t"]
 radius = 14.035668
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_426oi"]
 height = 32.0
+
+[sub_resource type="Resource" id="Resource_ft3o8"]
+script = ExtResource("13_xol7p")
+effect_scene = ExtResource("9_j5h8p")
+metadata/_custom_type_script = "uid://bbcfi1e602tuw"
+
+[sub_resource type="Resource" id="Resource_h0rip"]
+script = ExtResource("14_xol7p")
+effect_scene = ExtResource("8_v5xdt")
+z_index = 4
+metadata/_custom_type_script = "uid://be4sxaq4mu3hc"
+
+[sub_resource type="Resource" id="Resource_xol7p"]
+script = ExtResource("16_td6jc")
+use_direction = true
+use_sprite = true
+use_scale = true
+effect_scene = ExtResource("15_gpx3d")
+metadata/_custom_type_script = "uid://c4jv6sqdkonri"
 
 [sub_resource type="Animation" id="Animation_ytw8e"]
 resource_name = "Charging"
@@ -187,6 +211,7 @@ animated_sprite_2d = NodePath("../AnimatedSprite2D")
 health_component = NodePath("../HealthComponent")
 score_effect_scene = ExtResource("8_v5xdt")
 hit_effect_scene = ExtResource("9_j5h8p")
+effects = Array[ExtResource("12_h0rip")]([SubResource("Resource_ft3o8"), SubResource("Resource_h0rip"), SubResource("Resource_xol7p")])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1299088079]
 libraries/ = SubResource("AnimationLibrary_iel3e")
