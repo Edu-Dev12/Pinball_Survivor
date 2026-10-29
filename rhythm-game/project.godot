@@ -23,9 +23,10 @@ buses/default_bus_layout="uid://cocegwu712p6g"
 
 SignalManager="*uid://dw3fukwpg6503"
 AudioManager="*uid://biimlykjoq3x0"
+GlobalEffectManagers="*uid://cjoetwub1yyyi"
 Global="*uid://1jqdj4y776tq"
-TimeManager="*uid://b22aop0wmhcsq"
 Ui="*uid://chgd83msiecgj"
+TimeManager="*uid://b22aop0wmhcsq"
 
 [display]
 
@@ -37,7 +38,7 @@ window/stretch/aspect="expand"
 folder_colors={
 "res://Assets/": "orange",
 "res://Audio/": "green",
-"res://Resounce/": "gray",
+"res://Resource/": "gray",
 "res://Scenes/": "purple",
 "res://Scripts/": "blue"
 }

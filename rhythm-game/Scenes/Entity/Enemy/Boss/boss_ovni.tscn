@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bhf85ltaqsfqp" path="res://Scripts/Entity/Enemy/Boss/boss_ovni.gd" id="1_eh146"]
 [ext_resource type="SpriteFrames" uid="uid://cvn4jo40vicu" path="res://Assets/Entity/Enemy/SpriteFrames/boss_sprite_frames.tres" id="1_trbu4"]
 [ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/HurtboxComponents/hurtbox_component.gd" id="2_3mmt8"]
-[ext_resource type="Material" uid="uid://2fm1x1kgwske" path="res://Resounce/Material/white_hit.tres" id="2_8hht6"]
+[ext_resource type="Material" uid="uid://2fm1x1kgwske" path="res://Resource/Material/white_hit.tres" id="2_8hht6"]
 [ext_resource type="PackedScene" uid="uid://6cme64k5pcmd" path="res://Scenes/UI/hp_bar.tscn" id="3_57g3f"]
 [ext_resource type="Script" uid="uid://dirog1u42u7vt" path="res://Scripts/Components/BehaviorComponents/rebounce_behavior_component.gd" id="3_nsn1a"]
 [ext_resource type="Script" uid="uid://nd4ko4vpkdi3" path="res://Scripts/Components/HitboxComponents/hitbox_component.gd" id="4_okwah"]
@@ -45,6 +45,7 @@ script = ExtResource("1_eh146")
 animated_sprite_2d = NodePath("AnimatedSprite2D")
 hurtbox = NodePath("HurtboxComponent")
 speed = 250.0
+effects = Array[PackedScene]([ExtResource("7_57g3f")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1610083332]
 material = ExtResource("2_8hht6")

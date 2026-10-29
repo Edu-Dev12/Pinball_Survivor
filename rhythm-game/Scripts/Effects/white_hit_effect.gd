@@ -21,3 +21,5 @@ func hit_effect(_hit_box: HitboxComponent):
 	
 	await tween.finished
 	animated_sprite.material = null
+	
+	

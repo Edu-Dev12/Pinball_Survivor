@@ -11,6 +11,8 @@ class_name BossOVNI
 @export var speed_multiplier: float = 1.1       # Aumenta 10% da velocidade a cada hit
 @export var min_scale: float = 0.1
 
+@export var effects: Array[PackedScene]
+
 func _ready() -> void:
 	hurtbox.was_hurt.connect(boss_hurt)
 
