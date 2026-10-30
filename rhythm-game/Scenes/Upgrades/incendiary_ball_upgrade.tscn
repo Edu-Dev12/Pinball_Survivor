@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://jsrv1q7anjmf"]
 
-[ext_resource type="Script" uid="uid://b6xf3b23lxtxr" path="res://Scripts/Upgrades/incendiary_ball_upgrade.gd" id="1_vjpln"]
+[ext_resource type="Script" uid="uid://b6xf3b23lxtxr" path="res://Scripts/Special/incendiary_ball_upgrade.gd" id="1_vjpln"]
 
 [node name="IncendiaryBallUpgrade" type="Node2D" unique_id=1858903025]
 script = ExtResource("1_vjpln")

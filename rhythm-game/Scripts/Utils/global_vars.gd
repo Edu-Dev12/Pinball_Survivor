@@ -20,6 +20,18 @@ const ENEMY_HITBOX_LAYER: String = "ENEMY_HITBOX"
 const ENEMY_HURTBOX_LAYER: String = "ENEMY_HURTBOX"
 const STRUCTURE_COLLISION_LAYER: String = "STRUCTURE_COLLISION"
 
+#BALL TYPES
+enum ball_types {
+	FIRE_BALL,
+	LIGHTNING_BALL
+}
+
+#SPECIAL TYPES
+enum special_types {
+	FIRE_TRAIL,
+	LIGHTNING_TESLA
+}
+
 # BGM
 const BGM_SPACE_CADET_PINBALL = preload("uid://dysdjipgntjs6")
 

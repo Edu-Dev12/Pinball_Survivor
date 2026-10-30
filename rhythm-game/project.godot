@@ -27,6 +27,7 @@ GlobalEffectManagers="*uid://cjoetwub1yyyi"
 Global="*uid://1jqdj4y776tq"
 Ui="*uid://chgd83msiecgj"
 TimeManager="*uid://b22aop0wmhcsq"
+GlobalInputManager="*uid://dhppp2t3mwj0w"
 
 [display]
 
