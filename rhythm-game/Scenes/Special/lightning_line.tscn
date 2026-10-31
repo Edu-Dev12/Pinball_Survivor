@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cnygn52nn1emv"]
+
+[ext_resource type="Shader" uid="uid://y2scpvk1d8vs" path="res://Resource/Shader/lightning.tres" id="1_37bta"]
+[ext_resource type="Texture2D" uid="uid://dd5sqbs3iikpb" path="res://Assets/Effects/masks for  particles/masks for  particles/lightning_effect3.png" id="2_6su0g"]
+
+[sub_resource type="Gradient" id="Gradient_wjfq1"]
+offsets = PackedFloat32Array(0.28870293, 0.54811716, 1)
+colors = PackedColorArray(0.45882353, 0.41960785, 0.9019608, 1, 0, 16.638432, 18.892157, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3jmme"]
+gradient = SubResource("Gradient_wjfq1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pv2mu"]
+shader = ExtResource("1_37bta")
+shader_parameter/VanishingValue = 0.0
+shader_parameter/Speed = Vector2(-1, 0)
+shader_parameter/Texture2DParameter = ExtResource("2_6su0g")
+shader_parameter/ColorGradient = SubResource("GradientTexture1D_3jmme")
+
+[node name="Line2D" type="Line2D" unique_id=1255451242]
+z_index = 3
+material = SubResource("ShaderMaterial_pv2mu")
+rotation = -0.07039914
+width = 31.545
+default_color = Color(0.07287166, 1.290583, 1.293, 1)
+texture_mode = 2

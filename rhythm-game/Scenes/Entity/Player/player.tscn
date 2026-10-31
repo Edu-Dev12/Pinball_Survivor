@@ -15,8 +15,7 @@
 [ext_resource type="Script" uid="uid://nd4ko4vpkdi3" path="res://Scripts/Components/HitboxComponents/hitbox_component.gd" id="11_4osmd"]
 [ext_resource type="Script" uid="uid://k5t182vt4jh" path="res://Scripts/Components/Player/player_streak_component.gd" id="13_wfu16"]
 [ext_resource type="Texture2D" uid="uid://bmap38e2jv3w7" path="res://Assets/Effects/masks for  particles/masks for  particles/ring effect.png" id="14_nbshm"]
-[ext_resource type="Shader" uid="uid://y2scpvk1d8vs" path="res://Resource/Shader/lightning.tres" id="15_wjfq1"]
-[ext_resource type="Texture2D" uid="uid://dd5sqbs3iikpb" path="res://Assets/Effects/masks for  particles/masks for  particles/lightning_effect3.png" id="16_wjfq1"]
+[ext_resource type="PackedScene" uid="uid://cnygn52nn1emv" path="res://Scenes/Special/lightning_line.tscn" id="16_yrgus"]
 [ext_resource type="Script" uid="uid://142jwxshyx70" path="res://Scripts/Special/upgrade_lightning_tesla.gd" id="17_yrgus"]
 
 [sub_resource type="Curve" id="Curve_gfrdd"]
@@ -66,20 +65,6 @@ particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_n1v3y")
 color_ramp = SubResource("GradientTexture1D_p1tfq")
-
-[sub_resource type="Gradient" id="Gradient_wjfq1"]
-offsets = PackedFloat32Array(0.28870293, 0.54811716, 1)
-colors = PackedColorArray(0.45882353, 0.41960785, 0.9019608, 1, 0, 16.638432, 18.892157, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_3jmme"]
-gradient = SubResource("Gradient_wjfq1")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pv2mu"]
-shader = ExtResource("15_wjfq1")
-shader_parameter/VanishingValue = 0.0
-shader_parameter/Speed = Vector2(0.5, 0)
-shader_parameter/Texture2DParameter = ExtResource("16_wjfq1")
-shader_parameter/ColorGradient = SubResource("GradientTexture1D_3jmme")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wq2qy"]
 radius = 194.06444
@@ -206,23 +191,19 @@ streak_timeout = 0.5
 [node name="UpgradeLightningTesla" type="Node2D" parent="." unique_id=443563813 node_paths=PackedStringArray("specialArea")]
 script = ExtResource("17_yrgus")
 specialArea = NodePath("SpecialArea")
+expansion_time = 1.0
+max_radius = 200.0
+lightning_scene = ExtResource("16_yrgus")
+lightning_duration = 0.5
 
 [node name="SpecialLightingEffect" type="Node2D" parent="UpgradeLightningTesla" unique_id=409532635]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="UpgradeLightningTesla/SpecialLightingEffect" unique_id=1800898453]
+visible = false
 material = SubResource("CanvasItemMaterial_wksao")
 amount = 1
 texture = ExtResource("14_nbshm")
 process_material = SubResource("ParticleProcessMaterial_pv2mu")
-
-[node name="Line2D" type="Line2D" parent="UpgradeLightningTesla/SpecialLightingEffect" unique_id=1208628072]
-material = SubResource("ShaderMaterial_pv2mu")
-position = Vector2(-88.30412, -108.75377)
-rotation = -0.07039914
-points = PackedVector2Array(-43.10457, 192.52792, -5.2692413, 77.82182, 57.737553, 65.04903, 83.31811, 113.767715)
-width = 31.545
-default_color = Color(0.07287166, 1.290583, 1.293, 1)
-texture_mode = 2
 
 [node name="SpecialArea" type="Area2D" parent="UpgradeLightningTesla" unique_id=1272747306]
 collision_layer = 0
