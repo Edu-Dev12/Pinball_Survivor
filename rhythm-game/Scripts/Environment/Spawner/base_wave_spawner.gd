@@ -4,6 +4,7 @@ class_name BaseWaveSpawner
 
 @export var enabled = true
 @export_group("Configurações de Inimigo")
+@export var waves: Array[WaveData]
 @export var enemies_to_spawn: Array[EnemyToSpawnData]
 
 @export_group("Tempos do Spawner")

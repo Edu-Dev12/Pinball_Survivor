@@ -1,28 +1,12 @@
 [gd_scene format=3 uid="uid://cs5005lieyom7"]
 
 [ext_resource type="Script" uid="uid://pcdiomwxhlmf" path="res://Scripts/Environment/Spawner/base_wave_spawner.gd" id="1_owog0"]
-[ext_resource type="Script" uid="uid://svqn7y4t103m" path="res://Resource/Enemy/enemy_to_spawn_data.gd" id="2_5k2cs"]
-[ext_resource type="PackedScene" uid="uid://da270g7fgddom" path="res://Scenes/Entity/Enemy/enemy_test.tscn" id="3_2h4qr"]
-[ext_resource type="PackedScene" uid="uid://dssk46d0vkivi" path="res://Scenes/Entity/Enemy/first_enemy.tscn" id="4_ivkjw"]
-
-[sub_resource type="Resource" id="Resource_owog0"]
-script = ExtResource("2_5k2cs")
-enemy_type = ExtResource("3_2h4qr")
-quantity = 3
-metadata/_custom_type_script = "uid://svqn7y4t103m"
-
-[sub_resource type="Resource" id="Resource_5k2cs"]
-script = ExtResource("2_5k2cs")
-enemy_type = ExtResource("4_ivkjw")
-quantity = 7
-metadata/_custom_type_script = "uid://svqn7y4t103m"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o1g8r"]
 
 [node name="BaseWaveSpawner" type="Area2D" unique_id=568859415 node_paths=PackedStringArray("collision_shape") groups=["Spawner"]]
 script = ExtResource("1_owog0")
 enabled = null
-enemies_to_spawn = Array[ExtResource("2_5k2cs")]([SubResource("Resource_owog0"), SubResource("Resource_5k2cs")])
 collision_shape = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=687358155]
