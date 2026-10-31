@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="StateChance" format=3 uid="uid://beyo040vugax4"]
 
-[ext_resource type="Script" uid="uid://bwalxg3elnj63" path="res://Scripts/Entity/FSM/Base/state_chance.gd" id="1_gglsf"]
+[ext_resource type="Script" uid="uid://bwalxg3elnj63" path="res://Resource/FSM/state_chance_data.gd" id="1_gglsf"]
 
 [resource]
 script = ExtResource("1_gglsf")

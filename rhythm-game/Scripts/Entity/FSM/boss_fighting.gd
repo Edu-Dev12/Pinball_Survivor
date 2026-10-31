@@ -2,7 +2,7 @@ extends EnemyState
 class_name BossFighting
 
 @export_group("States")
-@export var weighted_states: Array[StateChance]
+@export var weighted_states: Array[StateChanceData]
 
 @export_group("Values")
 @export var rest_time: float = 3.0

@@ -13,9 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://bhq7ci643e2yj" path="res://Scenes/Effects/base_score_effect.tscn" id="6_q5wtb"]
 [ext_resource type="PackedScene" uid="uid://dlsfpaiiacyim" path="res://Scenes/Effects/hit_effect.tscn" id="7_57g3f"]
 [ext_resource type="Script" uid="uid://bvkt1n1tetopp" path="res://Scripts/Entity/FSM/boss_idling.gd" id="7_trbu4"]
-[ext_resource type="Script" uid="uid://b6rep5mr8lt6k" path="res://Scripts/Entity/FSM/boss_menancing.gd" id="8_ra502"]
+[ext_resource type="Script" uid="uid://b6rep5mr8lt6k" path="res://Scripts/Entity/FSM/boss_fighting.gd" id="8_ra502"]
 [ext_resource type="Script" uid="uid://c1thi6r2w1nda" path="res://Scripts/Effects/white_hit_effect.gd" id="11_bml7t"]
-[ext_resource type="Script" uid="uid://bwalxg3elnj63" path="res://Scripts/Entity/FSM/Base/state_chance.gd" id="13_6f68d"]
+[ext_resource type="Script" uid="uid://bwalxg3elnj63" path="res://Resource/FSM/state_chance_data.gd" id="13_6f68d"]
 [ext_resource type="Script" uid="uid://cmgxvsaj8dof1" path="res://Scripts/Entity/FSM/run_over.gd" id="13_54n7g"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vytt3"]

@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://c46x7behm7yyv" path="res://Scenes/Entity/Player/player.tscn" id="2_m5hwo"]
 [ext_resource type="PackedScene" uid="uid://cs5005lieyom7" path="res://Scenes/Environment/Spawner/base_wave_spawner.tscn" id="4_knogg"]
 [ext_resource type="PackedScene" uid="uid://dl56cslmn1pl7" path="res://Scenes/Environment/Structure/bumper.tscn" id="6_uoico"]
-[ext_resource type="PackedScene" uid="uid://dssk46d0vkivi" path="res://Scenes/Entity/Enemy/first_enemy.tscn" id="7_4snqv"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_o1g8r"]
 vertices = PackedVector2Array(596.3672, 300, 874, 200.36719, 889.6875, 196.17969, 1200.0078, 545.0078, 592.1797, 315.6875, 858.3125, 196.17969, 1200.9766, -17.78125, 905.3672, 169, 901.1797, 153.3125, 901.1797, 184.6875, 846.8203, 184.6875, 592.1797, 284.3125, 842.6328, 169, 580.6875, 272.8203, 276.1797, 453.6875, 280.3672, 438, 889.6875, 141.82031, 580.6875, 327.1797, 276.1797, 422.3125, 565, 331.3672, 549.3125, 327.1797, 537.8203, 315.6875, 533.6328, 300, 264.6875, 410.8203, -45.03125, 7.7890625, 846.8203, 153.3125, 565, 268.6328, 537.8203, 284.3125, 249, 406.6328, 264.6875, 465.1797, 874, 137.63281, 858.3125, 141.82031, 549.3125, 272.8203, 233.3125, 410.8203, -46.960938, 546.97656, 221.82031, 422.3125, 217.63281, 438, 221.82031, 453.6875, 233.3125, 465.1797, 249, 469.3672)
@@ -35,15 +34,11 @@ position = Vector2(577, 105)
 [node name="BaseWaveSpawner" parent="Enemies" unique_id=568859415 instance=ExtResource("4_knogg")]
 position = Vector2(-30, 150)
 enabled = true
-enemy_to_spawn = ExtResource("7_4snqv")
-max_qty_to_spawn = 15
 zone_size = Vector2(50, 300)
 
 [node name="BaseWaveSpawner2" parent="Enemies" unique_id=1235780487 instance=ExtResource("4_knogg")]
 position = Vector2(1180, 420)
 enabled = true
-enemy_to_spawn = ExtResource("7_4snqv")
-max_qty_to_spawn = 15
 zone_size = Vector2(50, 300)
 
 [node name="Structures" type="Node2D" parent="." unique_id=1233858462]
