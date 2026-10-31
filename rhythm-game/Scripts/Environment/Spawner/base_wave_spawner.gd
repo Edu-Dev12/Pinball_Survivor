@@ -7,8 +7,8 @@ class_name BaseWaveSpawner
 @export var loop_after_all_waves : bool = false
 
 @export_group("Configurações de Inimigo")
-@export var waves: Array[WaveData]
-@export var enemies_to_spawn: Array[EnemyToSpawnData]
+# @export waves: Array[WaveData] = []
+@export var enemies_to_spawn: Array[EnemyToSpawnData] = []
 
 @export_group("Tempos do Spawner")
 @export var wave_cooldown: float = 5.0 ## Tempo de espera entre cada onda
@@ -48,13 +48,15 @@ func config_timer() -> void:
 	spawn_timer.timeout.connect(verify_spawn)
 
 func verify_spawn() -> void:
-	if is_spawning or spawned_enemies.size() >= max_qty_to_spawn:
+	if !enabled or is_spawning or spawned_enemies.size() >= max_qty_to_spawn:
 		return
 	
 	var camera = get_viewport().get_camera_2d()
 	if not camera:
 		return
+	
 	is_spawning = true
+	spawned_enemies = spawned_enemies.filter(func(e): return is_instance_valid(e))
 	
 	var spawn_queue: Array[PackedScene] = []
 	for config in enemies_to_spawn:
@@ -62,7 +64,7 @@ func verify_spawn() -> void:
 			if config and config.enemy_type and config.quantity > 0:
 				var current_count_of_this_type = 0
 				for enemy in spawned_enemies:
-					if enemy.scene_file_path == config.enemy_type.resource_path:
+					if is_instance_valid(enemy) and enemy.scene_file_path == config.enemy_type.resource_path:
 						current_count_of_this_type += 1
 				var needed = config.quantity - current_count_of_this_type
 				for i in range(needed):
