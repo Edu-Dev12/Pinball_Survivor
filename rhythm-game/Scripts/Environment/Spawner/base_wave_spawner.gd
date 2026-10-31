@@ -2,7 +2,10 @@
 extends Area2D
 class_name BaseWaveSpawner
 
-@export var enabled = true
+@export_group("Configurações do Spawner")
+@export var enabled : bool = true
+@export var loop_after_all_waves : bool = false
+
 @export_group("Configurações de Inimigo")
 @export var waves: Array[WaveData]
 @export var enemies_to_spawn: Array[EnemyToSpawnData]

@@ -47,13 +47,11 @@ position = Vector2(577, 105)
 
 [node name="BaseWaveSpawner" parent="Enemies" unique_id=568859415 instance=ExtResource("4_knogg")]
 position = Vector2(-30, 150)
-enabled = true
 enemies_to_spawn = Array[ExtResource("6_c458c")]([SubResource("Resource_owog0")])
 zone_size = Vector2(50, 300)
 
 [node name="BaseWaveSpawner2" parent="Enemies" unique_id=1235780487 instance=ExtResource("4_knogg")]
 position = Vector2(1180, 420)
-enabled = true
 enemies_to_spawn = Array[ExtResource("6_c458c")]([SubResource("Resource_pvlc2")])
 zone_size = Vector2(50, 300)
 
