@@ -18,7 +18,7 @@ func _ready() -> void:
 
 func _on_was_hurt(hitbox: HitboxComponent) -> void:
 	AudioManager.play_sound_effect(Global.SFX_PINBALL_IMPACT_TEST, "SFX")
-	if !hitbox.apply_ball_bounce:
+	if hitbox and !hitbox.apply_ball_bounce:
 		return
 	
 	if not target or not source: return

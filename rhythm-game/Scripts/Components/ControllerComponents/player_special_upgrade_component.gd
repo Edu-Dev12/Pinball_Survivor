@@ -1,10 +1,11 @@
 extends Node
 class_name PlayerSpecialComponent
 
+@export var player: PlayerBody
+@export var rigidBody2D: RigidBody2D
+
 @export var special: SpecialData
-
-
-var special_scene: Special
+@export var special_scene: Special
 
 func _ready() -> void:
 	#conectar no signal global para set special
@@ -18,4 +19,5 @@ func set_special(special_ball: SpecialData):
 	add_child(special_scene)
 
 func use_special():
-	special_scene.use_special()
+	if special_scene:
+		special_scene.use_special(player, rigidBody2D)

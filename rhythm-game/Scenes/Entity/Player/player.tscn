@@ -77,9 +77,12 @@ gradient = SubResource("Gradient_wjfq1")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pv2mu"]
 shader = ExtResource("15_wjfq1")
 shader_parameter/VanishingValue = 0.0
-shader_parameter/Speed = Vector2(0.3, 0)
+shader_parameter/Speed = Vector2(0.5, 0)
 shader_parameter/Texture2DParameter = ExtResource("16_wjfq1")
 shader_parameter/ColorGradient = SubResource("GradientTexture1D_3jmme")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wq2qy"]
+radius = 194.06444
 
 [node name="Player" type="Node2D" unique_id=1636152561 node_paths=PackedStringArray("rigidBody2D", "flipperControllerComponent", "inputControllerComponent") groups=["Player"]]
 rotation = 0.0027932574
@@ -161,8 +164,11 @@ inputControllerComponent = NodePath("../InputControllerComponent")
 flipperHitComponent = NodePath("../../MovementComponents/FlipperHitComponent")
 flipper = NodePath("../../VisualContainer/Flipper")
 
-[node name="PlayerSpecialControllerComponent" type="Node" parent="ControllerComponents" unique_id=2124146997]
+[node name="PlayerSpecialControllerComponent" type="Node" parent="ControllerComponents" unique_id=2124146997 node_paths=PackedStringArray("player", "rigidBody2D", "special_scene")]
 script = ExtResource("10_cjsg0")
+player = NodePath("../..")
+rigidBody2D = NodePath("../../RigidBody2D")
+special_scene = NodePath("../../UpgradeLightningTesla")
 
 [node name="MovementComponents" type="Node2D" parent="." unique_id=662177905]
 
@@ -197,25 +203,34 @@ debug_color = Color(0.9939429, 0, 0.23695627, 0.41960785)
 script = ExtResource("13_wfu16")
 streak_timeout = 0.5
 
-[node name="SpecialLightingEffect" type="Node2D" parent="." unique_id=409532635]
-visible = false
+[node name="UpgradeLightningTesla" type="Node2D" parent="." unique_id=443563813 node_paths=PackedStringArray("specialArea")]
+script = ExtResource("17_yrgus")
+specialArea = NodePath("SpecialArea")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="SpecialLightingEffect" unique_id=1800898453]
+[node name="SpecialLightingEffect" type="Node2D" parent="UpgradeLightningTesla" unique_id=409532635]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="UpgradeLightningTesla/SpecialLightingEffect" unique_id=1800898453]
 material = SubResource("CanvasItemMaterial_wksao")
 amount = 1
 texture = ExtResource("14_nbshm")
 process_material = SubResource("ParticleProcessMaterial_pv2mu")
 
-[node name="Line2D" type="Line2D" parent="SpecialLightingEffect" unique_id=1208628072]
+[node name="Line2D" type="Line2D" parent="UpgradeLightningTesla/SpecialLightingEffect" unique_id=1208628072]
 material = SubResource("ShaderMaterial_pv2mu")
 position = Vector2(-88.30412, -108.75377)
 rotation = -0.07039914
-points = PackedVector2Array(-43.10457, 192.52792, -36.49984, 109.78508, 35.265224, 94.90188, 83.31811, 113.767715)
+points = PackedVector2Array(-43.10457, 192.52792, -5.2692413, 77.82182, 57.737553, 65.04903, 83.31811, 113.767715)
 width = 31.545
 default_color = Color(0.07287166, 1.290583, 1.293, 1)
 texture_mode = 2
 
-[node name="UpgradeLightningTesla" type="Node2D" parent="." unique_id=443563813]
-script = ExtResource("17_yrgus")
+[node name="SpecialArea" type="Area2D" parent="UpgradeLightningTesla" unique_id=1272747306]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpgradeLightningTesla/SpecialArea" unique_id=1969945805]
+shape = SubResource("CircleShape2D_wq2qy")
+
+[connection signal="area_entered" from="UpgradeLightningTesla/SpecialArea" to="UpgradeLightningTesla" method="_enemies_on_area"]
 
 [editable path="VisualContainer/Flipper"]
