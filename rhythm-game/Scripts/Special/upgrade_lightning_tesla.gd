@@ -1,9 +1,9 @@
-extends Node2D
+extends Special
 class_name UpgradeLightningTesla
 
-func _physics_process(_delta: float) -> void:
-	if Input.is_action_just_pressed("Special"):
-		shock_wave()
+func use_special():
+	shock_wave()
 
 func shock_wave():
+	print("CHAMA NO RAIO")
 	pass

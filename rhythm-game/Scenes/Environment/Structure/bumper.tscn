@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cl7m2kqber1ls" path="res://Assets/Enviroment/Structure/BumperPlaneta.png" id="2_avsp8"]
 [ext_resource type="Script" uid="uid://gre2rxaqfxfc" path="res://Scripts/Components/StructureComponents/structure_death_component.gd" id="5_7vm0e"]
 [ext_resource type="PackedScene" uid="uid://bimrga5n7rcws" path="res://Scenes/Effects/bumper_effect.tscn" id="5_avsp8"]
-[ext_resource type="Script" uid="uid://ccrb118msosru" path="res://Resource/Effects/Base_Effect_Data.gd" id="5_gtqew"]
+[ext_resource type="Script" uid="uid://ccrb118msosru" path="res://Resource/Effects/base_effect_data.gd" id="5_gtqew"]
 [ext_resource type="PackedScene" uid="uid://6cme64k5pcmd" path="res://Scenes/UI/hp_bar.tscn" id="7_avsp8"]
 [ext_resource type="Script" uid="uid://cgntmhvnp3yuv" path="res://Scripts/Components/bumper_aoe_component.gd" id="7_b5jrd"]
 [ext_resource type="Script" uid="uid://c4jv6sqdkonri" path="res://Resource/Effects/complex_effect_data.gd" id="7_lanh7"]

@@ -3,6 +3,7 @@ class_name PlayerSpecialComponent
 
 @export var special: SpecialData
 
+
 var special_scene: Special
 
 func _ready() -> void:
