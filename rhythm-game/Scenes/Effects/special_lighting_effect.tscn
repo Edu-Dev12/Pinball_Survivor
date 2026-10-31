@@ -1,0 +1,187 @@
+[gd_scene format=3 uid="uid://b628onh5ik5a0"]
+
+[ext_resource type="Script" uid="uid://d1ynnyj2hk7eg" path="res://Scripts/Effects/special_lighting_effect.gd" id="1_3asoi"]
+[ext_resource type="Texture2D" uid="uid://dw2ayajhv7645" path="res://Assets/Effects/Electricity Effects FX Electric/Sprites/ElectricityFX15.png" id="2_8ymhl"]
+[ext_resource type="Texture2D" uid="uid://2bj6jcql0srp" path="res://Assets/Effects/Electricity Effects FX Electric/Sprites/ElectricityFX1.png" id="3_to7bh"]
+[ext_resource type="Texture2D" uid="uid://c74e3spjxy3cn" path="res://Assets/Effects/masks for  particles/masks for  particles/9.png" id="4_u3rf0"]
+[ext_resource type="Shader" uid="uid://c4riim3l1ivgt" path="res://Resource/Shader/impact_frame_shader.gdshader" id="5_3asoi"]
+[ext_resource type="Texture2D" uid="uid://bmap38e2jv3w7" path="res://Assets/Effects/masks for  particles/masks for  particles/ring effect.png" id="5_8ymhl"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yrgus"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 3
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_2bhfk"]
+_data = [Vector2(0, 0.83695644), 0.0, 0.0, 0, 0, Vector2(0.38339916, 0.9999999), 0.0, 0.0, 0, 0, Vector2(0.8300395, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_oe0ut"]
+curve = SubResource("Curve_2bhfk")
+
+[sub_resource type="Curve" id="Curve_oe0ut"]
+_data = [Vector2(0, 0.83695644), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_40nhr"]
+curve = SubResource("Curve_oe0ut")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_426oi"]
+particle_flag_disable_z = true
+angle_min = 1.0728835e-05
+angle_max = 360.00003
+gravity = Vector3(0, 0, 0)
+scale_min = 1.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_40nhr")
+color = Color(0, 18.892157, 18.892157, 1)
+alpha_curve = SubResource("CurveTexture_oe0ut")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pv2mu"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_40nhr"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.043478258, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2bhfk"]
+curve = SubResource("Curve_40nhr")
+
+[sub_resource type="Gradient" id="Gradient_3asoi"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.5500907, 0.98549265, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3asoi"]
+gradient = SubResource("Gradient_3asoi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2bhfk"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1.5, 1.5, 1)
+emission_shape = 1
+emission_sphere_radius = 128.0
+angle_min = 1.0728835e-05
+angle_max = 360.00003
+gravity = Vector3(0, 0, 0)
+scale_min = 0.29999998
+scale_max = 0.7
+color_initial_ramp = SubResource("GradientTexture1D_3asoi")
+alpha_curve = SubResource("CurveTexture_2bhfk")
+anim_speed_min = 2.0
+anim_speed_max = 2.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_07561"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_yp1sw"]
+_data = [Vector2(0, 0.21739125), 0.0, 2.0448718, 0, 0, Vector2(0.77075094, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_n6fuf"]
+curve = SubResource("Curve_yp1sw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i2oxg"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 0.39999998
+scale_max = 0.39999998
+scale_curve = SubResource("CurveTexture_n6fuf")
+color = Color(0.19607843, 1, 1, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_to7bh"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_u3rf0"]
+_data = [Vector2(0, 0.086206794), 0.0, 0.0, 0, 0, Vector2(0.072607264, 1), 0.0, 0.0, 0, 0, Vector2(0.65676564, 0.2950819), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_1mkba"]
+curve = SubResource("Curve_u3rf0")
+
+[sub_resource type="Gradient" id="Gradient_8ymhl"]
+offsets = PackedFloat32Array(0.008810572, 1)
+colors = PackedColorArray(1.8247963, 1.8247963, 1.8247963, 1, 0, 18.892157, 18.892157, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8ymhl"]
+gradient = SubResource("Gradient_8ymhl")
+
+[sub_resource type="Curve" id="Curve_0ee46"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_svit2"]
+curve = SubResource("Curve_0ee46")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hbusx"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 0.79999995
+scale_max = 0.79999995
+scale_curve = SubResource("CurveTexture_svit2")
+color_ramp = SubResource("GradientTexture1D_8ymhl")
+alpha_curve = SubResource("CurveTexture_1mkba")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ymhl"]
+shader = ExtResource("5_3asoi")
+shader_parameter/threshold = 0.5
+shader_parameter/smoothness = 0.01
+shader_parameter/mix_amount = 0.0
+shader_parameter/flip_colors = false
+
+[node name="SpecialLightingEffect" type="Node2D" unique_id=1911886710]
+z_index = 3
+script = ExtResource("1_3asoi")
+
+[node name="LightningSphere" type="GPUParticles2D" parent="." unique_id=1889273124]
+material = SubResource("CanvasItemMaterial_yrgus")
+emitting = false
+amount = 2
+texture = ExtResource("2_8ymhl")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_426oi")
+
+[node name="LightningParticles" type="GPUParticles2D" parent="." unique_id=1939336534]
+material = SubResource("CanvasItemMaterial_pv2mu")
+emitting = false
+amount = 15
+texture = ExtResource("3_to7bh")
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.11
+process_material = SubResource("ParticleProcessMaterial_2bhfk")
+
+[node name="LightningFlare" type="GPUParticles2D" parent="." unique_id=1479517885]
+material = SubResource("CanvasItemMaterial_07561")
+emitting = false
+amount = 1
+texture = ExtResource("4_u3rf0")
+lifetime = 0.4
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_i2oxg")
+
+[node name="WaveEffect" type="GPUParticles2D" parent="." unique_id=1232948356]
+material = SubResource("CanvasItemMaterial_to7bh")
+emitting = false
+amount = 1
+texture = ExtResource("5_8ymhl")
+lifetime = 0.6
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_hbusx")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=380333137]
+
+[node name="ImpactRect" type="ColorRect" parent="CanvasLayer" unique_id=1796650384]
+material = SubResource("ShaderMaterial_8ymhl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

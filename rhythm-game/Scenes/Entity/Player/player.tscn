@@ -14,9 +14,10 @@
 [ext_resource type="Script" uid="uid://db1l8o1gbostv" path="res://Scripts/Components/ControllerComponents/player_special_upgrade_component.gd" id="10_cjsg0"]
 [ext_resource type="Script" uid="uid://nd4ko4vpkdi3" path="res://Scripts/Components/HitboxComponents/hitbox_component.gd" id="11_4osmd"]
 [ext_resource type="Script" uid="uid://k5t182vt4jh" path="res://Scripts/Components/Player/player_streak_component.gd" id="13_wfu16"]
-[ext_resource type="Texture2D" uid="uid://bmap38e2jv3w7" path="res://Assets/Effects/masks for  particles/masks for  particles/ring effect.png" id="14_nbshm"]
-[ext_resource type="PackedScene" uid="uid://cnygn52nn1emv" path="res://Scenes/Special/lightning_line.tscn" id="16_yrgus"]
+[ext_resource type="Script" uid="uid://ccrb118msosru" path="res://Resource/Effects/Base_Effect_Data.gd" id="16_cjsg0"]
+[ext_resource type="PackedScene" uid="uid://b628onh5ik5a0" path="res://Scenes/Effects/special_lighting_effect.tscn" id="17_40nhr"]
 [ext_resource type="Script" uid="uid://142jwxshyx70" path="res://Scripts/Special/upgrade_lightning_tesla.gd" id="17_yrgus"]
+[ext_resource type="Script" uid="uid://c4jv6sqdkonri" path="res://Resource/Effects/complex_effect_data.gd" id="18_oe0ut"]
 
 [sub_resource type="Curve" id="Curve_gfrdd"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -43,31 +44,10 @@ point_count = 5
 [sub_resource type="CircleShape2D" id="CircleShape2D_pv2mu"]
 radius = 12.000001
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wksao"]
-blend_mode = 1
-
-[sub_resource type="Gradient" id="Gradient_yrgus"]
-offsets = PackedFloat32Array(0, 0.5418502)
-colors = PackedColorArray(0, 0, 1, 1, 0, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_p1tfq"]
-gradient = SubResource("Gradient_yrgus")
-
-[sub_resource type="Curve" id="Curve_cjsg0"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.6126482, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_n1v3y"]
-curve = SubResource("Curve_cjsg0")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pv2mu"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_n1v3y")
-color_ramp = SubResource("GradientTexture1D_p1tfq")
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_wq2qy"]
-radius = 194.06444
+[sub_resource type="Resource" id="Resource_oe0ut"]
+script = ExtResource("18_oe0ut")
+effect_scene = ExtResource("17_40nhr")
+metadata/_custom_type_script = "uid://c4jv6sqdkonri"
 
 [node name="Player" type="Node2D" unique_id=1636152561 node_paths=PackedStringArray("rigidBody2D", "flipperControllerComponent", "inputControllerComponent") groups=["Player"]]
 rotation = 0.0027932574
@@ -181,6 +161,7 @@ apply_ball_bounce = true
 metadata/_custom_type_script = "uid://nd4ko4vpkdi3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=284572767]
+position = Vector2(-0.9998098, 0.0027997755)
 shape = SubResource("CircleShape2D_pv2mu")
 debug_color = Color(0.9939429, 0, 0.23695627, 0.41960785)
 
@@ -188,30 +169,9 @@ debug_color = Color(0.9939429, 0, 0.23695627, 0.41960785)
 script = ExtResource("13_wfu16")
 streak_timeout = 0.5
 
-[node name="UpgradeLightningTesla" type="Node2D" parent="." unique_id=443563813 node_paths=PackedStringArray("specialArea")]
+[node name="UpgradeLightningTesla" type="Node2D" parent="." unique_id=1074018030]
+z_index = 3
 script = ExtResource("17_yrgus")
-specialArea = NodePath("SpecialArea")
-expansion_time = 1.0
-max_radius = 200.0
-lightning_scene = ExtResource("16_yrgus")
-lightning_duration = 0.5
-
-[node name="SpecialLightingEffect" type="Node2D" parent="UpgradeLightningTesla" unique_id=409532635]
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="UpgradeLightningTesla/SpecialLightingEffect" unique_id=1800898453]
-visible = false
-material = SubResource("CanvasItemMaterial_wksao")
-amount = 1
-texture = ExtResource("14_nbshm")
-process_material = SubResource("ParticleProcessMaterial_pv2mu")
-
-[node name="SpecialArea" type="Area2D" parent="UpgradeLightningTesla" unique_id=1272747306]
-collision_layer = 0
-collision_mask = 32
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UpgradeLightningTesla/SpecialArea" unique_id=1969945805]
-shape = SubResource("CircleShape2D_wq2qy")
-
-[connection signal="area_entered" from="UpgradeLightningTesla/SpecialArea" to="UpgradeLightningTesla" method="_enemies_on_area"]
+effects = Array[ExtResource("16_cjsg0")]([SubResource("Resource_oe0ut")])
 
 [editable path="VisualContainer/Flipper"]
