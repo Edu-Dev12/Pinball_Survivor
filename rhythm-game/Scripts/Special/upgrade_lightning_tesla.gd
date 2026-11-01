@@ -1,16 +1,14 @@
 extends Special
 class_name UpgradeLightningTesla
 
+@onready var collision_shape_2d: CollisionShape2D = $HitboxComponent/CollisionShape2D
+
 var player: PlayerBody
 var rigidBody2D: RigidBody2D
 
-var enemies_hurtbox: Array[HurtboxComponent] = []
 
 @export var effects: Array[EffectData]
-
-func _physics_process(_delta: float) -> void:
-	if rigidBody2D:
-		global_position = rigidBody2D.global_position
+@export var enemt_hit_effects: Array[EffectData]
 
 func use_special(playerBody: PlayerBody, rigidBody: RigidBody2D):
 	player = playerBody
@@ -22,7 +20,11 @@ func use_special(playerBody: PlayerBody, rigidBody: RigidBody2D):
 
 func shock_wave():
 	create_effects()
-	pass
+	
+	await get_tree().create_timer(0.1).timeout
+	collision_shape_2d.set_deferred("disabled", false)
+	await get_tree().create_timer(0.6).timeout
+	collision_shape_2d.set_deferred("disabled", true)
 	
 func create_effects():
 	var context: Dictionary = {
@@ -32,4 +34,8 @@ func create_effects():
 	GlobalEffectManagers.spawn_effects(effects, context)
 	
 func _enemies_on_area(area: HurtboxComponent):
-	enemies_hurtbox.append(area)
+	var context: Dictionary = {
+		"position": area.global_position,
+	}
+	
+	GlobalEffectManagers.spawn_effects(enemt_hit_effects, context)

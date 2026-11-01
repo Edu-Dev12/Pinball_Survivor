@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://b628onh5ik5a0" path="res://Scenes/Effects/special_lighting_effect.tscn" id="17_40nhr"]
 [ext_resource type="Script" uid="uid://142jwxshyx70" path="res://Scripts/Special/upgrade_lightning_tesla.gd" id="17_yrgus"]
 [ext_resource type="Script" uid="uid://c4jv6sqdkonri" path="res://Resource/Effects/complex_effect_data.gd" id="18_oe0ut"]
+[ext_resource type="PackedScene" uid="uid://bv5eoyl3eqml2" path="res://Scenes/Effects/hit_lightning_effect.tscn" id="19_oe0ut"]
+[ext_resource type="Script" uid="uid://bbcfi1e602tuw" path="res://Resource/Effects/position_effect.gd" id="20_2bhfk"]
 
 [sub_resource type="Curve" id="Curve_gfrdd"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -48,6 +50,14 @@ radius = 12.000001
 script = ExtResource("18_oe0ut")
 effect_scene = ExtResource("17_40nhr")
 metadata/_custom_type_script = "uid://c4jv6sqdkonri"
+
+[sub_resource type="Resource" id="Resource_cjsg0"]
+script = ExtResource("20_2bhfk")
+effect_scene = ExtResource("19_oe0ut")
+metadata/_custom_type_script = "uid://bbcfi1e602tuw"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_426oi"]
+radius = 146.03082
 
 [node name="Player" type="Node2D" unique_id=1636152561 node_paths=PackedStringArray("rigidBody2D", "flipperControllerComponent", "inputControllerComponent") groups=["Player"]]
 rotation = 0.0027932574
@@ -173,5 +183,19 @@ streak_timeout = 0.5
 z_index = 3
 script = ExtResource("17_yrgus")
 effects = Array[ExtResource("16_cjsg0")]([SubResource("Resource_oe0ut")])
+enemt_hit_effects = Array[ExtResource("16_cjsg0")]([SubResource("Resource_cjsg0")])
+
+[node name="HitboxComponent" type="Area2D" parent="UpgradeLightningTesla" unique_id=639352530]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("11_4osmd")
+damage = 10
+metadata/_custom_type_script = "uid://nd4ko4vpkdi3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpgradeLightningTesla/HitboxComponent" unique_id=526214181]
+shape = SubResource("CircleShape2D_426oi")
+disabled = true
+
+[connection signal="area_entered" from="UpgradeLightningTesla/HitboxComponent" to="UpgradeLightningTesla" method="_enemies_on_area"]
 
 [editable path="VisualContainer/Flipper"]
