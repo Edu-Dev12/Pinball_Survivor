@@ -23,7 +23,14 @@ enemies_to_spawn = Array[ExtResource("6_c458c")]([SubResource("Resource_2h4qr")]
 metadata/_custom_type_script = "uid://c4jl11v3ndkde"
 
 [sub_resource type="Resource" id="Resource_d68a7"]
+script = ExtResource("6_c458c")
+enemy_type = ExtResource("7_4snqv")
+quantity = 5
+metadata/_custom_type_script = "uid://svqn7y4t103m"
+
+[sub_resource type="Resource" id="Resource_pvlc2"]
 script = ExtResource("6_d68a7")
+enemies_to_spawn = Array[ExtResource("6_c458c")]([SubResource("Resource_d68a7")])
 metadata/_custom_type_script = "uid://c4jl11v3ndkde"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_o1g8r"]
@@ -53,7 +60,7 @@ position = Vector2(577, 105)
 [node name="BaseWaveSpawner" parent="Enemies" unique_id=568859415 instance=ExtResource("4_knogg")]
 position = Vector2(-30, 150)
 loop_after_all_waves = true
-waves = Array[ExtResource("6_d68a7")]([SubResource("Resource_owog0"), SubResource("Resource_d68a7")])
+waves = Array[ExtResource("6_d68a7")]([SubResource("Resource_owog0"), SubResource("Resource_pvlc2")])
 zone_size = Vector2(50, 300)
 
 [node name="BaseWaveSpawner2" parent="Enemies" unique_id=1235780487 instance=ExtResource("4_knogg")]
