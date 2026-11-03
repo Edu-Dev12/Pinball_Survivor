@@ -43,7 +43,7 @@ func set_spawner_enabled(p_enabled: bool) -> void:
 		wave_processing_active = false
 
 func start_spawner_loop() -> void:
-	if is_running or waves.is_empty():
+	if is_running or waves.is_empty() or !enabled:
 		return
 	is_running = true
 	current_wave_index = 0

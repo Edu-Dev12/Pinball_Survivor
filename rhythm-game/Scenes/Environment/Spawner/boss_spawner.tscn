@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://25sxyhdpt47y"]
+
+[ext_resource type="Script" uid="uid://cq0g2ygvyjjrb" path="res://Scripts/Environment/Spawner/boss_spawner.gd" id="1_ub460"]
+
+[node name="BossSpawner" type="Marker2D" unique_id=603247444]
+script = ExtResource("1_ub460")
