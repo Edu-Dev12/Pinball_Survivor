@@ -30,6 +30,7 @@ var wave_processing_active: bool = false
 func _ready() -> void:
 	if Engine.is_editor_hint() or !enabled:
 		return
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	start_spawner_loop()
 
 func set_spawner_enabled(p_enabled: bool) -> void:
@@ -128,7 +129,7 @@ func spawn_wave_batch(wave: WaveData) -> void:
 		if spawn_pos != Vector2.ZERO:
 			spawn_enemy_at(enemy_scene, spawn_pos)
 			if wave.spawn_interval_enemies > 0.0:
-				await get_tree().create_timer(wave.spawn_interval_enemies).timeout
+				await get_tree().create_timer(wave.spawn_interval_enemies, true, false, true).timeout
 
 func calculate_spawn_position(camera: Camera2D) -> Vector2:
 	var camera_center = camera.get_screen_center_position()

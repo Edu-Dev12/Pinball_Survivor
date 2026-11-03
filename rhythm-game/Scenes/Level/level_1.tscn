@@ -9,15 +9,17 @@
 [ext_resource type="Script" uid="uid://c4jl11v3ndkde" path="res://Resource/Enemy/wave_data.gd" id="6_d68a7"]
 [ext_resource type="PackedScene" uid="uid://dl56cslmn1pl7" path="res://Scenes/Environment/Structure/bumper.tscn" id="6_uoico"]
 [ext_resource type="PackedScene" uid="uid://dssk46d0vkivi" path="res://Scenes/Entity/Enemy/first_enemy.tscn" id="7_4snqv"]
+[ext_resource type="PackedScene" uid="uid://da270g7fgddom" path="res://Scenes/Entity/Enemy/enemy_test.tscn" id="8_d68a7"]
 
 [sub_resource type="Resource" id="Resource_2h4qr"]
 script = ExtResource("6_c458c")
-enemy_type = ExtResource("7_4snqv")
+enemy_type = ExtResource("8_d68a7")
 quantity = 2
 metadata/_custom_type_script = "uid://svqn7y4t103m"
 
 [sub_resource type="Resource" id="Resource_owog0"]
 script = ExtResource("6_d68a7")
+time_to_next_wave = 0.0
 wave_time = 10.0
 enemies_to_spawn = Array[ExtResource("6_c458c")]([SubResource("Resource_2h4qr")])
 metadata/_custom_type_script = "uid://c4jl11v3ndkde"
@@ -30,6 +32,7 @@ metadata/_custom_type_script = "uid://svqn7y4t103m"
 
 [sub_resource type="Resource" id="Resource_pvlc2"]
 script = ExtResource("6_d68a7")
+wave_time = 10.0
 enemies_to_spawn = Array[ExtResource("6_c458c")]([SubResource("Resource_d68a7")])
 metadata/_custom_type_script = "uid://c4jl11v3ndkde"
 
