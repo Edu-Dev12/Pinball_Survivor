@@ -58,6 +58,7 @@ func start_spawner_loop() -> void:
 		emit_signal("wave_started", current_wave_index)
 		print ("new wave")
 		print(current_wave_index)
+		print ("Tempo de jogo: ", Time.get_ticks_msec() / 1000.0, " segundos")
 		await process_wave(current_wave)
 		
 		if not is_running:
@@ -65,7 +66,7 @@ func start_spawner_loop() -> void:
 		emit_signal("wave_completed", current_wave_index)
 		
 		if current_wave.time_to_next_wave > 0:
-			await get_tree().create_timer(current_wave.time_to_next_wave).timeout
+			await get_tree().create_timer(current_wave.time_to_next_wave, true, false, true).timeout
 			if not is_running:
 				break
 		current_wave_index += 1
