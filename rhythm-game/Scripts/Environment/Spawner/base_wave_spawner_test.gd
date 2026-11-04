@@ -2,10 +2,6 @@
 extends Area2D
 class_name BaseWaveSpawnerTest
 
-signal wave_started(wave_index: int)
-signal wave_completed(wave_index: int)
-signal all_waves_finished
-
 @export_group("Configurações do Spawner")
 @export var enabled : bool = true
 @export var loop_after_all_waves : bool = false
@@ -23,30 +19,44 @@ signal all_waves_finished
 			collision_shape.shape.size = value
 
 var current_wave_index: int = 0
-var is_running: bool = false
 var spawned_enemies: Array = []
-var wave_processing_active: bool = false
 
 func _ready() -> void:
 	if Engine.is_editor_hint() or !enabled:
 		return
 	start_wave(current_wave_index)
 
-func start_wave(wave: int) -> void:
-	get_tree().create_timer(waves[wave].wave_time, true, false, true).timeout.connect(next_wave.bind(current_wave_index+1))
-	spawn_wave_group(waves[wave])
-	get_tree().create_timer(waves[wave].spawn_interval_groups, true, false, true).timeout.connect(spawn_wave_group.bind(waves[wave]))
+func set_spawner_enabled(p_enabled: bool) -> void:
+	if enabled == p_enabled:
+		return
+	else:
+		enabled = p_enabled
 	
-func next_wave() -> void:
-	if current_wave_index > waves.size():
-		current_wave_index = 0
+	if enabled:
+		start_wave(current_wave_index)
 
+func start_wave(wave_number: int) -> void:
+	if !enabled:
+		return
+	elif current_wave_index >= waves.size():
+		if loop_after_all_waves:
+			current_wave_index = 0
+		else:
+			enabled = false
+			return
+	get_tree().create_timer(waves[wave_number].wave_time, true, false, true).timeout.connect(start_wave.bind(current_wave_index+1))
+	start_wave_group(wave_number)
 
-func spawn_wave_group(wave: WaveData) -> void:
+func start_wave_group(wave_number: int) -> void:
+	if wave_number != current_wave_index or !enabled:
+		return
+	get_tree().create_timer(waves[wave_number].spawn_interval_groups, true, false, true).timeout.connect(start_wave_group.bind(wave_number))
+	var wave : WaveData = waves[wave_number]
+	
 	var camera = get_viewport().get_camera_2d()
 	if not camera:
 		return
-		
+	
 	var spawn_queue: Array[PackedScene] = []
 	for config in wave.enemies_to_spawn:
 		if config and config.enemy_type and config.quantity > 0:
@@ -59,24 +69,17 @@ func spawn_wave_group(wave: WaveData) -> void:
 				spawn_queue.append(config.enemy_type)
 	if spawn_queue.is_empty():
 		return
-		
-	for enemy_scene in spawn_queue:
-		if not is_running:
-			break
-		var spawn_pos = calculate_spawn_position(camera)
-		if spawn_pos != Vector2.ZERO:
-			spawn_enemy_at(enemy_scene, spawn_pos)
-			if wave.spawn_interval_enemies > 0.0:
-				await get_tree().create_timer(wave.spawn_interval_enemies, true, false, true).timeout
+	start_enemy_spawn(wave_number, camera, spawn_queue, 0)
 
-func set_spawner_enabled(p_enabled: bool) -> void:
-	enabled = p_enabled
+func start_enemy_spawn(wave_number : int, camera: Camera2D, spawn_queue: Array[PackedScene], queue_pos: int):
+	if wave_number != current_wave_index or queue_pos >= spawn_queue.size() or !enabled:
+		return
+	get_tree().create_timer(waves[wave_number].spawn_interval_enemies, true, false, true).timeout.connect(start_enemy_spawn.bind(wave_number, camera, spawn_queue, (queue_pos+1)))
 	
-	if enabled and not is_running:
-		pass
-	elif not enabled:
-		is_running = false
-		wave_processing_active = false
+	var spawn_pos = calculate_spawn_position(camera)
+	if spawn_pos != Vector2.ZERO:
+		spawn_enemy_at(spawn_queue[queue_pos], spawn_pos)
+	queue_pos += 1
 
 func calculate_spawn_position(camera: Camera2D) -> Vector2:
 	var camera_center = camera.get_screen_center_position()
