@@ -19,6 +19,7 @@ class_name BaseWaveSpawner
 			collision_shape.shape.size = value
 
 var current_wave_index: int = 0
+var starting: bool = true
 var spawned_enemies: Array = []
 
 func _ready() -> void:
@@ -45,18 +46,28 @@ func start_wave(wave_number: int) -> void:
 			current_wave_index = 0
 		else:
 			enabled = false
+			starting = true
 			return
 	
+	if starting:
+		starting = false
+	elif waves[(current_wave_index - 1)].all_enemies_must_be_dead_to_finish and !spawned_enemies.is_empty():
+		while !spawned_enemies.is_empty():
+			spawned_enemies = spawned_enemies.filter(func(e): return is_instance_valid(e))
+			await get_tree().process_frame
+		await get_tree().create_timer(waves[current_wave_index-1].time_to_next_wave, true, false, true).timeout
+	else:
+		await get_tree().create_timer(waves[current_wave_index-1].time_to_next_wave, true, false, true).timeout
+	
 	get_tree().create_timer(waves[current_wave_index].wave_time, true, false, true).timeout.connect(start_wave.bind(current_wave_index+1))
-	print ("new wave")
-	print(current_wave_index)
-	print ("Tempo de jogo: ", Time.get_ticks_msec() / 1000.0, " segundos")
-	start_wave_group(current_wave_index)
+	spawned_enemies = spawned_enemies.filter(func(e): return is_instance_valid(e))
+	start_wave_group(current_wave_index, 0)
 
-func start_wave_group(wave_number: int) -> void:
-	if wave_number != current_wave_index or !enabled:
+func start_wave_group(wave_number: int, group_number: int = 0) -> void:
+	var max_groups = waves[wave_number].wave_time / waves[wave_number].spawn_interval_groups
+	if wave_number != current_wave_index  or group_number >= max_groups or !enabled:
 		return
-	get_tree().create_timer(waves[wave_number].spawn_interval_groups, true, false, true).timeout.connect(start_wave_group.bind(wave_number))
+	get_tree().create_timer(waves[wave_number].spawn_interval_groups, true, false, true).timeout.connect(start_wave_group.bind(wave_number, (group_number + 1)))
 	var wave : WaveData = waves[wave_number]
 	
 	var camera = get_viewport().get_camera_2d()
@@ -77,7 +88,7 @@ func start_wave_group(wave_number: int) -> void:
 		return
 	start_enemy_spawn(wave_number, camera, spawn_queue, 0)
 
-func start_enemy_spawn(wave_number : int, camera: Camera2D, spawn_queue: Array[PackedScene], queue_pos: int):
+func start_enemy_spawn(wave_number : int, camera: Camera2D, spawn_queue: Array[PackedScene], queue_pos: int = 0):
 	if wave_number != current_wave_index or queue_pos >= spawn_queue.size() or !enabled:
 		return
 	get_tree().create_timer(waves[wave_number].spawn_interval_enemies, true, false, true).timeout.connect(start_enemy_spawn.bind(wave_number, camera, spawn_queue, (queue_pos+1)))
@@ -85,7 +96,6 @@ func start_enemy_spawn(wave_number : int, camera: Camera2D, spawn_queue: Array[P
 	var spawn_pos = calculate_spawn_position(camera)
 	if spawn_pos != Vector2.ZERO:
 		spawn_enemy_at(spawn_queue[queue_pos], spawn_pos)
-	queue_pos += 1
 
 func calculate_spawn_position(camera: Camera2D) -> Vector2:
 	var camera_center = camera.get_screen_center_position()
