@@ -33,6 +33,7 @@ GlobalInputManager="*uid://dhppp2t3mwj0w"
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/vsync/vsync_mode=0
 
 [file_customization]
 

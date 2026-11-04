@@ -4,3 +4,5 @@ extends Node2D
 
 func _ready() -> void:
 	gpu_particles_2d.emitting = true
+	
+	gpu_particles_2d.finished.connect(queue_free)

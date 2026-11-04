@@ -10,5 +10,5 @@ class_name PlayerBody
 @export var flipperControllerComponent: FlipperControllerComponent
 @export var inputControllerComponent: InputControllerComponent
 
-func _physics_process(delta: float) -> void:
-	flipperControllerComponent.update(delta, inputControllerComponent.get_input())
+func _physics_process(_delta: float) -> void:
+	flipperControllerComponent.update(inputControllerComponent.get_input())

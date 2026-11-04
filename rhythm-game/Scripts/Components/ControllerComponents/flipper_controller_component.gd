@@ -11,7 +11,7 @@ class_name FlipperControllerComponent
 var flipper_charging: bool = false
 var can_use_flipper: bool = true
 
-func update(_delta: float, input_direction: Vector2) -> void:
+func update(input_direction: Vector2) -> void:
 	if not inputControllerComponent:
 		return
 	

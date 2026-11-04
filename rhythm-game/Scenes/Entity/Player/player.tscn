@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://db1l8o1gbostv" path="res://Scripts/Components/ControllerComponents/player_special_upgrade_component.gd" id="10_cjsg0"]
 [ext_resource type="Script" uid="uid://nd4ko4vpkdi3" path="res://Scripts/Components/HitboxComponents/hitbox_component.gd" id="11_4osmd"]
 [ext_resource type="Script" uid="uid://k5t182vt4jh" path="res://Scripts/Components/Player/player_streak_component.gd" id="13_wfu16"]
-[ext_resource type="Script" uid="uid://ccrb118msosru" path="res://Resource/Effects/Base_Effect_Data.gd" id="16_cjsg0"]
+[ext_resource type="Script" uid="uid://ccrb118msosru" path="res://Resource/Effects/base_effect_data.gd" id="16_cjsg0"]
 [ext_resource type="PackedScene" uid="uid://b628onh5ik5a0" path="res://Scenes/Effects/special_lighting_effect.tscn" id="17_40nhr"]
 [ext_resource type="Script" uid="uid://142jwxshyx70" path="res://Scripts/Special/upgrade_lightning_tesla.gd" id="17_yrgus"]
 [ext_resource type="Script" uid="uid://c4jv6sqdkonri" path="res://Resource/Effects/complex_effect_data.gd" id="18_oe0ut"]
@@ -155,7 +155,7 @@ rigidBody2D = NodePath("../../RigidBody2D")
 script = ExtResource("5_20bu7")
 hit_max_charge = 800.0
 hit_min_charge = 60.0
-hit_charge_speed = 1800.0
+hit_charge_speed = 10.0
 dynamic_force_percent = 100.0
 velocity_override_curve = SubResource("Curve_mcf8x")
 slow_motion_curve = SubResource("Curve_wfu16")

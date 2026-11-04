@@ -17,3 +17,5 @@ func _ready() -> void:
 	var gpu_material = gpu_particles_2d.process_material as ParticleProcessMaterial
 	gpu_material.direction = Vector3(effect_direction.x, effect_direction.y, 0)
 	gpu_particles_2d.emitting = true
+
+	gpu_particles_2d.finished.connect(queue_free)

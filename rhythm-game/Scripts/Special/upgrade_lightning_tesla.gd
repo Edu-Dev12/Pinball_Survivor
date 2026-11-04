@@ -19,6 +19,10 @@ func use_special(playerBody: PlayerBody, rigidBody: RigidBody2D):
 	shock_wave()
 
 func shock_wave():
+	var camera = get_tree().get_first_node_in_group(Global.CAMERA_GROUP)
+	if camera and camera.has_node("CameraShakeComponent"):
+		camera.cameraShakeComponent.trigger_shake()
+			
 	create_effects()
 	
 	await get_tree().create_timer(0.1).timeout

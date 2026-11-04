@@ -19,12 +19,10 @@ func flipper_charge(charge_direction: Vector2) -> void:
 	if charge_direction != Vector2.ZERO:
 		hit_direction = charge_direction.normalized()
 		
-		var real_delta: float = get_process_delta_time()
-		
 		if hit_force == 0.0:
 			hit_force = hit_min_charge
 		else:
-			hit_force = min(hit_force + (hit_charge_speed * real_delta), hit_max_charge)
+			hit_force = min(hit_force + (hit_charge_speed), hit_max_charge)
 
 
 func flipper_hit(buffer_hit_direction: Vector2 = Vector2.ZERO) -> void:

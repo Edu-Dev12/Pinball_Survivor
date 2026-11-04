@@ -2,6 +2,8 @@ extends Camera2D
 class_name Camera
 
 @export var cameraShakeComponent: CameraShakeComponent
+@onready var label: Label = $"../CanvasLayer/Label"
+
 
 var can_follow_player: bool = false
 var current_player_node: PlayerBody
@@ -11,6 +13,10 @@ func _ready() -> void:
 	SignalManager.disable_camera_follow.connect(turn_off_follow)
 	if current_player_node:
 		can_follow_player = true
+
+func _process(_delta: float) -> void:
+	label.text = "FPS: " + str(Engine.get_frames_per_second())
+
 
 func _physics_process(_delta: float) -> void:
 	if current_player_node and can_follow_player:

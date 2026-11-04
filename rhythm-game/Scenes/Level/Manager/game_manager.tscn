@@ -16,3 +16,14 @@ cameraShakeComponent = NodePath("CameraShakeComponent")
 script = ExtResource("3_10sge")
 max_shake = 3.0
 camera = NodePath("..")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=581918213]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1635946885]
+offset_left = 11.0
+offset_top = 6.0
+offset_right = 51.0
+offset_bottom = 29.0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 32
+text = "1200"
