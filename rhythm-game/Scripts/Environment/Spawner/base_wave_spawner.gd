@@ -6,13 +6,8 @@ class_name BaseWaveSpawner
 @export var enabled : bool = true
 @export var loop_after_all_waves : bool = false
 
-@export_group("Configurações de Inimigo")
-# @export waves: Array[WaveData] = []
-@export var enemies_to_spawn: Array[EnemyToSpawnData] = []
-
-@export_group("Tempos do Spawner")
-@export var wave_cooldown: float = 5.0 ## Tempo de espera entre cada onda
-@export var spawn_interval: float = 0.5 ## Tempo entre a geração de cada inimigo individual
+@export_group("Configurações de Inimigos e Ondas")
+@export var waves: Array[WaveData] = []
 
 @export_group("Área de Spawn")
 @export var collision_shape: CollisionShape2D
@@ -23,88 +18,106 @@ class_name BaseWaveSpawner
 			collision_shape.shape = collision_shape.shape.duplicate()
 			collision_shape.shape.size = value
 
-var max_qty_to_spawn: int
+var current_wave_index: int = 0
+var starting: bool = true
 var spawned_enemies: Array = []
-var is_spawning: bool = false
-var spawn_timer: Timer
 
 func _ready() -> void:
 	if Engine.is_editor_hint() or !enabled:
 		return
-	calculate_max_spawn_qty()
-	config_timer()
+	start_wave(current_wave_index)
 
-func calculate_max_spawn_qty() -> void:
-	for config in enemies_to_spawn:
-		if config:
-			max_qty_to_spawn += config.quantity
-
-func config_timer() -> void:
-	spawn_timer = Timer.new()
-	spawn_timer.wait_time = wave_cooldown
-	spawn_timer.one_shot = false
-	spawn_timer.autostart = true
-	add_child(spawn_timer)
-	spawn_timer.timeout.connect(verify_spawn)
-
-func verify_spawn() -> void:
-	if !enabled or is_spawning or spawned_enemies.size() >= max_qty_to_spawn:
+func set_spawner_enabled(p_enabled: bool) -> void:
+	if enabled == p_enabled:
 		return
+	else:
+		enabled = p_enabled
+	
+	if enabled:
+		start_wave(current_wave_index)
+
+func start_wave(wave_number: int) -> void:
+	if !enabled:
+		return
+	current_wave_index = wave_number
+	
+	if current_wave_index >= waves.size():
+		if loop_after_all_waves:
+			current_wave_index = 0
+		else:
+			enabled = false
+			starting = true
+			return
+	
+	if starting:
+		starting = false
+	elif waves[(current_wave_index - 1)].all_enemies_must_be_dead_to_finish and !spawned_enemies.is_empty():
+		while !spawned_enemies.is_empty():
+			spawned_enemies = spawned_enemies.filter(func(e): return is_instance_valid(e))
+			await get_tree().process_frame
+		await get_tree().create_timer(waves[current_wave_index-1].time_to_next_wave, true, false, true).timeout
+	else:
+		await get_tree().create_timer(waves[current_wave_index-1].time_to_next_wave, true, false, true).timeout
+	
+	get_tree().create_timer(waves[current_wave_index].wave_time, true, false, true).timeout.connect(start_wave.bind(current_wave_index+1))
+	spawned_enemies = spawned_enemies.filter(func(e): return is_instance_valid(e))
+	start_wave_group(current_wave_index, 0)
+
+func start_wave_group(wave_number: int, group_number: int = 0) -> void:
+	var max_groups = waves[wave_number].wave_time / waves[wave_number].spawn_interval_groups
+	if wave_number != current_wave_index  or group_number >= max_groups or !enabled:
+		return
+	get_tree().create_timer(waves[wave_number].spawn_interval_groups, true, false, true).timeout.connect(start_wave_group.bind(wave_number, (group_number + 1)))
+	var wave : WaveData = waves[wave_number]
 	
 	var camera = get_viewport().get_camera_2d()
 	if not camera:
 		return
 	
-	is_spawning = true
-	spawned_enemies = spawned_enemies.filter(func(e): return is_instance_valid(e))
-	
 	var spawn_queue: Array[PackedScene] = []
-	for config in enemies_to_spawn:
+	for config in wave.enemies_to_spawn:
 		if config and config.enemy_type and config.quantity > 0:
-			if config and config.enemy_type and config.quantity > 0:
-				var current_count_of_this_type = 0
-				for enemy in spawned_enemies:
-					if is_instance_valid(enemy) and enemy.scene_file_path == config.enemy_type.resource_path:
-						current_count_of_this_type += 1
-				var needed = config.quantity - current_count_of_this_type
-				for i in range(needed):
-					spawn_queue.append(config.enemy_type)
+			var current_count_of_this_type = 0
+			for enemy in spawned_enemies:
+				if is_instance_valid(enemy) and enemy.scene_file_path == config.enemy_type.resource_path:
+					current_count_of_this_type += 1
+			var needed = config.quantity - current_count_of_this_type
+			for i in range(needed):
+				spawn_queue.append(config.enemy_type)
+	if spawn_queue.is_empty():
+		return
+	start_enemy_spawn(wave_number, camera, spawn_queue, 0)
+
+func start_enemy_spawn(wave_number : int, camera: Camera2D, spawn_queue: Array[PackedScene], queue_pos: int = 0):
+	if wave_number != current_wave_index or queue_pos >= spawn_queue.size() or !enabled:
+		return
+	get_tree().create_timer(waves[wave_number].spawn_interval_enemies, true, false, true).timeout.connect(start_enemy_spawn.bind(wave_number, camera, spawn_queue, (queue_pos+1)))
 	
-	for enemy_scene in spawn_queue:
-		var spawn_pos = calculate_spawn_position(camera)
-		if spawn_pos != Vector2.ZERO:
-			spawn_enemy_at(enemy_scene, spawn_pos)
-			await get_tree().create_timer(spawn_interval).timeout
-		else:
-			break
-	is_spawning = false
+	var spawn_pos = calculate_spawn_position(camera)
+	if spawn_pos != Vector2.ZERO:
+		spawn_enemy_at(spawn_queue[queue_pos], spawn_pos)
 
 func calculate_spawn_position(camera: Camera2D) -> Vector2:
 	var camera_center = camera.get_screen_center_position()
-	var viewport_size = get_viewport_rect().size / camera.zoom
+	var viewport_rect = get_viewport_rect()
+	var viewport_size = viewport_rect.size / camera.zoom
 	
-	# Limites verticais da câmera (altura atual da tela no mundo)
 	var min_cam_y = camera_center.y - (viewport_size.y / 2.0)
 	var max_cam_y = camera_center.y + (viewport_size.y / 2.0)
 	
-	# Limites verticais desta Area2D retangular
 	var min_zone_y = global_position.y - (zone_size.y / 2.0)
 	var max_zone_y = global_position.y + (zone_size.y / 2.0)
 	
-	# Intersecção entre a altura da câmera e a altura da área
 	var start_y = max(min_cam_y, min_zone_y)
 	var end_y = min(max_cam_y, max_zone_y)
 	
-	# Se a área não estiver visível na altura da câmera
 	if start_y >= end_y:
-		return Vector2.ZERO
+		start_y = min_zone_y
+		end_y = max_zone_y
 		
-	# Posição X aleatória dentro da largura da área de spawn
 	var min_zone_x = global_position.x - (zone_size.x / 2.0)
 	var max_zone_x = global_position.x + (zone_size.x / 2.0)
 	var spawn_x = randf_range(min_zone_x, max_zone_x)
-	
-	# Posição Y aleatória limitada à altura visível da câmera
 	var spawn_y = randf_range(start_y, end_y)
 	
 	return Vector2(spawn_x, spawn_y)
@@ -116,7 +129,7 @@ func spawn_enemy_at(enemy_scene: PackedScene, pos: Vector2) -> void:
 	var enemy = enemy_scene.instantiate()
 	enemy.global_position = pos
 	
-	get_parent().add_child(enemy)
+	get_parent().add_child.call_deferred(enemy)
 	spawned_enemies.append(enemy)
 	
 	var health_comp = enemy.get_node_or_null("HealthComponent")
@@ -125,4 +138,3 @@ func spawn_enemy_at(enemy_scene: PackedScene, pos: Vector2) -> void:
 
 func enemy_erase(enemy: Node) -> void:
 	spawned_enemies.erase(enemy)
-	

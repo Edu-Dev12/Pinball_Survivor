@@ -9,6 +9,7 @@ class_name BaseLevel
 @export var level_initial_time_seconds: int = 120
 @export var player: PlayerBody
 @export var enemies: Node2D 
+@export var boss_spawner : BossSpawner
 
 var tile_map_layer: TileMapLayer
 var camera_reference: Camera2D
@@ -22,10 +23,11 @@ func _ready() -> void:
 	
 	if player:
 		SignalManager.player_spawned.emit(player)
-		
-	SignalManager.request_camera_reference.emit()
 	
 	Ui.set_initial_time(level_initial_time_seconds)
+	SignalManager.request_camera_reference.emit()
+	SignalManager.level_timer_ended.connect(start_boss_fight)
+	SignalManager.level_won.connect(next_level_reached)
 
 func update_camera_reference(new_camera_reference: Camera2D) -> void:
 	camera_reference = new_camera_reference
@@ -36,3 +38,8 @@ func despawn_level() -> void:
 
 func next_level_reached():
 	SignalManager.next_level_reached.emit(next_level)
+
+func start_boss_fight() -> void:
+	for spawner : BaseWaveSpawner in get_tree().get_nodes_in_group(Global.SPAWNER_GROUP):
+		spawner.set_spawner_enabled(false)
+	boss_spawner.start_boss_fight()

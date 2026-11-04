@@ -19,14 +19,9 @@ func _ready() -> void:
 
 func death() -> void:
 	animated_sprite_2d.set_deferred("visible", false)
-
 	calculate_final_score()
-	
 	Ui.add_score(final_score)
 	create_effects()
-	
-	if enemy.is_in_group(Global.BOSS_GROUP):
-		SignalManager.level_won.emit()
 	enemy.queue_free()
 
 func create_effects():

@@ -35,6 +35,7 @@ func explode() -> void:
 	if is_dead:
 		return
 	is_dead = true
+	health_component.died.emit()
 	Ui.remove_player_health(1)
 	queue_free()
 
