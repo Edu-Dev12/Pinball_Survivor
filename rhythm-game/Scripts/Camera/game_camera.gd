@@ -15,8 +15,13 @@ func _ready() -> void:
 		can_follow_player = true
 
 func _process(_delta: float) -> void:
-	label.text = "FPS: " + str(Engine.get_frames_per_second())
-
+	label.text = "FPS: %d\nFrame: %.1f ms\nNodes: %d\nDraw calls: %d\n Physics: %.1f ms" % [
+		Engine.get_frames_per_second(),
+		Performance.get_monitor(Performance.TIME_PROCESS) * 1000,
+		Performance.get_monitor(Performance.OBJECT_NODE_COUNT),
+		Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME),
+		Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS)* 1000,
+	]
 
 func _physics_process(_delta: float) -> void:
 	if current_player_node and can_follow_player:

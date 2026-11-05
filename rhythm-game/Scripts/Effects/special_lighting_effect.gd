@@ -3,7 +3,6 @@ extends Node2D
 @onready var lightning_sphere: GPUParticles2D = $LightningSphere
 @onready var lightning_particles: GPUParticles2D = $LightningParticles
 @onready var lightning_flare: GPUParticles2D = $LightningFlare
-@onready var impact_rect: ColorRect = $CanvasLayer/ImpactRect
 @onready var wave_effect: GPUParticles2D = $WaveEffect
 
 func _ready() -> void:

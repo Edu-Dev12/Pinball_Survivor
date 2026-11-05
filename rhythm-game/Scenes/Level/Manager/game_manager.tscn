@@ -9,6 +9,7 @@ script = ExtResource("1_10sge")
 starting_level_name = "level_1"
 
 [node name="GameCamera" parent="." unique_id=1832176273 node_paths=PackedStringArray("cameraShakeComponent") groups=["Camera"] instance=ExtResource("2_piw3h")]
+position = Vector2(577, 324)
 position_smoothing_enabled = true
 cameraShakeComponent = NodePath("CameraShakeComponent")
 
@@ -25,5 +26,5 @@ offset_top = 6.0
 offset_right = 51.0
 offset_bottom = 29.0
 theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 16
 text = "1200"
