@@ -1,29 +1,12 @@
 [gd_scene format=3 uid="uid://dedyay5otb6h"]
 
 [ext_resource type="Script" uid="uid://bwv8wceiayo3k" path="res://Scripts/Level/Manager/game_manager.gd" id="1_10sge"]
-[ext_resource type="Script" uid="uid://cdr6ef8jmge03" path="res://Scenes/Managers/player_level_manager.gd" id="2_c3lqn"]
 [ext_resource type="PackedScene" uid="uid://c2f02pdv27swa" path="res://Scenes/Camera/game_camera.tscn" id="2_piw3h"]
 [ext_resource type="Script" uid="uid://ciquumf6sd0y2" path="res://Scripts/Components/Utils/camera_shake_component.gd" id="3_10sge"]
-[ext_resource type="Script" uid="uid://bh6mla10w3p1d" path="res://Resource/Actions/player_level_action.gd" id="3_c3lqn"]
-
-[sub_resource type="Resource" id="Resource_dwdf3"]
-script = ExtResource("3_c3lqn")
-frequency = 5
-metadata/_custom_type_script = "uid://bh6mla10w3p1d"
-
-[sub_resource type="Resource" id="Resource_rd5n0"]
-script = ExtResource("3_c3lqn")
-action = 1
-starts = 2
-metadata/_custom_type_script = "uid://bh6mla10w3p1d"
 
 [node name="GameManager" type="Node" unique_id=126509562]
 script = ExtResource("1_10sge")
 starting_level_name = "level_1"
-
-[node name="PlayerLevelManager" type="Node" parent="." unique_id=482387346]
-script = ExtResource("2_c3lqn")
-actions = Array[ExtResource("3_c3lqn")]([SubResource("Resource_dwdf3"), SubResource("Resource_rd5n0")])
 
 [node name="GameCamera" parent="." unique_id=1832176273 node_paths=PackedStringArray("cameraShakeComponent") groups=["Camera"] instance=ExtResource("2_piw3h")]
 position = Vector2(577, 324)
