@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://k504sxi316mt"]
+
+[ext_resource type="Texture2D" uid="uid://d26cw80kraiq7" path="res://Assets/Entity/Enemy/Enemy_Spritesheet.png" id="1_ccppw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8ccm"]
+atlas = ExtResource("1_ccppw")
+region = Rect2(60, 20, 225, 225)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8ccm")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]

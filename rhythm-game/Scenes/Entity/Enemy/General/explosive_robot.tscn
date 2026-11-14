@@ -181,10 +181,6 @@ speed = 200.0
 orbit_radius = 40.0
 attack_off_set = 10.0
 
-[node name="FirstEnemyAnimation" type="Node" parent="." unique_id=1491399051 node_paths=PackedStringArray("selfDestructionComponent")]
-script = ExtResource("4_ft3o8")
-selfDestructionComponent = NodePath("../SelfDestructionComponent")
-
 [node name="HealthComponent" type="Node" parent="." unique_id=1531943528]
 script = ExtResource("2_x1513")
 metadata/_custom_type_script = "uid://clwsd3i4f8ndy"
@@ -212,6 +208,10 @@ health_component = NodePath("../HealthComponent")
 score_effect_scene = ExtResource("8_v5xdt")
 hit_effect_scene = ExtResource("9_j5h8p")
 effects = Array[ExtResource("12_h0rip")]([SubResource("Resource_ft3o8"), SubResource("Resource_h0rip"), SubResource("Resource_xol7p")])
+
+[node name="FirstEnemyAnimation" type="Node" parent="." unique_id=1491399051 node_paths=PackedStringArray("selfDestructionComponent")]
+script = ExtResource("4_ft3o8")
+selfDestructionComponent = NodePath("../SelfDestructionComponent")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1299088079]
 libraries/ = SubResource("AnimationLibrary_iel3e")

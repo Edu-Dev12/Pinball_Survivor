@@ -7,8 +7,6 @@ const DEAD_BODY_EFFECT = preload("uid://u116yfkbse07")
 @export var animated_sprite_2d: AnimatedSprite2D
 @export var health_component: HealthComponent
 @export var score_value : int = 100
-@export var score_effect_scene : PackedScene
-@export var hit_effect_scene: PackedScene
 
 @export var effects: Array[EffectData]
 
