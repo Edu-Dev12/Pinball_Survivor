@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bhq7ci643e2yj" path="res://Scenes/Effects/base_score_effect.tscn" id="9_4ata3"]
 [ext_resource type="PackedScene" uid="uid://u116yfkbse07" path="res://Scenes/Effects/dead_body_effect.tscn" id="11_aj5c2"]
 [ext_resource type="Script" uid="uid://c4jv6sqdkonri" path="res://Resource/Effects/complex_effect_data.gd" id="12_igqgm"]
+[ext_resource type="Script" uid="uid://qx8pxlfrqqeh" path="res://Scripts/Entity/FSM/Base/fsm.gd" id="13_4ata3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2q4t3"]
 
@@ -72,3 +73,7 @@ animated_sprite_2d = NodePath("../AnimatedSprite2D")
 health_component = NodePath("../HealthComponent")
 effects = Array[ExtResource("6_x1pqg")]([SubResource("Resource_jkmb8"), SubResource("Resource_gps8a"), SubResource("Resource_1b15t")])
 metadata/_custom_type_script = "uid://p85gg66bqnm8"
+
+[node name="FSM" type="Node" parent="." unique_id=1617274669]
+script = ExtResource("13_4ata3")
+metadata/_custom_type_script = "uid://qx8pxlfrqqeh"
