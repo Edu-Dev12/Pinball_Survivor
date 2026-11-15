@@ -4,6 +4,7 @@ class_name EnemyNavigationComponent
 signal orbit_reached
 
 @export var enemy: CharacterBody2D
+@export var knockback_component: KnockbackComponent
 @export var speed: float = 100.0
 @export var orbit_radius: float = 30.0
 @export var attack_off_set: float = 15.0
@@ -11,25 +12,16 @@ signal orbit_reached
 var target: Node2D
 var target_offset_position: Vector2
 var _has_emitted_orbit: bool = false
-var knockback_velocity: Vector2 = Vector2.ZERO
 var is_active: bool = true
 
 func _ready() -> void:
 	velocity_computed.connect(_on_velocity_computed)
 
-func apply_knockback(force: Vector2) -> void:
-	if not is_active:
-		return
-	knockback_velocity = force
-
-func update_movement(delta: float) -> void:
+func update_movement(_delta: float) -> void:
 	if not is_active or not enemy or not target or not is_instance_valid(target):
 		return
-	
-	if knockback_velocity != Vector2.ZERO:
-		enemy.velocity = knockback_velocity
-		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, delta * 1000.0)
-		enemy.move_and_slide()
+		
+	if knockback_component and knockback_component.is_knockbacked():
 		return
 		
 	if is_navigation_finished():

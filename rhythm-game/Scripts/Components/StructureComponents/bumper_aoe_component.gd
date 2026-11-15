@@ -8,9 +8,7 @@ class_name BumperAOEComponent
 @export var push_radius: float = 100
 @export var tween_duration: float = 0.1
 @export var default_scale: Vector2
-
 @export var effects: Array[EffectData]
-
 
 func _ready() -> void:
 	default_scale = bumper_visual.scale
@@ -42,13 +40,12 @@ func apply_aoe_push() -> void:
 					push_dir = Vector2.UP
 					
 				var final_push = push_dir * push_strength
-				var component = enemy.get_node_or_null("EnemyNavigationComponent")
+				var component = enemy.get_node_or_null("KnockbackComponent")
 				if component and component.has_method("apply_knockback"):
 					component.apply_knockback(final_push)
 					
 				var healthComponet = enemy.get_node_or_null("HealthComponent") as HealthComponent
 				healthComponet.receive_damage(damage)
-				
 
 func play_punch_tween() -> void:
 	if not bumper_visual:
