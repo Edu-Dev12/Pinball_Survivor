@@ -3,8 +3,17 @@ class_name EnemyNavigationComponent
 
 signal orbit_reached
 
+enum TARGET_TYPE {
+	STRUCTURE,
+	PLAYER
+}
+
+@export_group("Configurações de Componentes")
 @export var enemy: CharacterBody2D
 @export var knockback_component: KnockbackComponent
+
+@export_group("Configurações de Valores")
+@export var target_type: TARGET_TYPE = TARGET_TYPE.STRUCTURE
 @export var speed: float = 100.0
 @export var orbit_radius: float = 30.0
 @export var attack_off_set: float = 15.0
@@ -52,6 +61,12 @@ func _on_velocity_computed(safe_velocity: Vector2) -> void:
 		enemy.velocity = safe_velocity
 		enemy.move_and_slide()
 
+func find_target() -> void:
+	if target_type == TARGET_TYPE.STRUCTURE:
+		find_structure()
+	elif target_type == TARGET_TYPE.PLAYER:
+		find_player()
+
 func find_structure() -> void:
 	var structure_list = get_tree().get_nodes_in_group(Global.STRUCTURE_GROUP)
 	
@@ -72,6 +87,9 @@ func find_structure() -> void:
 		target_offset_position = target.global_position + (offset_dir * orbit_radius)
 		
 		target_position = target_offset_position
+
+func find_player() -> void:
+	pass
 
 func stop() -> void:
 	is_active = false

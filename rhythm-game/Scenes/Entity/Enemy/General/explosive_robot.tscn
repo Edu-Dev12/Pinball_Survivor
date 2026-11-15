@@ -12,9 +12,9 @@
 [ext_resource type="Script" uid="uid://p85gg66bqnm8" path="res://Scripts/Components/EnemyComponents/enemy_death_component.gd" id="7_pcolw"]
 [ext_resource type="PackedScene" uid="uid://bhq7ci643e2yj" path="res://Scenes/Effects/base_score_effect.tscn" id="8_v5xdt"]
 [ext_resource type="PackedScene" uid="uid://dlsfpaiiacyim" path="res://Scenes/Effects/hit_effect.tscn" id="9_j5h8p"]
-[ext_resource type="Script" uid="uid://ccrb118msosru" path="res://Resource/Effects/Base_Effect_Data.gd" id="12_h0rip"]
+[ext_resource type="Script" uid="uid://ccrb118msosru" path="res://Resource/Effects/base_effect.gd" id="12_h0rip"]
 [ext_resource type="Script" uid="uid://bbcfi1e602tuw" path="res://Resource/Effects/position_effect.gd" id="13_xol7p"]
-[ext_resource type="Script" uid="uid://be4sxaq4mu3hc" path="res://Resource/Effects/score_effect_data.gd" id="14_xol7p"]
+[ext_resource type="Script" uid="uid://be4sxaq4mu3hc" path="res://Resource/Effects/score_effect.gd" id="14_xol7p"]
 [ext_resource type="PackedScene" uid="uid://u116yfkbse07" path="res://Scenes/Effects/dead_body_effect.tscn" id="15_gpx3d"]
 [ext_resource type="Script" uid="uid://qx8pxlfrqqeh" path="res://Scripts/Entity/FSM/Base/fsm.gd" id="16_647ke"]
 [ext_resource type="Script" uid="uid://c4jv6sqdkonri" path="res://Resource/Effects/complex_effect_data.gd" id="16_td6jc"]
@@ -171,7 +171,7 @@ metadata/_custom_type_script = "uid://csy647r8tv7w5"
 shape = SubResource("CapsuleShape2D_426oi")
 debug_color = Color(0.64454705, 0.5230215, 0, 0.41960785)
 
-[node name="EnemyNavigationComponent" type="NavigationAgent2D" parent="." unique_id=797026272 node_paths=PackedStringArray("enemy")]
+[node name="EnemyNavigationComponent" type="NavigationAgent2D" parent="." unique_id=797026272 node_paths=PackedStringArray("enemy", "knockback_component")]
 path_desired_distance = 10.0
 avoidance_enabled = true
 radius = 15.0
@@ -180,12 +180,14 @@ max_speed = 1500.0
 debug_path_custom_color = Color(1, 1, 0.12156863, 1)
 script = ExtResource("6_rhb01")
 enemy = NodePath("..")
+knockback_component = NodePath("../KnockbackComponent")
 speed = 200.0
 orbit_radius = 40.0
 attack_off_set = 10.0
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1531943528]
 script = ExtResource("2_x1513")
+max_health = 30
 metadata/_custom_type_script = "uid://clwsd3i4f8ndy"
 
 [node name="KnockbackComponent" type="Node" parent="." unique_id=2121562224 node_paths=PackedStringArray("enemy")]
