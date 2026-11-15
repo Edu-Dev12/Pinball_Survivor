@@ -1,14 +1,16 @@
 extends EnemyState
 class_name EnemyChaseState
 
-@export var navigation_component: EnemyNavigationComponent
 @export var after_state: State
+@export var navigation_component: EnemyNavigationComponent
+@export var permanent_chase: bool = false
 
 func enter() -> void:
 	if navigation_component:
-		if not navigation_component.orbit_reached.is_connected(_on_orbit_reached):
-			navigation_component.orbit_reached.connect(_on_orbit_reached)
-		navigation_component.find_target()
+		if not permanent_chase:
+			if not navigation_component.orbit_reached.is_connected(_on_orbit_reached):
+				navigation_component.orbit_reached.connect(_on_orbit_reached)
+			navigation_component.find_target()
 
 func physics_update(delta: float) -> void:
 	if navigation_component:

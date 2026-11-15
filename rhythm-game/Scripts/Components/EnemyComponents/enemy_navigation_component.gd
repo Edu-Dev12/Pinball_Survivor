@@ -18,10 +18,10 @@ enum TARGET_TYPE {
 @export var orbit_radius: float = 30.0
 @export var attack_off_set: float = 15.0
 
-var target: Node2D
-var target_offset_position: Vector2
-var _has_emitted_orbit: bool = false
 var is_active: bool = true
+var is_chasing_player = false
+var has_emitted_orbit: bool = false
+var target: Node2D
 
 func _ready() -> void:
 	velocity_computed.connect(_on_velocity_computed)
@@ -32,6 +32,9 @@ func update_movement(_delta: float) -> void:
 		
 	if knockback_component and knockback_component.is_knockbacked():
 		return
+	
+	if is_chasing_player:
+		find_player()
 		
 	if is_navigation_finished():
 		enemy.velocity = Vector2.ZERO
@@ -49,9 +52,9 @@ func update_movement(_delta: float) -> void:
 		enemy.velocity = desired_velocity
 		enemy.move_and_slide()
 	
-	if not _has_emitted_orbit:
+	if not has_emitted_orbit:
 		if enemy.global_position.distance_to(target.global_position) <= orbit_radius + attack_off_set:
-			_has_emitted_orbit = true
+			has_emitted_orbit = true
 			orbit_reached.emit()
 
 func _on_velocity_computed(safe_velocity: Vector2) -> void:
@@ -65,10 +68,14 @@ func find_target() -> void:
 	if target_type == TARGET_TYPE.STRUCTURE:
 		find_structure()
 	elif target_type == TARGET_TYPE.PLAYER:
-		find_player()
+		if not is_chasing_player:
+			is_chasing_player = true
+			target = get_tree().get_first_node_in_group(Global.PLAYER_BODY_GROUP)
+			get_tree().create_timer(1, true, false, true).timeout.connect(find_player)
 
 func find_structure() -> void:
 	var structure_list = get_tree().get_nodes_in_group(Global.STRUCTURE_GROUP)
+	var target_offset_position: Vector2
 	
 	if structure_list.size() > 0:
 		var target_to_remove: Node2D = structure_list[0]
@@ -89,7 +96,11 @@ func find_structure() -> void:
 		target_position = target_offset_position
 
 func find_player() -> void:
-	pass
+	if not is_active or not target or not is_instance_valid(target):
+		is_chasing_player  = false
+		return
+	target_position = target.global_position
+	get_tree().create_timer(1, true, false, true).timeout.connect(find_player)
 
 func stop() -> void:
 	is_active = false

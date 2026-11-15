@@ -215,10 +215,10 @@ script = ExtResource("16_647ke")
 initial_state = NodePath("EnemyChaseState")
 metadata/_custom_type_script = "uid://qx8pxlfrqqeh"
 
-[node name="EnemyChaseState" type="Node" parent="FSM" unique_id=444207260 node_paths=PackedStringArray("navigation_component", "after_state")]
+[node name="EnemyChaseState" type="Node" parent="FSM" unique_id=444207260 node_paths=PackedStringArray("after_state", "navigation_component")]
 script = ExtResource("17_srl2u")
-navigation_component = NodePath("../../EnemyNavigationComponent")
 after_state = NodePath("../EnemyExplodeState")
+navigation_component = NodePath("../../EnemyNavigationComponent")
 metadata/_custom_type_script = "uid://dyl4bktkec1w0"
 
 [node name="EnemyExplodeState" type="Node" parent="FSM" unique_id=1158713691]
