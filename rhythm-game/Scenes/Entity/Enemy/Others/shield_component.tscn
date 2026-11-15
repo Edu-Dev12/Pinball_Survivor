@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bklj0nrvmagrt"]
+
+[ext_resource type="Script" uid="uid://3iyefjcf8s5a" path="res://Scripts/Components/shield_component.gd" id="1_r3bbe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nm8h8"]
+
+[node name="ShieldComponent" type="Area2D" unique_id=1570859493]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_r3bbe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1407962703]
+shape = SubResource("RectangleShape2D_nm8h8")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=751853756]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.4509804, 0, 1)

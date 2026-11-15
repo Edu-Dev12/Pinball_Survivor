@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c0x055v7lojwu"]
 
 [ext_resource type="SpriteFrames" uid="uid://k504sxi316mt" path="res://Assets/Entity/Enemy/SpriteFrames/ranged_robot_sprite_frames.tres" id="1_gu734"]
+[ext_resource type="PackedScene" uid="uid://bklj0nrvmagrt" path="res://Scenes/Entity/Enemy/Others/shield_component.tscn" id="1_x57ug"]
 [ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/HurtboxComponents/hurtbox_component.gd" id="2_ljj10"]
 [ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/HealthComponents/health_component.gd" id="3_tfej5"]
 [ext_resource type="Script" uid="uid://bxcngec2b54ck" path="res://Scripts/Components/EnemyComponents/enemy_navigation_component.gd" id="3_u015u"]
@@ -16,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://u116yfkbse07" path="res://Scenes/Effects/dead_body_effect.tscn" id="11_cocbd"]
 [ext_resource type="Script" uid="uid://c4jv6sqdkonri" path="res://Resource/Effects/complex_effect_data.gd" id="12_kmjla"]
 [ext_resource type="Script" uid="uid://qx8pxlfrqqeh" path="res://Scripts/Entity/FSM/Base/fsm.gd" id="13_m3va4"]
-[ext_resource type="Script" uid="uid://dyl4bktkec1w0" path="res://Scripts/Entity/FSM/States/ExplosiveRobot/enemy_chase_state.gd" id="16_akvnt"]
+[ext_resource type="Script" uid="uid://dyl4bktkec1w0" path="res://Scripts/Entity/FSM/States/General/enemy_chase_state.gd" id="16_akvnt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2q4t3"]
 
@@ -46,6 +47,9 @@ metadata/_custom_type_script = "uid://c4jv6sqdkonri"
 collision_layer = 8
 collision_mask = 72
 
+[node name="ShieldComponent" parent="." unique_id=1570859493 node_paths=PackedStringArray("hurtbox") instance=ExtResource("1_x57ug")]
+hurtbox = NodePath("../HurtboxComponent")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1173669566]
 modulate = Color(1, 0.023529412, 1, 1)
 scale = Vector2(0.175, 0.175)
@@ -70,7 +74,6 @@ avoidance_enabled = true
 radius = 15.0
 neighbor_distance = 40.0
 max_speed = 1500.0
-debug_enabled = true
 debug_path_custom_color = Color(1, 0.21176471, 1, 1)
 script = ExtResource("3_u015u")
 enemy = NodePath("..")
@@ -80,7 +83,7 @@ metadata/_custom_type_script = "uid://bxcngec2b54ck"
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1819290470]
 script = ExtResource("3_tfej5")
-max_health = 30
+max_health = 50
 metadata/_custom_type_script = "uid://clwsd3i4f8ndy"
 
 [node name="KnockbackComponent" type="Node" parent="." unique_id=421363207 node_paths=PackedStringArray("enemy")]

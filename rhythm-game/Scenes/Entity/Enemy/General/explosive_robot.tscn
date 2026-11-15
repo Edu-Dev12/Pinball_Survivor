@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://u116yfkbse07" path="res://Scenes/Effects/dead_body_effect.tscn" id="15_gpx3d"]
 [ext_resource type="Script" uid="uid://qx8pxlfrqqeh" path="res://Scripts/Entity/FSM/Base/fsm.gd" id="16_647ke"]
 [ext_resource type="Script" uid="uid://c4jv6sqdkonri" path="res://Resource/Effects/complex_effect_data.gd" id="16_td6jc"]
-[ext_resource type="Script" uid="uid://dyl4bktkec1w0" path="res://Scripts/Entity/FSM/States/ExplosiveRobot/enemy_chase_state.gd" id="17_srl2u"]
+[ext_resource type="Script" uid="uid://dyl4bktkec1w0" path="res://Scripts/Entity/FSM/States/General/enemy_chase_state.gd" id="17_srl2u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rrj3t"]
 radius = 14.035668
@@ -181,7 +181,6 @@ debug_path_custom_color = Color(1, 1, 0.12156863, 1)
 script = ExtResource("6_rhb01")
 enemy = NodePath("..")
 knockback_component = NodePath("../KnockbackComponent")
-speed = 200.0
 orbit_radius = 40.0
 attack_off_set = 10.0
 
