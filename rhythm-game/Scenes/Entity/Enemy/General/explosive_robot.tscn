@@ -187,7 +187,6 @@ attack_off_set = 10.0
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1531943528]
 script = ExtResource("2_x1513")
-max_health = 30
 metadata/_custom_type_script = "uid://clwsd3i4f8ndy"
 
 [node name="KnockbackComponent" type="Node" parent="." unique_id=2121562224 node_paths=PackedStringArray("enemy")]

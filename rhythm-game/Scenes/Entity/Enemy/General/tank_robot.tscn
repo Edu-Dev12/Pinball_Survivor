@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://c0x055v7lojwu"]
+
+[ext_resource type="SpriteFrames" uid="uid://k504sxi316mt" path="res://Assets/Entity/Enemy/SpriteFrames/ranged_robot_sprite_frames.tres" id="1_gu734"]
+[ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/HurtboxComponents/hurtbox_component.gd" id="2_ljj10"]
+[ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/HealthComponents/health_component.gd" id="3_tfej5"]
+[ext_resource type="Script" uid="uid://bxcngec2b54ck" path="res://Scripts/Components/EnemyComponents/enemy_navigation_component.gd" id="3_u015u"]
+[ext_resource type="Script" uid="uid://dirog1u42u7vt" path="res://Scripts/Components/BehaviorComponents/rebounce_behavior_component.gd" id="4_u015u"]
+[ext_resource type="Script" uid="uid://52eolxg4r2tc" path="res://Scripts/Components/EnemyComponents/knockback_component.gd" id="5_x57ug"]
+[ext_resource type="Script" uid="uid://p85gg66bqnm8" path="res://Scripts/Components/EnemyComponents/enemy_death_component.gd" id="5_xpk1k"]
+[ext_resource type="Script" uid="uid://ccrb118msosru" path="res://Resource/Effects/base_effect.gd" id="6_x57ug"]
+[ext_resource type="PackedScene" uid="uid://dlsfpaiiacyim" path="res://Scenes/Effects/hit_effect.tscn" id="7_akvnt"]
+[ext_resource type="Script" uid="uid://c1thi6r2w1nda" path="res://Scripts/Effects/white_hit_effect.gd" id="7_xpk1k"]
+[ext_resource type="Script" uid="uid://bbcfi1e602tuw" path="res://Resource/Effects/position_effect.gd" id="8_m7g07"]
+[ext_resource type="PackedScene" uid="uid://bhq7ci643e2yj" path="res://Scenes/Effects/base_score_effect.tscn" id="9_6px64"]
+[ext_resource type="Script" uid="uid://be4sxaq4mu3hc" path="res://Resource/Effects/score_effect.gd" id="10_2wjck"]
+[ext_resource type="PackedScene" uid="uid://u116yfkbse07" path="res://Scenes/Effects/dead_body_effect.tscn" id="11_cocbd"]
+[ext_resource type="Script" uid="uid://c4jv6sqdkonri" path="res://Resource/Effects/complex_effect_data.gd" id="12_kmjla"]
+[ext_resource type="Script" uid="uid://qx8pxlfrqqeh" path="res://Scripts/Entity/FSM/Base/fsm.gd" id="13_m3va4"]
+[ext_resource type="Script" uid="uid://dyl4bktkec1w0" path="res://Scripts/Entity/FSM/States/ExplosiveRobot/enemy_chase_state.gd" id="16_akvnt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2q4t3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yq865"]
+radius = 16.0
+height = 40.0
+
+[sub_resource type="Resource" id="Resource_jkmb8"]
+script = ExtResource("8_m7g07")
+effect_scene = ExtResource("7_akvnt")
+metadata/_custom_type_script = "uid://bbcfi1e602tuw"
+
+[sub_resource type="Resource" id="Resource_gps8a"]
+script = ExtResource("10_2wjck")
+effect_scene = ExtResource("9_6px64")
+metadata/_custom_type_script = "uid://be4sxaq4mu3hc"
+
+[sub_resource type="Resource" id="Resource_1b15t"]
+script = ExtResource("12_kmjla")
+use_direction = true
+use_sprite = true
+use_scale = true
+effect_scene = ExtResource("11_cocbd")
+metadata/_custom_type_script = "uid://c4jv6sqdkonri"
+
+[node name="TankRobot" type="CharacterBody2D" unique_id=784210407]
+collision_layer = 8
+collision_mask = 72
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1173669566]
+modulate = Color(1, 0.023529412, 1, 1)
+scale = Vector2(0.175, 0.175)
+sprite_frames = ExtResource("1_gu734")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=722189245]
+shape = SubResource("CapsuleShape2D_2q4t3")
+
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=1673494311 node_paths=PackedStringArray("health_component")]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("2_ljj10")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://csy647r8tv7w5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=902232595]
+shape = SubResource("CapsuleShape2D_yq865")
+
+[node name="EnemyNavigationComponent" type="NavigationAgent2D" parent="." unique_id=148906988 node_paths=PackedStringArray("enemy", "knockback_component")]
+path_desired_distance = 10.0
+avoidance_enabled = true
+radius = 15.0
+neighbor_distance = 40.0
+max_speed = 1500.0
+debug_enabled = true
+debug_path_custom_color = Color(1, 0.21176471, 1, 1)
+script = ExtResource("3_u015u")
+enemy = NodePath("..")
+knockback_component = NodePath("../KnockbackComponent")
+target_type = 1
+metadata/_custom_type_script = "uid://bxcngec2b54ck"
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1819290470]
+script = ExtResource("3_tfej5")
+max_health = 30
+metadata/_custom_type_script = "uid://clwsd3i4f8ndy"
+
+[node name="KnockbackComponent" type="Node" parent="." unique_id=421363207 node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_x57ug")
+enemy = NodePath("..")
+metadata/_custom_type_script = "uid://52eolxg4r2tc"
+
+[node name="RebounceBehaviorComponent" type="Node" parent="." unique_id=123378537 node_paths=PackedStringArray("source", "hurt_box_component")]
+script = ExtResource("4_u015u")
+rebounce_force = 0.0
+speed_slowdown_rate = 1.8
+passthrough_speed = 10000.0
+source = NodePath("..")
+hurt_box_component = NodePath("../HurtboxComponent")
+metadata/_custom_type_script = "uid://dirog1u42u7vt"
+
+[node name="WhiteHitEffect" type="Node" parent="." unique_id=1802732081 node_paths=PackedStringArray("animated_sprite", "hurt_box")]
+script = ExtResource("7_xpk1k")
+animated_sprite = NodePath("../AnimatedSprite2D")
+hurt_box = NodePath("../HurtboxComponent")
+hit_duration = 0.23
+
+[node name="EnemyDeathComponent" type="Node" parent="." unique_id=1922235306 node_paths=PackedStringArray("enemy", "animated_sprite_2d", "health_component")]
+script = ExtResource("5_xpk1k")
+enemy = NodePath("..")
+animated_sprite_2d = NodePath("../AnimatedSprite2D")
+health_component = NodePath("../HealthComponent")
+effects = Array[ExtResource("6_x57ug")]([SubResource("Resource_jkmb8"), SubResource("Resource_gps8a"), SubResource("Resource_1b15t")])
+metadata/_custom_type_script = "uid://p85gg66bqnm8"
+
+[node name="FSM" type="Node" parent="." unique_id=1617274669 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("13_m3va4")
+initial_state = NodePath("EnemyChaseState")
+metadata/_custom_type_script = "uid://qx8pxlfrqqeh"
+
+[node name="EnemyChaseState" type="Node" parent="FSM" unique_id=1148414052 node_paths=PackedStringArray("navigation_component")]
+script = ExtResource("16_akvnt")
+navigation_component = NodePath("../../EnemyNavigationComponent")
+permanent_chase = true
+metadata/_custom_type_script = "uid://dyl4bktkec1w0"

@@ -14,10 +14,12 @@ enum TARGET_TYPE {
 
 @export_group("Configurações de Valores")
 @export var target_type: TARGET_TYPE = TARGET_TYPE.STRUCTURE
-@export var speed: float = 100.0
+@export var max_enemy_speed: float = 250.0
+@export var min_enemy_speed: float = 150.0
 @export var orbit_radius: float = 30.0
 @export var attack_off_set: float = 15.0
 
+var speed: float
 var is_active: bool = true
 var is_chasing_player = false
 var has_emitted_orbit: bool = false
@@ -25,6 +27,7 @@ var target: Node2D
 
 func _ready() -> void:
 	velocity_computed.connect(_on_velocity_computed)
+	define_speed() 
 
 func update_movement(_delta: float) -> void:
 	if not is_active or not enemy or not target or not is_instance_valid(target):
@@ -101,6 +104,9 @@ func find_player() -> void:
 		return
 	target_position = target.global_position
 	get_tree().create_timer(1, true, false, true).timeout.connect(find_player)
+
+func define_speed() -> void:
+	speed = randf_range(min_enemy_speed, max_enemy_speed)
 
 func stop() -> void:
 	is_active = false

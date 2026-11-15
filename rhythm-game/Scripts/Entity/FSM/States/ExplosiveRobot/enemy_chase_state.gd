@@ -10,7 +10,7 @@ func enter() -> void:
 		if not permanent_chase:
 			if not navigation_component.orbit_reached.is_connected(_on_orbit_reached):
 				navigation_component.orbit_reached.connect(_on_orbit_reached)
-			navigation_component.find_target()
+		navigation_component.find_target()
 
 func physics_update(delta: float) -> void:
 	if navigation_component:
