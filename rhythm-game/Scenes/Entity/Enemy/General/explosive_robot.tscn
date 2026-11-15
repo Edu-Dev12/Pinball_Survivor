@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/HurtboxComponents/hurtbox_component.gd" id="3_1buj2"]
 [ext_resource type="Script" uid="uid://be1l2tkvrxun" path="res://Scripts/Animation/first_enemy_animation.gd" id="4_ft3o8"]
 [ext_resource type="Script" uid="uid://dirog1u42u7vt" path="res://Scripts/Components/BehaviorComponents/rebounce_behavior_component.gd" id="5_t6tdw"]
-[ext_resource type="Script" uid="uid://cph3wab7jau4j" path="res://Scripts/Components/EnemyComponents/self_destruction_component.gd" id="6_pcolw"]
+[ext_resource type="Script" uid="uid://cph3wab7jau4j" path="res://Scripts/Entity/FSM/States/ExplosiveRobot/enemy_explode_state.gd" id="6_pcolw"]
 [ext_resource type="Script" uid="uid://bxcngec2b54ck" path="res://Scripts/Components/EnemyComponents/enemy_navigation_component.gd" id="6_rhb01"]
 [ext_resource type="Script" uid="uid://p85gg66bqnm8" path="res://Scripts/Components/EnemyComponents/enemy_death_component.gd" id="7_pcolw"]
 [ext_resource type="PackedScene" uid="uid://bhq7ci643e2yj" path="res://Scenes/Effects/base_score_effect.tscn" id="8_v5xdt"]
@@ -15,7 +15,9 @@
 [ext_resource type="Script" uid="uid://bbcfi1e602tuw" path="res://Resource/Effects/position_effect.gd" id="13_xol7p"]
 [ext_resource type="Script" uid="uid://be4sxaq4mu3hc" path="res://Resource/Effects/score_effect_data.gd" id="14_xol7p"]
 [ext_resource type="PackedScene" uid="uid://u116yfkbse07" path="res://Scenes/Effects/dead_body_effect.tscn" id="15_gpx3d"]
+[ext_resource type="Script" uid="uid://qx8pxlfrqqeh" path="res://Scripts/Entity/FSM/Base/fsm.gd" id="16_647ke"]
 [ext_resource type="Script" uid="uid://c4jv6sqdkonri" path="res://Resource/Effects/complex_effect_data.gd" id="16_td6jc"]
+[ext_resource type="Script" uid="uid://dyl4bktkec1w0" path="res://Scripts/Entity/FSM/States/ExplosiveRobot/enemy_chase_state.gd" id="17_srl2u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rrj3t"]
 radius = 14.035668
@@ -174,6 +176,7 @@ avoidance_enabled = true
 radius = 15.0
 neighbor_distance = 40.0
 max_speed = 1500.0
+debug_enabled = true
 debug_path_custom_color = Color(1, 1, 0.12156863, 1)
 script = ExtResource("6_rhb01")
 enemy = NodePath("..")
@@ -194,29 +197,40 @@ source = NodePath("..")
 hurt_box_component = NodePath("../HurtboxComponent")
 metadata/_custom_type_script = "uid://dirog1u42u7vt"
 
-[node name="SelfDestructionComponent" type="Node" parent="." unique_id=759719018 node_paths=PackedStringArray("animated_sprite_2d", "enemy_navigation")]
-script = ExtResource("6_pcolw")
-lifetime = 8.0
-animated_sprite_2d = NodePath("../AnimatedSprite2D")
-enemy_navigation = NodePath("../EnemyNavigationComponent")
-
 [node name="EnemyDeathComponent" type="Node" parent="." unique_id=814837995 node_paths=PackedStringArray("enemy", "animated_sprite_2d", "health_component")]
 script = ExtResource("7_pcolw")
 enemy = NodePath("..")
 animated_sprite_2d = NodePath("../AnimatedSprite2D")
 health_component = NodePath("../HealthComponent")
-score_effect_scene = ExtResource("8_v5xdt")
-hit_effect_scene = ExtResource("9_j5h8p")
 effects = Array[ExtResource("12_h0rip")]([SubResource("Resource_ft3o8"), SubResource("Resource_h0rip"), SubResource("Resource_xol7p")])
 
-[node name="FirstEnemyAnimation" type="Node" parent="." unique_id=1491399051 node_paths=PackedStringArray("selfDestructionComponent")]
-script = ExtResource("4_ft3o8")
-selfDestructionComponent = NodePath("../SelfDestructionComponent")
+[node name="FSM" type="Node" parent="." unique_id=239348191 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("16_647ke")
+initial_state = NodePath("EnemyChaseState")
+metadata/_custom_type_script = "uid://qx8pxlfrqqeh"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1299088079]
+[node name="EnemyExplodeState" type="Node" parent="FSM" unique_id=1158713691]
+script = ExtResource("6_pcolw")
+metadata/_custom_type_script = "uid://cph3wab7jau4j"
+
+[node name="EnemyChaseState" type="Node" parent="FSM" unique_id=444207260 node_paths=PackedStringArray("navigation_component", "after_state")]
+script = ExtResource("17_srl2u")
+navigation_component = NodePath("../../EnemyNavigationComponent")
+after_state = NodePath("../EnemyExplodeState")
+metadata/_custom_type_script = "uid://dyl4bktkec1w0"
+
+[node name="Animation" type="Node" parent="." unique_id=800673225]
+
+[node name="FirstEnemyAnimation" type="Node" parent="Animation" unique_id=1491399051 node_paths=PackedStringArray("enemy_explode_state")]
+script = ExtResource("4_ft3o8")
+enemy_explode_state = NodePath("../../FSM/EnemyExplodeState")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animation" unique_id=1299088079]
+root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_iel3e")
 
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1654135401]
+[node name="AnimationTree" type="AnimationTree" parent="Animation" unique_id=1654135401]
+root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_pv2mu")
 advance_expression_base_node = NodePath("../FirstEnemyAnimation")
 anim_player = NodePath("../AnimationPlayer")

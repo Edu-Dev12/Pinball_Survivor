@@ -15,29 +15,24 @@ var knockback_velocity: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	velocity_computed.connect(_on_velocity_computed)
-	call_deferred("find_structure")
 
 func apply_knockback(force: Vector2) -> void:
 	knockback_velocity = force
 
-func _physics_process(_delta: float) -> void:
+func update_movement(delta: float) -> void:
 	if not enemy or not target or not is_instance_valid(target):
 		return
 	
 	if knockback_velocity != Vector2.ZERO:
 		enemy.velocity = knockback_velocity
-		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, _delta * 1000.0)
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, delta * 1000.0)
 		enemy.move_and_slide()
+		return
 		
 	if is_navigation_finished():
 		enemy.velocity = Vector2.ZERO
 		enemy.move_and_slide()
 		return
-	
-	if not _has_emitted_orbit:
-		if enemy.global_position.distance_to(target.global_position) <= orbit_radius + attack_off_set:
-			_has_emitted_orbit = true
-			orbit_reached.emit()
 		
 	var current_agent_position = enemy.global_position
 	var next_path_position = get_next_path_position()
@@ -49,6 +44,11 @@ func _physics_process(_delta: float) -> void:
 	else:
 		enemy.velocity = desired_velocity
 		enemy.move_and_slide()
+	
+	if not _has_emitted_orbit:
+		if enemy.global_position.distance_to(target.global_position) <= orbit_radius + attack_off_set:
+			_has_emitted_orbit = true
+			orbit_reached.emit()
 
 func _on_velocity_computed(safe_velocity: Vector2) -> void:
 	if enemy:

@@ -25,6 +25,7 @@ var spawned_enemies: Array = []
 func _ready() -> void:
 	if Engine.is_editor_hint() or !enabled:
 		return
+	await get_tree().create_timer(3, true, false, true).timeout
 	start_wave(current_wave_index)
 
 func set_spawner_enabled(p_enabled: bool) -> void:
