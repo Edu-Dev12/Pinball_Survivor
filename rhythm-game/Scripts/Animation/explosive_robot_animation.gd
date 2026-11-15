@@ -1,6 +1,6 @@
 @icon("res://Assets/Icon/node/components/icon-comp-person.svg")
 extends Node
-class_name FirstEnemyAnimation
+class_name ExplosiveRobotAnimation
 
 var is_walking: bool = false
 var is_charging: bool = false

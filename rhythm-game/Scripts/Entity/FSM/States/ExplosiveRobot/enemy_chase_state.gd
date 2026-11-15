@@ -17,5 +17,11 @@ func physics_update(delta: float) -> void:
 	if navigation_component:
 		navigation_component.update_movement(delta)
 
+func exit() -> void:
+	if navigation_component and navigation_component.orbit_reached.is_connected(_on_orbit_reached):
+		navigation_component.orbit_reached.disconnect(_on_orbit_reached)
+	character.velocity = Vector2.ZERO
+	navigation_component.stop()
+
 func _on_orbit_reached() -> void:
 	transitioned.emit(self, after_state.name)

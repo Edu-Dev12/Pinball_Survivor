@@ -12,15 +12,18 @@ var target: Node2D
 var target_offset_position: Vector2
 var _has_emitted_orbit: bool = false
 var knockback_velocity: Vector2 = Vector2.ZERO
+var is_active: bool = true
 
 func _ready() -> void:
 	velocity_computed.connect(_on_velocity_computed)
 
 func apply_knockback(force: Vector2) -> void:
+	if not is_active:
+		return
 	knockback_velocity = force
 
 func update_movement(delta: float) -> void:
-	if not enemy or not target or not is_instance_valid(target):
+	if not is_active or not enemy or not target or not is_instance_valid(target):
 		return
 	
 	if knockback_velocity != Vector2.ZERO:
@@ -51,6 +54,8 @@ func update_movement(delta: float) -> void:
 			orbit_reached.emit()
 
 func _on_velocity_computed(safe_velocity: Vector2) -> void:
+	if not is_active:
+		return
 	if enemy:
 		enemy.velocity = safe_velocity
 		enemy.move_and_slide()
@@ -75,3 +80,8 @@ func find_structure() -> void:
 		target_offset_position = target.global_position + (offset_dir * orbit_radius)
 		
 		target_position = target_offset_position
+
+func stop() -> void:
+	is_active = false
+	if enemy:
+		enemy.velocity = Vector2.ZERO

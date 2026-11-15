@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://ch6byh3nbtss" path="res://Scripts/Entity/Enemy/General/explosive_robot.gd" id="1_ytw8e"]
 [ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/HealthComponents/health_component.gd" id="2_x1513"]
 [ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/HurtboxComponents/hurtbox_component.gd" id="3_1buj2"]
-[ext_resource type="Script" uid="uid://be1l2tkvrxun" path="res://Scripts/Animation/first_enemy_animation.gd" id="4_ft3o8"]
+[ext_resource type="Script" uid="uid://be1l2tkvrxun" path="res://Scripts/Animation/explosive_robot_animation.gd" id="4_ft3o8"]
 [ext_resource type="Script" uid="uid://dirog1u42u7vt" path="res://Scripts/Components/BehaviorComponents/rebounce_behavior_component.gd" id="5_t6tdw"]
 [ext_resource type="Script" uid="uid://cph3wab7jau4j" path="res://Scripts/Entity/FSM/States/ExplosiveRobot/enemy_explode_state.gd" id="6_pcolw"]
 [ext_resource type="Script" uid="uid://bxcngec2b54ck" path="res://Scripts/Components/EnemyComponents/enemy_navigation_component.gd" id="6_rhb01"]
@@ -209,19 +209,19 @@ script = ExtResource("16_647ke")
 initial_state = NodePath("EnemyChaseState")
 metadata/_custom_type_script = "uid://qx8pxlfrqqeh"
 
-[node name="EnemyExplodeState" type="Node" parent="FSM" unique_id=1158713691]
-script = ExtResource("6_pcolw")
-metadata/_custom_type_script = "uid://cph3wab7jau4j"
-
 [node name="EnemyChaseState" type="Node" parent="FSM" unique_id=444207260 node_paths=PackedStringArray("navigation_component", "after_state")]
 script = ExtResource("17_srl2u")
 navigation_component = NodePath("../../EnemyNavigationComponent")
 after_state = NodePath("../EnemyExplodeState")
 metadata/_custom_type_script = "uid://dyl4bktkec1w0"
 
+[node name="EnemyExplodeState" type="Node" parent="FSM" unique_id=1158713691]
+script = ExtResource("6_pcolw")
+metadata/_custom_type_script = "uid://cph3wab7jau4j"
+
 [node name="Animation" type="Node" parent="." unique_id=800673225]
 
-[node name="FirstEnemyAnimation" type="Node" parent="Animation" unique_id=1491399051 node_paths=PackedStringArray("enemy_explode_state")]
+[node name="ExplosiveRobotAnimation" type="Node" parent="Animation" unique_id=1491399051 node_paths=PackedStringArray("enemy_explode_state")]
 script = ExtResource("4_ft3o8")
 enemy_explode_state = NodePath("../../FSM/EnemyExplodeState")
 
@@ -232,5 +232,5 @@ libraries/ = SubResource("AnimationLibrary_iel3e")
 [node name="AnimationTree" type="AnimationTree" parent="Animation" unique_id=1654135401]
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_pv2mu")
-advance_expression_base_node = NodePath("../FirstEnemyAnimation")
+advance_expression_base_node = NodePath("../ExplosiveRobotAnimation")
 anim_player = NodePath("../AnimationPlayer")
