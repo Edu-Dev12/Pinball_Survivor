@@ -8,6 +8,9 @@ var current_level_score: int = 0
 var next_level_score: int
 var current_level: int = 1
 
+signal upgrade_point
+signal ball_choise
+
 func _ready() -> void:
 	next_level_score = start_required_score
 
@@ -19,7 +22,7 @@ func add_score_to_level(score: int) -> void:
 		check_actions()
 		current_level += 1
 		
-		print("LEVEL: " + str(current_level))
+		print("\nPLAYER LEVEL: " + str(current_level))
 		var multiplier: float = 1.0 + (required_score_increase_percent / 100.0)
 		next_level_score = roundi(next_level_score * multiplier)
 
@@ -31,6 +34,6 @@ func check_actions() -> void:
 
 func execute_action(action: PlayerLevelAction.LEVEL_ACTION) -> void:
 	if action == PlayerLevelAction.LEVEL_ACTION.BALL_CHOISE:
-		print("ACTION: TYPE BALL CHOISE")
+		ball_choise.emit()
 	if action == PlayerLevelAction.LEVEL_ACTION.UPGRADE_POINT:
-		print("ACTION: UPGRADE POINT")
+		upgrade_point.emit()
