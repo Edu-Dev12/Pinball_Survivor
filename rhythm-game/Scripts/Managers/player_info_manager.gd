@@ -2,10 +2,17 @@ extends Node
 
 var upgrade_points: int = 0
 var balls_data: Array[BallData] = []
+var selected_ball: BallData
+
+signal selected_ball_changed(selected_ball: BallData)
 
 func _ready() -> void:
 	PlayerLevelManager.upgrade_point.connect(add_upgrade_points)
 
+func reset_data():
+	upgrade_points = 0
+	balls_data = []
+	selected_ball = null
 #--------------------------------
 # UPGRADE POINTS
 #--------------------------------
@@ -15,9 +22,16 @@ func add_upgrade_points() -> void:
 	
 func remove_upgrade_points() -> void:
 	upgrade_points = maxi(0, upgrade_points - 1)
-	
+
 #--------------------------------
-# BALL MANAGEMENT
+# SELECTED BALL
+#-------------------------------- 
+func change_selected_ball(new_selected_ball: BallData):
+	selected_ball = new_selected_ball
+	selected_ball_changed.emit(selected_ball)
+
+#--------------------------------
+# BALLS MANAGEMENT
 #--------------------------------
 func add_ball(ball_type: BallTypeData) -> void:
 	for ball in balls_data:
