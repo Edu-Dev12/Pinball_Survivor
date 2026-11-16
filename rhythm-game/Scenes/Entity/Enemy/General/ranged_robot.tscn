@@ -75,14 +75,12 @@ debug_path_custom_color = Color(1, 1, 0.12156863, 1)
 script = ExtResource("3_igqgm")
 enemy = NodePath("..")
 knockback_component = NodePath("../KnockbackComponent")
-max_enemy_speed = 150.0
-min_enemy_speed = 100.0
 orbit_radius = 50.0
-attack_off_set = 100.0
+attack_off_set = 200.0
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1819290470]
 script = ExtResource("3_jkmb8")
-max_health = 20
+max_health = 30
 metadata/_custom_type_script = "uid://clwsd3i4f8ndy"
 
 [node name="KnockbackComponent" type="Node" parent="." unique_id=1942810686 node_paths=PackedStringArray("enemy")]
@@ -114,10 +112,12 @@ script = ExtResource("13_4ata3")
 initial_state = NodePath("EnemyChaseState")
 metadata/_custom_type_script = "uid://qx8pxlfrqqeh"
 
-[node name="EnemyChaseState" type="Node" parent="FSM" unique_id=104459970 node_paths=PackedStringArray("navigation_component")]
+[node name="EnemyChaseState" type="Node" parent="FSM" unique_id=104459970 node_paths=PackedStringArray("after_state", "navigation_component")]
 script = ExtResource("16_kai2k")
+after_state = NodePath("../EnemyShootState")
 navigation_component = NodePath("../../EnemyNavigationComponent")
 metadata/_custom_type_script = "uid://dyl4bktkec1w0"
 
-[node name="EnemyShootState" type="Node" parent="FSM" unique_id=472740757]
+[node name="EnemyShootState" type="Node" parent="FSM" unique_id=472740757 node_paths=PackedStringArray("navigation_component")]
 script = ExtResource("18_o875d")
+navigation_component = NodePath("../../EnemyNavigationComponent")

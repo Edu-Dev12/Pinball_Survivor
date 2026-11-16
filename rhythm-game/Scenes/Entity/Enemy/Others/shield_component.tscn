@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bklj0nrvmagrt"]
 
-[ext_resource type="Script" uid="uid://3iyefjcf8s5a" path="res://Scripts/Components/shield_component.gd" id="1_r3bbe"]
+[ext_resource type="Script" uid="uid://3iyefjcf8s5a" path="res://Scripts/Components/EnemyComponents/shield_component.gd" id="1_r3bbe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nm8h8"]
 

@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://c6if73kecgtmy"]
+
+[ext_resource type="Texture2D" uid="uid://by6wa2ghwntw6" path="res://Assets/Icon/pinball_image.png" id="1_se6ex"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_se6ex")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]

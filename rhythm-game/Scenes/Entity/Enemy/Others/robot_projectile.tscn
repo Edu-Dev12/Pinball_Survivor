@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://c5vhcbswc1tbw"]
+
+[ext_resource type="SpriteFrames" uid="uid://c6if73kecgtmy" path="res://Assets/Entity/Enemy/SpriteFrames/robot_projectile.tres" id="1_em6sy"]
+[ext_resource type="Script" uid="uid://b0djtwk0anysp" path="res://Scripts/Entity/Enemy/Others/robot_projectile.gd" id="1_lvtm0"]
+[ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/HurtboxComponents/hurtbox_component.gd" id="1_yu7ri"]
+[ext_resource type="Script" uid="uid://nd4ko4vpkdi3" path="res://Scripts/Components/HitboxComponents/hitbox_component.gd" id="2_qxbyj"]
+[ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/HealthComponents/health_component.gd" id="3_x7hyo"]
+[ext_resource type="Script" uid="uid://p85gg66bqnm8" path="res://Scripts/Components/EnemyComponents/enemy_death_component.gd" id="4_fn7na"]
+[ext_resource type="Script" uid="uid://ccrb118msosru" path="res://Resource/Effects/base_effect.gd" id="5_arvh1"]
+[ext_resource type="PackedScene" uid="uid://dlsfpaiiacyim" path="res://Scenes/Effects/hit_effect.tscn" id="6_em6sy"]
+[ext_resource type="Script" uid="uid://bbcfi1e602tuw" path="res://Resource/Effects/position_effect.gd" id="7_lvtm0"]
+[ext_resource type="PackedScene" uid="uid://bhq7ci643e2yj" path="res://Scenes/Effects/base_score_effect.tscn" id="8_qvov4"]
+[ext_resource type="Script" uid="uid://be4sxaq4mu3hc" path="res://Resource/Effects/score_effect.gd" id="9_2ou60"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o1g8r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_52341"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rwye0"]
+
+[sub_resource type="Resource" id="Resource_yu7ri"]
+script = ExtResource("7_lvtm0")
+effect_scene = ExtResource("6_em6sy")
+metadata/_custom_type_script = "uid://bbcfi1e602tuw"
+
+[sub_resource type="Resource" id="Resource_qxbyj"]
+script = ExtResource("9_2ou60")
+effect_scene = ExtResource("8_qvov4")
+metadata/_custom_type_script = "uid://be4sxaq4mu3hc"
+
+[node name="RobotProjectile" type="CharacterBody2D" unique_id=387443903]
+collision_layer = 8
+collision_mask = 72
+script = ExtResource("1_lvtm0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1999896547]
+modulate = Color(1, 1, 0.22352941, 1)
+scale = Vector2(0.04, 0.04)
+sprite_frames = ExtResource("1_em6sy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=927213]
+light_mask = 0
+visibility_layer = 0
+shape = SubResource("CircleShape2D_o1g8r")
+
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=1239143196 node_paths=PackedStringArray("health_component")]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_yu7ri")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://csy647r8tv7w5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=839309206]
+shape = SubResource("CircleShape2D_52341")
+debug_color = Color(0.10476237, 0.6483589, 0, 0.41960785)
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=373415847]
+collision_layer = 16
+collision_mask = 256
+script = ExtResource("2_qxbyj")
+damage = 1
+metadata/_custom_type_script = "uid://nd4ko4vpkdi3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=58265491]
+shape = SubResource("CircleShape2D_rwye0")
+debug_color = Color(1, 0.003464259, 0.090711586, 0.41960785)
+
+[node name="HealthComponent" type="Node" parent="." unique_id=326992947]
+script = ExtResource("3_x7hyo")
+max_health = 1
+metadata/_custom_type_script = "uid://clwsd3i4f8ndy"
+
+[node name="EnemyDeathComponent" type="Node" parent="." unique_id=513270981 node_paths=PackedStringArray("enemy", "animated_sprite_2d", "health_component")]
+script = ExtResource("4_fn7na")
+enemy = NodePath("..")
+animated_sprite_2d = NodePath("../AnimatedSprite2D")
+health_component = NodePath("../HealthComponent")
+score_value = 50
+effects = Array[ExtResource("5_arvh1")]([SubResource("Resource_yu7ri"), SubResource("Resource_qxbyj")])
+metadata/_custom_type_script = "uid://p85gg66bqnm8"
