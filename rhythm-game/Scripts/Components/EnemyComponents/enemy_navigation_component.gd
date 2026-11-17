@@ -77,8 +77,15 @@ func find_target() -> void:
 			get_tree().create_timer(1, true, false, true).timeout.connect(find_player)
 
 func find_structure() -> void:
-	var structure_list = get_tree().get_nodes_in_group(Global.STRUCTURE_GROUP)
+	var structure_buffer = get_tree().get_nodes_in_group(Global.STRUCTURE_GROUP)
+	var structure_list = []
 	var target_offset_position: Vector2
+	
+	for structure in structure_buffer:
+		if is_instance_valid(structure) and not structure.is_queued_for_deletion():
+			structure_list.append(structure)
+	
+	print(structure_list.size())
 	
 	if structure_list.size() > 0:
 		var target_to_remove: Node2D = structure_list[0]
@@ -107,6 +114,10 @@ func find_player() -> void:
 
 func define_speed() -> void:
 	speed = randf_range(min_enemy_speed, max_enemy_speed)
+
+func start() -> void:
+	find_target()
+	is_active = true
 
 func stop() -> void:
 	is_active = false

@@ -32,6 +32,7 @@ metadata/_custom_type_script = "uid://be4sxaq4mu3hc"
 collision_layer = 8
 collision_mask = 72
 script = ExtResource("1_lvtm0")
+projectile_speed = 200.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1999896547]
 modulate = Color(1, 1, 0.22352941, 1)

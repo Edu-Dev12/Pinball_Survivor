@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var projectile_speed : float = 100.0
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var hit_box : HitboxComponent = $HitboxComponent
 
@@ -11,7 +12,7 @@ func start_tween_trajectory(target_position: Vector2) -> void:
 	global_rotation = (target_position - global_position).angle()
 	var tween = create_tween()
 	var distance = global_position.distance_to(target_position)
-	var duration = distance / 100.0
+	var duration = distance / projectile_speed
 	
 	tween.tween_property(self, "global_position", target_position, duration)
 	tween.tween_callback(projectile_struck)

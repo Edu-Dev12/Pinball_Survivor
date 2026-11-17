@@ -68,9 +68,10 @@ shape = SubResource("CapsuleShape2D_yq865")
 [node name="EnemyNavigationComponent" type="NavigationAgent2D" parent="." unique_id=1079377179 node_paths=PackedStringArray("enemy", "knockback_component")]
 path_desired_distance = 10.0
 avoidance_enabled = true
-radius = 15.0
+radius = 25.0
 neighbor_distance = 40.0
 max_speed = 1500.0
+debug_enabled = true
 debug_path_custom_color = Color(1, 1, 0.12156863, 1)
 script = ExtResource("3_igqgm")
 enemy = NodePath("..")
@@ -121,3 +122,4 @@ metadata/_custom_type_script = "uid://dyl4bktkec1w0"
 [node name="EnemyShootState" type="Node" parent="FSM" unique_id=472740757 node_paths=PackedStringArray("navigation_component")]
 script = ExtResource("18_o875d")
 navigation_component = NodePath("../../EnemyNavigationComponent")
+shoot_timer_interval = 2.0
