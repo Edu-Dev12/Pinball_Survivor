@@ -31,7 +31,6 @@ func create_effects():
 		"direction": get_effect_direction(),
 		"sprite": animated_sprite_2d.sprite_frames.get_frame_texture(animated_sprite_2d.animation, animated_sprite_2d.frame),
 		"scale": animated_sprite_2d.scale,
-		
 	}
 	
 	GlobalEffectManagers.spawn_effects(effects, context)

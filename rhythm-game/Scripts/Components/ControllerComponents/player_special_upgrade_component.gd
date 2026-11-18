@@ -9,11 +9,13 @@ class_name PlayerSpecialComponent
 
 func _ready() -> void:
 	#conectar no signal global para set special
+	PlayerInfoManager.selected_ball_changed.connect(set_special)
 	GlobalInputManager.use_special.connect(use_special)
 	pass
 	
-func set_special(special_ball: SpecialData):
-	special = special_ball
+func set_special(ball_data: BallData):
+	
+	special = ball_data.ball_special
 
 	special_scene = special.special_scene.instantiate()
 	add_child(special_scene)

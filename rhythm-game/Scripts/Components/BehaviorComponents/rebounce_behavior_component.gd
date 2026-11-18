@@ -1,47 +1,88 @@
 extends Node
 class_name RebounceBehaviorComponent
 
-@export var rebounce_force: float = 120.0
-@export var speed_slowdown_rate: float = 1.1
-@export var passthrough_speed: float = 800.0
-
-@export var source: Node2D
-@export var target: RigidBody2D
+@export var self_knockback_force: float = 0
+@export var target_bounce_force: float = 0
 @export var hurt_box_component: HurtboxComponent
+
+var source: Node2D
 
 func _ready() -> void:
 	if hurt_box_component:
 		hurt_box_component.was_hurt.connect(_on_was_hurt)
-	
-	if not target:
-		target = get_tree().get_first_node_in_group(Global.PLAYER_BODY_GROUP) as RigidBody2D
-
-func _on_was_hurt(hitbox: HitboxComponent) -> void:
-	AudioManager.play_sound_effect(Global.SFX_PINBALL_IMPACT_TEST, "SFX")
-	if !hitbox:
-		return
+		find_source()
 		
-	if !hitbox.apply_ball_bounce:
-		return
+func find_source():
+	source = hurt_box_component.get_parent()
+		
+func _on_was_hurt(hitbox: HitboxComponent) -> void:
+	apply_bounce_and_knockback(hitbox.get_parent())
 	
-	if not target or not source: return
+func apply_bounce_and_knockback(target: Node2D):
+	apply_bounce(target)
+	apply_knockback()
 	
-	var current_speed: float = target.linear_velocity.length()
+func apply_bounce(target: Node2D):
 	
-	if current_speed < passthrough_speed:
-		apply_normal_rebounce(current_speed)
-	else:
-		execute_strong_impact()
+	if target is PlayerBody:
+		var playerBody = get_tree().get_first_node_in_group(Global.PLAYER_BODY_GROUP) as RigidBody2D
+	
 
-func apply_normal_rebounce(current_speed: float) -> void:
-	var escape_direction: Vector2 = (target.global_position - source.global_position).normalized()
-	var final_speed: float = current_speed + rebounce_force
-	target.linear_velocity = escape_direction * final_speed
+func apply_knockback():
+	pass
 
-func execute_strong_impact() -> void:
-	TimeManager.slow_motion_cascade()
-	target.linear_velocity = target.linear_velocity / speed_slowdown_rate
-	
-	var camera = get_tree().get_first_node_in_group(Global.CAMERA_GROUP)
-	if camera and camera.has_node("CameraShakeComponent"):
-		camera.cameraShakeComponent.trigger_shake()
+#
+#@export var rebounce_force: float = 120.0
+#@export var speed_slowdown_rate: float = 1.1
+#@export var passthrough_speed: float = 800.0
+#
+#@export var source: Node2D
+#@export var target: RigidBody2D
+#@export var hurt_box_component: HurtboxComponent
+#
+##COMPONENTE DE BOUNCE
+##QUEM APLICA O BOUNCE
+##QUEM É APLICADO O BOUNCE
+#
+##BOUNCE RIGIDBODY
+##BOUNCE CHARACTERBODY
+#
+##
+#
+#
+#func _ready() -> void:
+	#if hurt_box_component:
+		#hurt_box_component.was_hurt.connect(_on_was_hurt)
+	#
+	#if not target:
+		#target = get_tree().get_first_node_in_group(Global.PLAYER_BODY_GROUP) as RigidBody2D
+#
+#func _on_was_hurt(hitbox: HitboxComponent) -> void:
+	#AudioManager.play_sound_effect(Global.SFX_PINBALL_IMPACT_TEST, "SFX")
+	#if !hitbox:
+		#return
+		#
+	#if !hitbox.apply_ball_bounce:
+		#return
+	#
+	#if not target or not source: return
+	#
+	#var current_speed: float = target.linear_velocity.length()
+	#
+	#if current_speed < passthrough_speed:
+		#apply_normal_rebounce(current_speed)
+	#else:
+		#execute_strong_impact()
+#
+#func apply_normal_rebounce(current_speed: float) -> void:
+	#var escape_direction: Vector2 = (target.global_position - source.global_position).normalized()
+	#var final_speed: float = current_speed + rebounce_force
+	#target.linear_velocity = escape_direction * final_speed
+#
+#func execute_strong_impact() -> void:
+	#TimeManager.slow_motion_cascade()
+	#target.linear_velocity = target.linear_velocity / speed_slowdown_rate
+	#
+	#var camera = get_tree().get_first_node_in_group(Global.CAMERA_GROUP)
+	#if camera and camera.has_node("CameraShakeComponent"):
+		#camera.cameraShakeComponent.trigger_shake()
