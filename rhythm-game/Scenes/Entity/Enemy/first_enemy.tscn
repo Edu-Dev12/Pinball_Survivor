@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://p85gg66bqnm8" path="res://Scripts/Components/EnemyComponents/enemy_death_component.gd" id="7_pcolw"]
 [ext_resource type="PackedScene" uid="uid://bhq7ci643e2yj" path="res://Scenes/Effects/base_score_effect.tscn" id="8_v5xdt"]
 [ext_resource type="PackedScene" uid="uid://dlsfpaiiacyim" path="res://Scenes/Effects/hit_effect.tscn" id="9_j5h8p"]
-[ext_resource type="Script" uid="uid://ccrb118msosru" path="res://Resource/Effects/base_effect_data.gd" id="12_h0rip"]
+[ext_resource type="Script" uid="uid://ccrb118msosru" path="res://Resource/Effects/Base_Effect_Data.gd" id="12_h0rip"]
 [ext_resource type="Script" uid="uid://bbcfi1e602tuw" path="res://Resource/Effects/position_effect.gd" id="13_xol7p"]
 [ext_resource type="Script" uid="uid://be4sxaq4mu3hc" path="res://Resource/Effects/score_effect_data.gd" id="14_xol7p"]
 [ext_resource type="PackedScene" uid="uid://u116yfkbse07" path="res://Scenes/Effects/dead_body_effect.tscn" id="15_gpx3d"]
@@ -189,8 +189,10 @@ selfDestructionComponent = NodePath("../SelfDestructionComponent")
 script = ExtResource("2_x1513")
 metadata/_custom_type_script = "uid://clwsd3i4f8ndy"
 
-[node name="RebounceBehaviorComponent" type="Node" parent="." unique_id=274603130]
+[node name="RebounceBehaviorComponent" type="Node" parent="." unique_id=274603130 node_paths=PackedStringArray("hurt_box_component")]
 script = ExtResource("5_t6tdw")
+hurt_box_component = NodePath("../HurtboxComponent")
+bounce_force = 30.0
 metadata/_custom_type_script = "uid://dirog1u42u7vt"
 
 [node name="SelfDestructionComponent" type="Node" parent="." unique_id=759719018 node_paths=PackedStringArray("animated_sprite_2d", "enemy_navigation")]
