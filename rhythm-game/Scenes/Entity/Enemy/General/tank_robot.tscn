@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://clwsd3i4f8ndy" path="res://Scripts/Components/HealthComponents/health_component.gd" id="3_tfej5"]
 [ext_resource type="Script" uid="uid://bxcngec2b54ck" path="res://Scripts/Components/EnemyComponents/enemy_navigation_component.gd" id="3_u015u"]
 [ext_resource type="Script" uid="uid://dirog1u42u7vt" path="res://Scripts/Components/BehaviorComponents/rebounce_behavior_component.gd" id="4_u015u"]
-[ext_resource type="Script" uid="uid://52eolxg4r2tc" path="res://Scripts/Components/EnemyComponents/knockback_component.gd" id="5_x57ug"]
 [ext_resource type="Script" uid="uid://p85gg66bqnm8" path="res://Scripts/Components/EnemyComponents/enemy_death_component.gd" id="5_xpk1k"]
 [ext_resource type="Script" uid="uid://ccrb118msosru" path="res://Resource/Effects/base_effect.gd" id="6_x57ug"]
 [ext_resource type="PackedScene" uid="uid://dlsfpaiiacyim" path="res://Scenes/Effects/hit_effect.tscn" id="7_akvnt"]
@@ -68,7 +67,7 @@ metadata/_custom_type_script = "uid://csy647r8tv7w5"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=902232595]
 shape = SubResource("CapsuleShape2D_yq865")
 
-[node name="EnemyNavigationComponent" type="NavigationAgent2D" parent="." unique_id=148906988 node_paths=PackedStringArray("enemy", "knockback_component")]
+[node name="EnemyNavigationComponent" type="NavigationAgent2D" parent="." unique_id=148906988 node_paths=PackedStringArray("enemy", "rebounce_behavior_component")]
 path_desired_distance = 10.0
 avoidance_enabled = true
 radius = 15.0
@@ -77,7 +76,7 @@ max_speed = 1500.0
 debug_path_custom_color = Color(1, 0.21176471, 1, 1)
 script = ExtResource("3_u015u")
 enemy = NodePath("..")
-knockback_component = NodePath("../KnockbackComponent")
+rebounce_behavior_component = NodePath("../RebounceBehaviorComponent")
 target_type = 1
 metadata/_custom_type_script = "uid://bxcngec2b54ck"
 
@@ -86,17 +85,8 @@ script = ExtResource("3_tfej5")
 max_health = 50
 metadata/_custom_type_script = "uid://clwsd3i4f8ndy"
 
-[node name="KnockbackComponent" type="Node" parent="." unique_id=421363207 node_paths=PackedStringArray("enemy")]
-script = ExtResource("5_x57ug")
-enemy = NodePath("..")
-metadata/_custom_type_script = "uid://52eolxg4r2tc"
-
-[node name="RebounceBehaviorComponent" type="Node" parent="." unique_id=123378537 node_paths=PackedStringArray("source", "hurt_box_component")]
+[node name="RebounceBehaviorComponent" type="Node" parent="." unique_id=123378537 node_paths=PackedStringArray("hurt_box_component")]
 script = ExtResource("4_u015u")
-rebounce_force = 0.0
-speed_slowdown_rate = 1.8
-passthrough_speed = 10000.0
-source = NodePath("..")
 hurt_box_component = NodePath("../HurtboxComponent")
 metadata/_custom_type_script = "uid://dirog1u42u7vt"
 

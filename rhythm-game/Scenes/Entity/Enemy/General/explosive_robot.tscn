@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://csy647r8tv7w5" path="res://Scripts/Components/HurtboxComponents/hurtbox_component.gd" id="3_1buj2"]
 [ext_resource type="Script" uid="uid://be1l2tkvrxun" path="res://Scripts/Animation/explosive_robot_animation.gd" id="4_ft3o8"]
 [ext_resource type="Script" uid="uid://dirog1u42u7vt" path="res://Scripts/Components/BehaviorComponents/rebounce_behavior_component.gd" id="5_t6tdw"]
-[ext_resource type="Script" uid="uid://52eolxg4r2tc" path="res://Scripts/Components/EnemyComponents/knockback_component.gd" id="6_hvhef"]
 [ext_resource type="Script" uid="uid://cph3wab7jau4j" path="res://Scripts/Entity/FSM/States/ExplosiveRobot/enemy_explode_state.gd" id="6_pcolw"]
 [ext_resource type="Script" uid="uid://bxcngec2b54ck" path="res://Scripts/Components/EnemyComponents/enemy_navigation_component.gd" id="6_rhb01"]
 [ext_resource type="Script" uid="uid://p85gg66bqnm8" path="res://Scripts/Components/EnemyComponents/enemy_death_component.gd" id="7_pcolw"]
@@ -171,7 +170,7 @@ metadata/_custom_type_script = "uid://csy647r8tv7w5"
 shape = SubResource("CapsuleShape2D_426oi")
 debug_color = Color(0.64454705, 0.5230215, 0, 0.41960785)
 
-[node name="EnemyNavigationComponent" type="NavigationAgent2D" parent="." unique_id=797026272 node_paths=PackedStringArray("enemy", "knockback_component")]
+[node name="EnemyNavigationComponent" type="NavigationAgent2D" parent="." unique_id=797026272 node_paths=PackedStringArray("enemy", "rebounce_behavior_component")]
 path_desired_distance = 10.0
 avoidance_enabled = true
 radius = 15.0
@@ -180,17 +179,13 @@ max_speed = 1500.0
 debug_path_custom_color = Color(1, 1, 0.12156863, 1)
 script = ExtResource("6_rhb01")
 enemy = NodePath("..")
-knockback_component = NodePath("../KnockbackComponent")
+rebounce_behavior_component = NodePath("../RebounceBehaviorComponent")
 orbit_radius = 40.0
-attack_off_set = 10.0
+attack_off_set = 20.0
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1531943528]
 script = ExtResource("2_x1513")
 metadata/_custom_type_script = "uid://clwsd3i4f8ndy"
-
-[node name="KnockbackComponent" type="Node" parent="." unique_id=2121562224 node_paths=PackedStringArray("enemy")]
-script = ExtResource("6_hvhef")
-enemy = NodePath("..")
 
 [node name="RebounceBehaviorComponent" type="Node" parent="." unique_id=274603130 node_paths=PackedStringArray("hurt_box_component")]
 script = ExtResource("5_t6tdw")

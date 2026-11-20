@@ -10,7 +10,7 @@ enum TARGET_TYPE {
 
 @export_group("Configurações de Componentes")
 @export var enemy: CharacterBody2D
-@export var knockback_component: KnockbackComponent
+@export var rebounce_behavior_component: RebounceBehaviorComponent
 
 @export_group("Configurações de Valores")
 @export var target_type: TARGET_TYPE = TARGET_TYPE.STRUCTURE
@@ -33,7 +33,7 @@ func update_movement(_delta: float) -> void:
 	if not is_active or not enemy or not target or not is_instance_valid(target):
 		return
 		
-	if knockback_component and knockback_component.is_knockbacked():
+	if rebounce_behavior_component and rebounce_behavior_component.is_knockbacked():
 		return
 	
 	if is_chasing_player:

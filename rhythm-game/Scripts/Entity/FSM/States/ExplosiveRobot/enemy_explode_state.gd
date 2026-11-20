@@ -6,7 +6,7 @@ signal is_exploding
 
 const SELF_DESTRUCTION_AREA = preload("uid://b7a1ts5nj82lg")
 
-@export var lifetime: float = 3.0
+@export var lifetime: float = 5.0
 @export var damage: int = 1
 var tween: Tween
 

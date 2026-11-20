@@ -4,7 +4,7 @@ class_name RebounceBehaviorComponent
 @export var hurt_box_component: HurtboxComponent
 
 @export_group("KNOCKBACK")
-@export var knockback_force: float = 0.0
+@export var knockback_standard_force: float = 0.0
 @export var knockback_decay_rate: float = 1000.0
 
 @export_group("BOUNCE")
@@ -22,11 +22,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not is_knockbacked() or not source is CharacterBody2D:
 		return
-		
-	var enemy := source as CharacterBody2D
-	enemy.velocity = knockback_velocity
+	source.velocity = knockback_velocity
 	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, delta * knockback_decay_rate)
-	enemy.move_and_slide()
+	source.move_and_slide()
 	
 func _on_was_hurt(hitbox: HitboxComponent) -> void:
 	apply_bounce_and_knockback(hitbox.get_parent())
@@ -36,7 +34,7 @@ func find_source() -> void:
 	
 func apply_bounce_and_knockback(target: Node2D) -> void:
 	apply_bounce(target)
-	apply_knockback(target)
+	apply_knockback(target, knockback_standard_force)
 
 #-----------------------------------
 # BOUNCE
@@ -62,9 +60,8 @@ func rigidbody_bounce(rigidbody: RigidBody2D) -> void:
 func is_knockbacked() -> bool:
 	return not knockback_velocity.is_zero_approx()
 	
-func apply_knockback(target: Node2D) -> void:
+func apply_knockback(target: Node2D, knockback_force: float) -> void:
 	if knockback_force <= 0.0 or not source:
 		return
-	
 	var knockback_direction: Vector2 = (source.global_position - target.global_position).normalized()
 	knockback_velocity = knockback_direction * knockback_force
