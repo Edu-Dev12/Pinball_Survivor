@@ -39,7 +39,7 @@ metadata/_custom_type_script = "uid://c4jv6sqdkonri"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_avsp8"]
 radius = 34.0
-height = 110.0
+height = 70.0
 
 [node name="Bumper" type="StaticBody2D" unique_id=1580442525 groups=["Structure"]]
 collision_layer = 64
