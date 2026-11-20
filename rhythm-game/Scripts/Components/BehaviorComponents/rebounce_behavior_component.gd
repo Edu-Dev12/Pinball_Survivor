@@ -36,15 +36,19 @@ func apply_bounce_and_knockback(target: Node2D) -> void:
 	apply_bounce(target)
 	apply_knockback(target, knockback_standard_force)
 
+func check_rigid_body(target: Node2D) -> Node2D:
+	if target is PlayerBody:
+		return get_tree().get_first_node_in_group(Global.PLAYER_BODY_GROUP) as RigidBody2D
+	return target
+
 #-----------------------------------
 # BOUNCE
 #-----------------------------------
 func apply_bounce(target: Node2D) -> void:
-	if target is PlayerBody:
-		var player_body := get_tree().get_first_node_in_group(Global.PLAYER_BODY_GROUP) as RigidBody2D
-		if player_body:
-			rigidbody_bounce(player_body)
-		
+	target = check_rigid_body(target)
+	if target is RigidBody2D:
+		rigidbody_bounce(target)
+
 func rigidbody_bounce(rigidbody: RigidBody2D) -> void:
 	var current_speed: float = rigidbody.linear_velocity.length()
 	var damping_multiplier: float = 1.0 - (bounce_damping / 100.0)
@@ -63,5 +67,6 @@ func is_knockbacked() -> bool:
 func apply_knockback(target: Node2D, knockback_force: float) -> void:
 	if knockback_force <= 0.0 or not source:
 		return
+	target = check_rigid_body(target)
 	var knockback_direction: Vector2 = (source.global_position - target.global_position).normalized()
 	knockback_velocity = knockback_direction * knockback_force
